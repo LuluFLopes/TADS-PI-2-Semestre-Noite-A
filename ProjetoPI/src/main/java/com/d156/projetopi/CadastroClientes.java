@@ -76,9 +76,20 @@ public class CadastroClientes extends javax.swing.JFrame {
 
         cboSexo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Feminino" }));
+        cboSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSexoActionPerformed(evt);
+            }
+        });
 
         lblEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblEmail.setText("E-mail:");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         lblTelefone.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblTelefone.setText("Telefone:");
@@ -166,8 +177,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblIcone.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Clients-icon.png")); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,6 +236,18 @@ public class CadastroClientes extends javax.swing.JFrame {
         validInfo.ValidarNumero(txtNumero);
 
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void cboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSexoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
