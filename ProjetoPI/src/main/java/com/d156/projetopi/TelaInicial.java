@@ -35,18 +35,18 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuBarra = new javax.swing.JMenuBar();
         mnuCadastro = new javax.swing.JMenu();
         mnuClientes = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mnuCadastroCli = new javax.swing.JMenuItem();
+        mnuAlterarCli = new javax.swing.JMenuItem();
+        mnuExcluirCli = new javax.swing.JMenuItem();
         mnuProdutos = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        mnuCadastroProd = new javax.swing.JMenuItem();
+        mnuAlterarProd = new javax.swing.JMenuItem();
+        mnuExcluirProd = new javax.swing.JMenuItem();
         mnuRelatorios = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         mnuVendas = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        mnuNovaVenda = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -62,44 +62,54 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuClientes.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Office-Client-Male-Light-icon.png")); // NOI18N
         mnuClientes.setText("Clientes");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\add-icon.png")); // NOI18N
-        jMenuItem2.setText("Cadastrar");
-        mnuClientes.add(jMenuItem2);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-undo-icon.png")); // NOI18N
-        jMenuItem3.setText("Alterar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mnuCadastroCli.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\add-icon.png")); // NOI18N
+        mnuCadastroCli.setText("Cadastrar");
+        mnuCadastroCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mnuCadastroCliActionPerformed(evt);
             }
         });
-        mnuClientes.add(jMenuItem3);
+        mnuClientes.add(mnuCadastroCli);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-delete-icon.png")); // NOI18N
-        jMenuItem4.setText("Excluir");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mnuAlterarCli.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-undo-icon.png")); // NOI18N
+        mnuAlterarCli.setText("Alterar");
+        mnuAlterarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mnuAlterarCliActionPerformed(evt);
             }
         });
-        mnuClientes.add(jMenuItem4);
+        mnuClientes.add(mnuAlterarCli);
+
+        mnuExcluirCli.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-delete-icon.png")); // NOI18N
+        mnuExcluirCli.setText("Excluir");
+        mnuExcluirCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuExcluirCliActionPerformed(evt);
+            }
+        });
+        mnuClientes.add(mnuExcluirCli);
 
         mnuCadastro.add(mnuClientes);
 
         mnuProdutos.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\product-icon.png")); // NOI18N
         mnuProdutos.setText("Produtos");
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\add-icon.png")); // NOI18N
-        jMenuItem5.setText("Cadastrar");
-        mnuProdutos.add(jMenuItem5);
+        mnuCadastroProd.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\add-icon.png")); // NOI18N
+        mnuCadastroProd.setText("Cadastrar");
+        mnuCadastroProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroProdActionPerformed(evt);
+            }
+        });
+        mnuProdutos.add(mnuCadastroProd);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-undo-icon.png")); // NOI18N
-        jMenuItem6.setText("Alterar");
-        mnuProdutos.add(jMenuItem6);
+        mnuAlterarProd.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-undo-icon.png")); // NOI18N
+        mnuAlterarProd.setText("Alterar");
+        mnuProdutos.add(mnuAlterarProd);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-delete-icon.png")); // NOI18N
-        jMenuItem10.setText("Excluir");
-        mnuProdutos.add(jMenuItem10);
+        mnuExcluirProd.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Actions-edit-delete-icon.png")); // NOI18N
+        mnuExcluirProd.setText("Excluir");
+        mnuProdutos.add(mnuExcluirProd);
 
         mnuCadastro.add(mnuProdutos);
 
@@ -121,9 +131,14 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuVendas.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\Sales-report-icon.png")); // NOI18N
         mnuVendas.setText("Vendas");
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\shop-cart-add-icon.png")); // NOI18N
-        jMenuItem8.setText("Nova Venda");
-        mnuVendas.add(jMenuItem8);
+        mnuNovaVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucme\\Desktop\\Projetos Git\\TADS-PI-2-Semestre-Noite-A\\ProjetoPI\\src\\main\\Img\\shop-cart-add-icon.png")); // NOI18N
+        mnuNovaVenda.setText("Nova Venda");
+        mnuNovaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuNovaVendaActionPerformed(evt);
+            }
+        });
+        mnuVendas.add(mnuNovaVenda);
 
         mnuBarra.add(mnuVendas);
 
@@ -149,14 +164,30 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mnuAlterarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarCliActionPerformed
         TelaDeConsultaClientes pesquisa = new TelaDeConsultaClientes();
         pesquisa.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mnuAlterarCliActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void mnuExcluirCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExcluirCliActionPerformed
+        TelaDeConsultaClientes pesquisa = new TelaDeConsultaClientes();
+        pesquisa.setVisible(true);
+    }//GEN-LAST:event_mnuExcluirCliActionPerformed
+
+    private void mnuCadastroCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroCliActionPerformed
+        CadastroClientes cadastro = new CadastroClientes();
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_mnuCadastroCliActionPerformed
+
+    private void mnuCadastroProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroProdActionPerformed
+        CadastroProdutos cadastro = new CadastroProdutos();
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_mnuCadastroProdActionPerformed
+
+    private void mnuNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuNovaVendaActionPerformed
+        Venda vendas = new Venda();
+        vendas.setVisible(true);
+    }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,19 +226,19 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JLabel lblReference;
+    private javax.swing.JMenuItem mnuAlterarCli;
+    private javax.swing.JMenuItem mnuAlterarProd;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuCadastro;
+    private javax.swing.JMenuItem mnuCadastroCli;
+    private javax.swing.JMenuItem mnuCadastroProd;
     private javax.swing.JMenu mnuClientes;
+    private javax.swing.JMenuItem mnuExcluirCli;
+    private javax.swing.JMenuItem mnuExcluirProd;
+    private javax.swing.JMenuItem mnuNovaVenda;
     private javax.swing.JMenu mnuProdutos;
     private javax.swing.JMenu mnuRelatorios;
     private javax.swing.JMenu mnuVendas;

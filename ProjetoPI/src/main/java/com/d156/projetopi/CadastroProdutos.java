@@ -4,10 +4,10 @@
  */
 package com.d156.projetopi;
 
-
 import com.d156.projetopi.validador.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author henry
@@ -19,6 +19,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
      */
     public CadastroProdutos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -42,7 +43,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         btnSalvarCadastroProduto = new javax.swing.JButton();
         btnCancelarCadastroProduto = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cadstro de Produtos");
@@ -77,6 +78,11 @@ public class CadastroProdutos extends javax.swing.JFrame {
         btnCancelarCadastroProduto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnCancelarCadastroProduto.setText("Cancelar");
         btnCancelarCadastroProduto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelarCadastroProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCadastroProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,12 +155,16 @@ public class CadastroProdutos extends javax.swing.JFrame {
         validInfoProduto.ValidarTexto(txtNomeProduto);
 
         validInfoProduto.ValidarNumero(txtPrecoProduto);
-         validInfoProduto.ValidarNumero(txtNumeroDeSerie);
+        validInfoProduto.ValidarNumero(txtNumeroDeSerie);
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed
 
     private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed
 
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
+
+    private void btnCancelarCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCadastroProdutoActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarCadastroProdutoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -50,7 +50,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         lblIcone = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cliente");
 
         lblNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -246,7 +246,7 @@ public class CadastroClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_cboSexoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

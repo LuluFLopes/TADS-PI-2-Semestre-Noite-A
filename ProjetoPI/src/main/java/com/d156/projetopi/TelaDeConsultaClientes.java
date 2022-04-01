@@ -33,7 +33,7 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
         txtCpf = new javax.swing.JFormattedTextField();
         btnPesquisa = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Cliente");
 
         lblCpf.setText("CPF:");
