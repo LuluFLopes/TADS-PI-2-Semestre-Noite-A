@@ -165,13 +165,13 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuAlterarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarCliActionPerformed
-        TelaDeConsultaClientes pesquisa = new TelaDeConsultaClientes();
-        pesquisa.setVisible(true);
+AlterarClientes alterar = new AlterarClientes();
+        alterar.setVisible(true);
     }//GEN-LAST:event_mnuAlterarCliActionPerformed
 
     private void mnuExcluirCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExcluirCliActionPerformed
-        TelaDeConsultaClientes pesquisa = new TelaDeConsultaClientes();
-        pesquisa.setVisible(true);
+      ExcluirCliente excluir = new ExcluirCliente();
+        excluir.setVisible(true);
     }//GEN-LAST:event_mnuExcluirCliActionPerformed
 
     private void mnuCadastroCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroCliActionPerformed

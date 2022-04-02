@@ -48,7 +48,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Cursor Padr&#xe3;o"/>
+      <Color id="Default Cursor"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -167,11 +167,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\lucme\Desktop\Projetos Git\TADS-PI-2-Semestre-Noite-A\ProjetoPI\src\main\Img\shop-cart-add-icon.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

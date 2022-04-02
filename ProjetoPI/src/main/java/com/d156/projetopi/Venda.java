@@ -4,6 +4,8 @@
  */
 package com.d156.projetopi;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luciano.flopes
@@ -353,7 +355,9 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorRecebidoActionPerformed
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        // TODO add your handling code here:
+
+JOptionPane.showMessageDialog(this,"Compra finalizada troco de:  "+txtTroco+" Volte sempre"+txtIdCliente);
+
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
