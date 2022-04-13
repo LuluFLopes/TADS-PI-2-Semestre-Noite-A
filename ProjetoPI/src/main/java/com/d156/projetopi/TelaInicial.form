@@ -36,18 +36,10 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuAlterarCli">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar"/>
+                    <Property name="text" type="java.lang.String" value="Alterar/Exluir"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAlterarCliActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuExcluirCli">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Excluir"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuExcluirCliActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -67,13 +59,11 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuAlterarProd">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar"/>
+                    <Property name="text" type="java.lang.String" value="Altera/Excluir"/>
                   </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuExcluirProd">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Excluir"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAlterarProdActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

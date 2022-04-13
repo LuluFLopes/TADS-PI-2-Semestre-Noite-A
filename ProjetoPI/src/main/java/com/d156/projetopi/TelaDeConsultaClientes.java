@@ -75,7 +75,7 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
                     .addComponent(lblCpf)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(btnPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -84,6 +84,10 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
 
+        TelaIntermediaria janelaIntermediaria = new TelaIntermediaria();
+        
+       janelaIntermediaria.setVisible(true);
+        
         // Integração a concluir.
         /*JOptionPane.showMessageDialog(this, txtCpf.getText());
         if (txtCpf.getText().equals("")) {

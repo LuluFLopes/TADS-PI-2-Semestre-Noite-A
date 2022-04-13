@@ -47,7 +47,7 @@
                   <Component id="txtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnPesquisa" pref="42" max="32767" attributes="0"/>
+              <Component id="btnPesquisa" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
