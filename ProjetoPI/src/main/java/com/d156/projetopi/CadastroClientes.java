@@ -4,7 +4,7 @@
  */
 package com.d156.projetopi;
 
-import com.d156.projetopi.validador.Validador;
+import com.d156.projetopi.classes.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**

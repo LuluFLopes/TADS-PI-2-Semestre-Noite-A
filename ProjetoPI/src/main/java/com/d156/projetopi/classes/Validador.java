@@ -1,4 +1,4 @@
-package com.d156.projetopi.validador;
+package com.d156.projetopi.classes;
 
 import java.awt.Color;
 import java.util.ArrayList;

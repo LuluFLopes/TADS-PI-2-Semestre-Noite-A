@@ -4,6 +4,10 @@
  */
 package com.d156.projetopi;
 
+import com.d156.projetopi.classes.Clientes;
+import com.d156.projetopi.classes.Produtos;
+import com.d156.projetopi.classes.Validador;
+
 /**
  *
  * @author luciano.flopes
@@ -141,8 +145,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuAlterarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarCliActionPerformed
-TelaDeConsultaClientes janelaConsulta = new TelaDeConsultaClientes();
-
+        TelaDeConsultaClientes janelaConsulta = new TelaDeConsultaClientes();
         janelaConsulta.setVisible(true);
     }//GEN-LAST:event_mnuAlterarCliActionPerformed
 
@@ -162,11 +165,8 @@ TelaDeConsultaClientes janelaConsulta = new TelaDeConsultaClientes();
     }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     private void mnuAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarProdActionPerformed
-
-TelaIntermediariaProduto janelaInterProd = new TelaIntermediariaProduto();
-
-janelaInterProd.setVisible(true);
-
+        TelaIntermediariaProduto janelaInterProd = new TelaIntermediariaProduto();
+        janelaInterProd.setVisible(true);
     }//GEN-LAST:event_mnuAlterarProdActionPerformed
 
     /**
