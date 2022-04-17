@@ -4,20 +4,24 @@
  */
 package com.d156.projetopi.classes;
 
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author lucme
  */
 public class Clientes {
 
-    private static String nomeCli = "";
-    private String cfp = "";
-    private String endereco = "";
-    private String numero = "";
-    private String genero = "";
-    private String estadoCivil = "";
-    private String email = "";
-    private String telefone = "";
+    public static String nomeCli = "";
+    public String cfp = "";
+    public String endereco = "";
+    public String numero = "";
+    public String genero = "";
+    public String estadoCivil = "";
+    public String email = "";
+    public String telefone = "";
 
     public Clientes() {
 

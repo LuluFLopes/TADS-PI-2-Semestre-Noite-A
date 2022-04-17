@@ -7,6 +7,8 @@ package com.d156.projetopi;
 import com.d156.projetopi.classes.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import com.d156.projetopi.classes.Clientes;
+
 /**
  *
  * @author luciano.flopes
@@ -46,7 +48,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboEstadoCivil = new javax.swing.JComboBox<>();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         lblIcone = new javax.swing.JLabel();
@@ -60,11 +62,14 @@ public class CadastroClientes extends javax.swing.JFrame {
         lblCpf.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblCpf.setText("CPF:");
 
+        txtNome.setName("Nome");
+
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCpf.setName("CPF");
 
         lblNumCadastro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNumCadastro.setText("Nº de Cadastro:");
@@ -72,11 +77,16 @@ public class CadastroClientes extends javax.swing.JFrame {
         lblEndereco.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
 
+        txtEndereco.setName("Endereço");
+
         lblNumero.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNumero.setText("Número:");
 
+        txtNumero.setName("Número");
+
         cboSexo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Feminino" }));
+        cboSexo.setName("Sexo");
         cboSexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSexoActionPerformed(evt);
@@ -86,6 +96,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         lblEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblEmail.setText("E-mail:");
 
+        txtEmail.setName("Email");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -95,8 +106,16 @@ public class CadastroClientes extends javax.swing.JFrame {
         lblTelefone.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblTelefone.setText("Telefone:");
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado Civil", "Solteiro ", "Divorciado", "Casado", " ", " " }));
+        txtTelefone.setName("Telefone");
+
+        cboEstadoCivil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado Civil", "Solteiro ", "Divorciado", "Casado", " ", " " }));
+        cboEstadoCivil.setName("Estado Civil");
+        cboEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEstadoCivilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,7 +144,7 @@ public class CadastroClientes extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -152,7 +171,7 @@ public class CadastroClientes extends javax.swing.JFrame {
                     .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCpf)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEndereco)
@@ -228,20 +247,55 @@ public class CadastroClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-JOptionPane.showConfirmDialog(null,"DESEJA SALVAR?","CONFIRMAÇÃO DE CLIENTE",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
-
-        Validador validInfo = new Validador();
         
-        String sexType = cboSexo.getSelectedItem().toString();        
+        //JOptionPane.showConfirmDialog(null, "DESEJA SALVAR?", "CONFIRMAÇÃO DE CLIENTE", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
+        //   <--(Trecho de Código que confirma ação).
 
-        // Validações de Texto.
-        validInfo.ValidarTexto(txtNome);
-        validInfo.ValidarTexto(txtEndereco);
-        validInfo.ValidarTexto(txtCpf);
-        validInfo.ValidarTexto(txtEmail);
+        // Classes instanciadas.
+        Validador validador = new Validador();
+        Clientes classe = new Clientes();
 
-        // Validações de Número.
-        validInfo.ValidarNumero(txtNumero);
+        // Criando variáveis para salvar na Classe Produtos.
+        String nome = txtNome.getText();
+        String cpf = txtCpf.getText();
+        String endereco = txtEndereco.getText();
+        String numero = txtNumero.getText();
+        String email = txtEmail.getText();
+        String estadoCivil = cboEstadoCivil.getSelectedItem().toString();
+        String telefone = txtTelefone.getText();
+        String genero = cboSexo.getSelectedItem().toString();
+
+        // Verificando se os campos estão vazios ou com dados incorretos.
+        validador.ValidarTexto(txtNome);
+        validador.ValidarCpf(txtCpf);
+        validador.ValidarTexto(txtEndereco);
+        validador.ValidarTexto(txtNumero);
+        validador.ValidarTexto(txtEmail);
+        validador.ValidarCbo(cboEstadoCivil);
+        validador.ValidarTexto(txtTelefone);
+        validador.ValidarCbo(cboSexo);
+        validador.ExibirMensagensErro();
+
+        // Verificando de existem erros antes de gravar na classe.
+        boolean temErro = validador.temErro();
+        validador.limpaVeriicador();
+        
+        // Validação se existe menssagens de erro no array responsável.
+        if (temErro) {
+            // Gravação dos dados na classe "Produtos".
+            classe.setNomeCli(nome);
+            classe.setCfp(cpf);
+            classe.setEndereco(endereco);
+            classe.setNumero(numero);
+            classe.setEmail(email);
+            classe.setEstadoCivil(estadoCivil);
+            classe.setTelefone(telefone);
+            classe.setGenero(genero);
+
+            // Impressão dos dados inseridos na classe.
+            JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli() + " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
+                    + " , Genero: " + classe.getGenero() + " , Estado Civil: " + classe.getEstadoCivil() + " , Telefone: " + classe.getTelefone());
+        }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -256,6 +310,10 @@ JOptionPane.showConfirmDialog(null,"DESEJA SALVAR?","CONFIRMAÇÃO DE CLIENTE",J
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void cboEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoCivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEstadoCivilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,8 +353,8 @@ JOptionPane.showConfirmDialog(null,"DESEJA SALVAR?","CONFIRMAÇÃO DE CLIENTE",J
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<String> cboEstadoCivil;
     private javax.swing.JComboBox<String> cboSexo;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblEmail;

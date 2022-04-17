@@ -7,6 +7,7 @@ package com.d156.projetopi;
 import com.d156.projetopi.classes.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import com.d156.projetopi.classes.Produtos;
 
 /**
  *
@@ -35,7 +36,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         btnSalvarCadastroProduto = new javax.swing.JButton();
         btnCancelarCadastroProduto = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtQuantidade = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblNome3 = new javax.swing.JLabel();
@@ -44,7 +45,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         lblNome1 = new javax.swing.JLabel();
         txtPrecoProduto = new javax.swing.JTextField();
         txtModeloProduto = new javax.swing.JTextField();
-        txtNumeroDeSerie = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         lblNome2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -72,6 +73,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        txtQuantidade.setName("Quantidade");
+
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("QUANTIDADE INSERIDA NO ESTOQUE: ");
 
@@ -83,7 +86,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,7 +95,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -101,17 +104,24 @@ public class CadastroProdutos extends javax.swing.JFrame {
         lblNome3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNome3.setText("Preco:");
 
+        txtNomeProduto.setName("Nome");
+
         lblNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNome.setText("Nome:");
 
         lblNome1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lblNome1.setText(" Nº de serie :");
+        lblNome1.setText("Código:");
 
+        txtPrecoProduto.setName("Preço");
         txtPrecoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecoProdutoActionPerformed(evt);
             }
         });
+
+        txtModeloProduto.setName("Modelo");
+
+        txtCodigo.setName("Código");
 
         lblNome2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNome2.setText("Modelo :");
@@ -133,7 +143,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                             .addComponent(lblNome1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumeroDeSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -152,10 +162,10 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome1)
-                    .addComponent(txtNumeroDeSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNome2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtModeloProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,14 +217,43 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadastroProdutoActionPerformed
+        // Classes instanciadas.
+        Produtos classes = new Produtos();
+        Validador validador = new Validador();
 
-        Validador validInfoProduto = new Validador();
+        // Criando variáveis para salvar na Classe Produtos.
+        String nome = txtNomeProduto.getText();
+        String codigo = txtCodigo.getText();
+        String modelo = txtModeloProduto.getText();
+        String quantidade = txtQuantidade.getText();
+        String preco = txtPrecoProduto.getText();
 
-        validInfoProduto.ValidarTexto(txtModeloProduto);
-        validInfoProduto.ValidarTexto(txtNomeProduto);
+        // Verificando se os campos estão vazios ou com dados incorretos.
+        validador.ValidarTexto(txtNomeProduto);
+        validador.ValidarTexto(txtCodigo);
+        validador.ValidarTexto(txtModeloProduto);
+        validador.ValidarNumero(txtQuantidade);
+        validador.ValidarFloat(txtPrecoProduto);
+        validador.ExibirMensagensErro();
 
-        validInfoProduto.ValidarNumero(txtPrecoProduto);
-        validInfoProduto.ValidarNumero(txtNumeroDeSerie);
+        // Verificando de existem erros antes de gravar na classe.
+        boolean temErro = validador.temErro();
+        validador.limpaVeriicador();
+
+        // Validação se existe menssagens de erro no array responsável.
+        if (temErro) {
+            // Gravação dos dados na classe "Produtos".
+            classes.setNomeProduto(nome);
+            classes.setNumeroCod(codigo);
+            classes.setModelo(modelo);
+            classes.setQtdDisponivel(Integer.parseInt(quantidade));
+            classes.setPreco(Float.parseFloat(preco));
+
+            // Impressão dos dados inseridos na classe.
+            JOptionPane.showMessageDialog(this, "Nome: " + classes.getNomeProduto() + ", Código: " + classes.getNumeroCod() + ", Modelo: " + classes.getModelo() + ", Quantidade: "
+                    + classes.getQtdDisponivel() + ", Preço: " + classes.getPreco());
+        }
+
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed
 
     private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed
@@ -267,14 +306,14 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblNome2;
     private javax.swing.JLabel lblNome3;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtModeloProduto;
     private javax.swing.JTextField txtNomeProduto;
-    private javax.swing.JTextField txtNumeroDeSerie;
     private javax.swing.JTextField txtPrecoProduto;
+    private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }

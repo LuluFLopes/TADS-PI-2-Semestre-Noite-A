@@ -4,8 +4,6 @@
  */
 package com.d156.projetopi;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Filipe.scordeiro
@@ -17,6 +15,7 @@ public class TelaIntermediariaProduto extends javax.swing.JFrame {
      */
     public TelaIntermediariaProduto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -90,19 +89,13 @@ public class TelaIntermediariaProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-AlterarProduto janelaProduto = new AlterarProduto();
-janelaProduto.setVisible(true);
-
+       AlterarProduto produtos = new AlterarProduto();
+       produtos.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-ExcluirProduto janelaExcluirProduto = new ExcluirProduto();
-
-janelaExcluirProduto.setVisible(true);
-        
-
+        ExcluirProduto produtos = new ExcluirProduto();
+        produtos.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
