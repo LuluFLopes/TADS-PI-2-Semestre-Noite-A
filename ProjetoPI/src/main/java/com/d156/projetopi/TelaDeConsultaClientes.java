@@ -31,7 +31,7 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
 
         lblCpf = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
-        btnPesquisa = new javax.swing.JButton();
+        btnPesquisaCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Cliente");
@@ -44,11 +44,11 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        btnPesquisa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnPesquisa.setText("Pesquisar");
-        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisaCliente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnPesquisaCliente.setText("Pesquisar");
+        btnPesquisaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisaActionPerformed(evt);
+                btnPesquisaClienteActionPerformed(evt);
             }
         });
 
@@ -64,7 +64,7 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
@@ -75,14 +75,14 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
                     .addComponent(lblCpf)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPesquisaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+    private void btnPesquisaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaClienteActionPerformed
 
         TelaIntermediaria janelaIntermediaria = new TelaIntermediaria();
         
@@ -100,7 +100,7 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
     
         
 
-    }//GEN-LAST:event_btnPesquisaActionPerformed
+    }//GEN-LAST:event_btnPesquisaClienteActionPerformed
 
 /**
  * @param args the command line arguments
@@ -150,7 +150,7 @@ public static void main(String args[]) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPesquisa;
+    private javax.swing.JButton btnPesquisaCliente;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JFormattedTextField txtCpf;
     // End of variables declaration//GEN-END:variables

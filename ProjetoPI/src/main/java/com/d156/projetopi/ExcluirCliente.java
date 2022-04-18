@@ -35,7 +35,7 @@ public class ExcluirCliente extends javax.swing.JFrame {
         txtCPF = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnConfirmar = new javax.swing.JButton();
+        btnConfirmarExcluirCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtareaMotivo = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
@@ -83,10 +83,10 @@ public class ExcluirCliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Motivo da Exclusão");
 
-        btnConfirmar.setText("Confrmar Exclusão");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmarExcluirCliente.setText("Confrmar Exclusão");
+        btnConfirmarExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
+                btnConfirmarExcluirClienteActionPerformed(evt);
             }
         });
 
@@ -133,7 +133,7 @@ public class ExcluirCliente extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
-                                .addComponent(btnConfirmar)))
+                                .addComponent(btnConfirmarExcluirCliente)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -149,7 +149,7 @@ public class ExcluirCliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnConfirmar)
+                        .addComponent(btnConfirmarExcluirCliente)
                         .addGap(10, 10, 10)))
                 .addContainerGap())
         );
@@ -178,11 +178,11 @@ public class ExcluirCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+    private void btnConfirmarExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarExcluirClienteActionPerformed
         JOptionPane.showConfirmDialog(null, "DESEJA EXCLUIR?", "EXCLUIR PACIENTE", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    }//GEN-LAST:event_btnConfirmarExcluirClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,7 +221,7 @@ public class ExcluirCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
-    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnConfirmarExcluirCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

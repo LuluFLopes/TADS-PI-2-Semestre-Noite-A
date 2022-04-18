@@ -40,7 +40,6 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuAlterarProd = new javax.swing.JMenuItem();
         mnuRelatorios = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         mnuVendas = new javax.swing.JMenu();
         mnuNovaVenda = new javax.swing.JMenuItem();
 
@@ -96,11 +95,13 @@ public class TelaInicial extends javax.swing.JFrame {
 
         mnuRelatorios.setText("Relatórios");
 
-        jMenuItem7.setText("Relatório Sintético");
+        jMenuItem7.setText("Relatórios");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         mnuRelatorios.add(jMenuItem7);
-
-        jMenuItem9.setText("Relatório Analítico");
-        mnuRelatorios.add(jMenuItem9);
 
         mnuBarra.add(mnuRelatorios);
 
@@ -163,6 +164,11 @@ public class TelaInicial extends javax.swing.JFrame {
        telaMeio.setVisible(true);
     }//GEN-LAST:event_mnuAlterarProdActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+       Relatorio telaRelatorio = new Relatorio();
+       telaRelatorio.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -201,7 +207,6 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JLabel lblReference;
     private javax.swing.JMenuItem mnuAlterarCli;
     private javax.swing.JMenuItem mnuAlterarProd;
