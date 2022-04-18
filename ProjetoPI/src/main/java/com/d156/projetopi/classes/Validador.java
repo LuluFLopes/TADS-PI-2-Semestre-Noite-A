@@ -67,6 +67,7 @@ public class Validador {
 
         String cpf = txt.getText().trim();
         cpf = cpf.replaceAll("-", "");
+        cpf = cpf.replaceAll(".", "");
 
         if (cpf.equals("")) {
             this.verificaNulo.add("Nulo");

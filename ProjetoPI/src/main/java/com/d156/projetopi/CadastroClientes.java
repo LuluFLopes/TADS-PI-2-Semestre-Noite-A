@@ -293,7 +293,7 @@ public class CadastroClientes extends javax.swing.JFrame {
             classe.setGenero(genero);
 
             // Impressão dos dados inseridos na classe.
-            JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli() + " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
+            JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli()+ " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
                     + " , Genero: " + classe.getGenero() + " , Estado Civil: " + classe.getEstadoCivil() + " , Telefone: " + classe.getTelefone());
         }
 
