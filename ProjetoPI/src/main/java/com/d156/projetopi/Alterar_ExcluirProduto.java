@@ -31,7 +31,7 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         btnAlterarProduto = new javax.swing.JButton();
         btnExcluirProduto = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -50,8 +50,8 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadstro de Produtos");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTitulo.setText("Cadstro de Produtos");
 
         btnAlterarProduto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnAlterarProduto.setText("Alterar");
@@ -203,14 +203,14 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
                 .addGap(56, 56, 56))
             .addGroup(layout.createSequentialGroup()
                 .addGap(174, 174, 174)
-                .addComponent(jLabel1)
+                .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblTitulo)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -339,7 +339,6 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterarProduto;
     private javax.swing.JButton btnBuscarProduto;
     private javax.swing.JButton btnExcluirProduto;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -347,6 +346,7 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblNome2;
     private javax.swing.JLabel lblNome3;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtModeloProduto;
     private javax.swing.JTextField txtNomeProduto;

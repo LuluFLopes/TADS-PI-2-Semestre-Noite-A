@@ -69,7 +69,7 @@ public class Venda extends javax.swing.JFrame {
         lblPrintTroco = new javax.swing.JLabel();
         btnRemover = new javax.swing.JButton();
         btnFinalizarCompra = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -401,12 +401,12 @@ public class Venda extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Calcular");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcular.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCalcularActionPerformed(evt);
             }
         });
 
@@ -430,7 +430,7 @@ public class Venda extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(338, 338, 338)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -454,7 +454,7 @@ public class Venda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnCalcular))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -559,25 +559,29 @@ public class Venda extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscaCliActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tabCarrinho.getModel();
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+      // Estrutura de soma da coluna total (Não terminada).  
+      /*
+      FDefaultTableModel modelo = (DefaultTableModel) tabCarrinho.getModel();
 
         float soma = 0;
-
-        //System.out.println("Tamanho: " + tabCarrinho.getC);
 
         for (int i = 0; i < tabCarrinho.getRowCount() -1; i++) {
             Float valor = (Float) tabCarrinho.getValueAt(i, 5);
             soma += valor;
         }
+         */
 
         // Adicionando valor aos campos por Jlabel.
-        lblPrintTotal.setText(Float.toString(soma));
-        float troco = Float.parseFloat(txtValorRecebido.getText()) - soma;
+        int quantidade = Integer.parseInt(txtQtd.getText());
+        float valor = Float.parseFloat(txtValor.getText());
+        float total = quantidade * valor;
+        lblPrintTotal.setText(Float.toString(total));
+        float troco = Float.parseFloat(txtValorRecebido.getText()) - total;
         lblPrintTroco.setText(Float.toString(troco));
-        
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -620,10 +624,10 @@ public class Venda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscaCli;
+    private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnFinalizarCompra;
     private javax.swing.JButton btnRemover;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
