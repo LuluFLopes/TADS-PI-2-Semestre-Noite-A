@@ -59,7 +59,7 @@ public class Venda extends javax.swing.JFrame {
         btnConfirmar = new javax.swing.JButton();
         btnBuscaCli = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tabCarrinho = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         txtValorRecebido = new javax.swing.JTextField();
         lblValorRecebido = new javax.swing.JLabel();
@@ -69,6 +69,7 @@ public class Venda extends javax.swing.JFrame {
         lblPrintTroco = new javax.swing.JLabel();
         btnRemover = new javax.swing.JButton();
         btnFinalizarCompra = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,9 +307,9 @@ public class Venda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tabCarrinho.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tabCarrinho.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tabCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -324,7 +325,7 @@ public class Venda extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tabCarrinho);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -400,6 +401,15 @@ public class Venda extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setText("Calcular");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -419,7 +429,9 @@ public class Venda extends javax.swing.JFrame {
                         .addGap(379, 379, 379)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(424, 424, 424)
+                        .addGap(338, 338, 338)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(501, 501, 501)
@@ -440,7 +452,9 @@ public class Venda extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(btnRemover)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -471,10 +485,10 @@ public class Venda extends javax.swing.JFrame {
 
         //JOptionPane.showConfirmDialog(null, "DESEJA REMOVER COMPRA?", "REMOVER", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         //Variável que recebe o índice da linha.
-        int linhaSelecionada = jTable4.getSelectedRow();
+        int linhaSelecionada = tabCarrinho.getSelectedRow();
 
         // Recebendo modelo padrão.
-        DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabCarrinho.getModel();
 
         // Estrutura que garante que uma linha seja selecionada.
         if (linhaSelecionada >= 0) {
@@ -488,7 +502,7 @@ public class Venda extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // Recebendo modelo padrão.
-        DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabCarrinho.getModel();
 
         // Intanciando validador.
         Validador validador = new Validador();
@@ -514,11 +528,6 @@ public class Venda extends javax.swing.JFrame {
 
             // Adicionando linha ao JTable.
             modelo.addRow(new Object[]{descricao, modelCampo, quantidade, valor, total});
-
-            // Adicionando valor aos campos por Jlabel.
-            lblPrintTotal.setText(Float.toString(total));
-            float troco = Float.parseFloat(txtValorRecebido.getText()) - total;
-            lblPrintTroco.setText(Float.toString(troco));
 
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
@@ -549,6 +558,26 @@ public class Venda extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnBuscaCliActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tabCarrinho.getModel();
+
+        float soma = 0;
+
+        //System.out.println("Tamanho: " + tabCarrinho.getC);
+
+        for (int i = 0; i < tabCarrinho.getRowCount() -1; i++) {
+            Float valor = (Float) tabCarrinho.getValueAt(i, 5);
+            soma += valor;
+        }
+
+        // Adicionando valor aos campos por Jlabel.
+        lblPrintTotal.setText(Float.toString(soma));
+        float troco = Float.parseFloat(txtValorRecebido.getText()) - soma;
+        lblPrintTroco.setText(Float.toString(troco));
+        
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,6 +623,7 @@ public class Venda extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnFinalizarCompra;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -607,7 +637,6 @@ public class Venda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JLabel lblCodProd;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblModelo;
@@ -619,6 +648,7 @@ public class Venda extends javax.swing.JFrame {
     private javax.swing.JLabel lblValor;
     private javax.swing.JLabel lblValorRecebido;
     private javax.swing.JLabel lblValorTotal;
+    private javax.swing.JTable tabCarrinho;
     private javax.swing.JFormattedTextField txtCod;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtDescricao;
