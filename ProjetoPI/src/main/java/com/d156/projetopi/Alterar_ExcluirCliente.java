@@ -104,6 +104,13 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         btnPesquisar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        lblIdCadastro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         txtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +123,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCpf.setName("CPF");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,20 +248,69 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        CadastroClientes cadastro = new CadastroClientes();
-        cadastro.setVisible(true);
-        
-        Clientes cliente = new Clientes();
-        String cpf = cliente.getCfp();
-        String email = cliente.getEmail();
-        String endereco = cliente.getEndereco();
-        String estadoCivil = cliente.getEstadoCivil();
-        //String nomeCli = cliente.setNomeCli(nome);
-        
+        // Classes instanciadas.
+        Validador validador = new Validador();
+        Clientes classe = new Clientes();
+
+        // Criando variáveis para salvar na Classe Produtos.
+        String nome = txtNome.getText();
+        String cpf = txtCpf.getText();
+        String endereco = txtEndereco.getText();
+        String numero = txtNumero.getText();
+        String email = txtEmail.getText();
+        String estadoCivil = cboEstadoCivil.getSelectedItem().toString();
+        String telefone = txtTelefone.getText();
+        String genero = cboSexo.getSelectedItem().toString();
+
+        // Verificando se os campos estão vazios ou com dados incorretos.
+        validador.ValidarTexto(txtNome);
+        validador.ValidarCpf(txtCpf);
+        validador.ValidarTexto(txtEndereco);
+        validador.ValidarTexto(txtNumero);
+        validador.ValidarTexto(txtEmail);
+        validador.ValidarCbo(cboEstadoCivil);
+        validador.ValidarTexto(txtTelefone);
+        validador.ValidarCbo(cboSexo);
+        validador.ExibirMensagensErro();
+
+        // Verificando de existem erros antes de gravar na classe.
+        boolean temErro = validador.temErro();
+        validador.limpaVeriicador();
+
+        // Validação se existe menssagens de erro no array responsável.
+        if (temErro) {
+            // Gravação dos dados na classe "Produtos".
+            classe.setNomeCli(nome);
+            classe.setCfp(cpf);
+            classe.setEndereco(endereco);
+            classe.setNumero(numero);
+            classe.setEmail(email);
+            classe.setEstadoCivil(estadoCivil);
+            classe.setTelefone(telefone);
+            classe.setGenero(genero);
+
+            // Impressão dos dados inseridos na classe.
+            JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli() + " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
+                    + " , Genero: " + classe.getGenero() + " , Estado Civil: " + classe.getEstadoCivil() + " , Telefone: " + classe.getTelefone());
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExlcuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExlcuirActionPerformed
+        // Simulação de Exclusão dos dados.
+        Clientes classe = new Clientes();
+        classe.setNomeCli("");
+        classe.setCfp("");
+        classe.setEndereco("");
+        classe.setNumero("");
+        classe.setEmail("");
+        classe.setEstadoCivil("");
+        classe.setTelefone("");
+        classe.setGenero("");
 
+        // Pegando dados nulos dentro da classe sobrescrita.
+        JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli() + " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
+                + " , Genero: " + classe.getGenero() + " , Estado Civil: " + classe.getEstadoCivil() + " , Telefone: " + classe.getTelefone());
+        this.dispose();
     }//GEN-LAST:event_btnExlcuirActionPerformed
 
     private void cboEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoCivilActionPerformed
@@ -271,6 +328,66 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
     private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        Clientes cliente = new Clientes();
+
+        /* 
+        //Estrutura de receber informações da classe e printar nos campos.
+        String cpf = cliente.getCfp();
+        String nome = cliente.getNomeCli();
+        String endereco = cliente.getEndereco();
+        String email = cliente.getEmail();
+        String estadoCivil = cliente.getEstadoCivil();
+        String genero = cliente.getGenero();
+        String numero = cliente.getNumero();
+        String telefone = cliente.getTelefone();
+        int indiceEstado = 0;
+        int indiceGenero = 0;
+
+        lblNumCadastro.setText("1");
+        txtCpf.setText(cpf);
+        txtNome.setText(nome);
+        txtEndereco.setText(endereco);
+        txtEmail.setText(email);
+        txtNumero.setText(numero);
+        txtTelefone.setText(telefone);
+
+        if (estadoCivil.equals("Solteiro")) {
+            indiceEstado = 1;
+        } else if (estadoCivil.equals("Divorciado")) {
+            indiceEstado = 2;
+        } else if (estadoCivil.equals("Casado")) {
+            indiceEstado = 3;
+        }
+
+        if (genero.equals("Masculino")) {
+            indiceGenero = 1;
+        } else if (genero.equals("Feminino")) {
+            indiceGenero = 2;
+        }
+
+        cboEstadoCivil.setSelectedIndex(indiceEstado);
+        cboSexo.setSelectedIndex(indiceGenero);
+         */
+        
+ 
+
+        if (txtNome.getText().equals("") && txtCpf.getText().equals("   .   .   -  ") ) {
+            JOptionPane.showMessageDialog(this, txtNome.getName() + " ou " + txtCpf.getName() + " invalidos !!");
+        } else {
+            //Simulação da pesquisa.
+            lblIdCadastro.setText("1");
+            txtCpf.setText("111.111.111-11");
+            txtNome.setText("Henry");
+            txtEndereco.setText("Rua Senac");
+            txtEmail.setText("senac@senac.com.br");
+            txtNumero.setText("12");
+            txtTelefone.setText("(22)2222-2222");
+            cboEstadoCivil.setSelectedIndex(2);
+            cboSexo.setSelectedIndex(1);
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

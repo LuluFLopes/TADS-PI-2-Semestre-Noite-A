@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  */
 public class Clientes {
 
-    public static String nomeCli = "";
+    public String nomeCli = "";
     public String cfp = "";
     public String endereco = "";
     public String numero = "";
@@ -27,12 +27,12 @@ public class Clientes {
 
     }
 
-    public static String getNomeCli() {
+    public String getNomeCli() {
         return nomeCli;
     }
 
-    public static void setNomeCli(String nomeCli) {
-        Clientes.nomeCli = nomeCli;
+    public void setNomeCli(String nomeCli) {
+        this.nomeCli = nomeCli;
     }
 
     public String getCfp() {
@@ -90,5 +90,7 @@ public class Clientes {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    
 
 }

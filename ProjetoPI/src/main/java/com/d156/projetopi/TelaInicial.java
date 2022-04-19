@@ -61,7 +61,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         mnuClientes.add(mnuCadastroCli);
 
-        mnuAlterarCli.setText("Alterar/Exluir");
+        mnuAlterarCli.setText("Alterar/Excluir");
         mnuAlterarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAlterarCliActionPerformed(evt);
@@ -81,7 +81,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         mnuProdutos.add(mnuCadastroProd);
 
-        mnuAlterarProd.setText("Altera/Excluir");
+        mnuAlterarProd.setText("Alterar/Excluir");
         mnuAlterarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAlterarProdActionPerformed(evt);
@@ -140,8 +140,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuAlterarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarCliActionPerformed
-        TelaDeConsultaClientes janelaConsulta = new TelaDeConsultaClientes();
-        janelaConsulta.setVisible(true);
+        Alterar_ExcluirCliente alterarExcluir = new Alterar_ExcluirCliente();
+        alterarExcluir.setVisible(true);
     }//GEN-LAST:event_mnuAlterarCliActionPerformed
 
     private void mnuCadastroCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroCliActionPerformed
@@ -160,12 +160,13 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     private void mnuAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarProdActionPerformed
-       
+        Alterar_ExcluirProduto CadastroExcluir = new Alterar_ExcluirProduto();
+        CadastroExcluir.setVisible(true);
     }//GEN-LAST:event_mnuAlterarProdActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       Relatorio telaRelatorio = new Relatorio();
-       telaRelatorio.setVisible(true);
+        Relatorio telaRelatorio = new Relatorio();
+        telaRelatorio.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**

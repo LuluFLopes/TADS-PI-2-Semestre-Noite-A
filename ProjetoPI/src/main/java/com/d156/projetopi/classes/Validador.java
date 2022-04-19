@@ -65,17 +65,17 @@ public class Validador {
     // Validação de Texto.
     public void ValidarCpf(JTextField txt) {
 
-        String cpf = txt.getText().trim();
-        cpf = cpf.replaceAll("-", "");
+        //String cpf = txt.getText().trim();
+        //cpf = cpf.replaceAll("-", "");
 
-        if (cpf.equals("")) {
+        if (txt.getText().equals("   .   .   -  ")) {
             this.verificaNulo.add("Nulo");
         }
 
         try {
 
             // Verifico se o campo está vazio.
-            if (cpf.equals("")) {
+            if (txt.getText().equals("   .   .   -  ")) {
                 throw new IllegalArgumentException();
             }
 

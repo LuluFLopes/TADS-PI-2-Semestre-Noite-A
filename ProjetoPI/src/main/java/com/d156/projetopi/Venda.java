@@ -534,7 +534,7 @@ public class Venda extends javax.swing.JFrame {
         //Instanciando classe "Validador".
         Validador validador = new Validador();
 
-        validador.ValidarTexto(txtCpf);
+        validador.ValidarCpf(txtCpf);
         validador.ValidarTexto(txtNome);
         validador.ExibirMensagensErro();
 

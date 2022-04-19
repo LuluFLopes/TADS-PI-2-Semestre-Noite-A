@@ -10,7 +10,7 @@ package com.d156.projetopi.classes;
  */
 public class Produtos {
 
-    private static String nomeProduto = "";
+    private String nomeProduto = "";
     private String numeroCod = "";
     private String modelo = "";
     private int qtdDisponivel = 0;
@@ -20,12 +20,12 @@ public class Produtos {
 
     }
 
-    public static String getNomeProduto() {
+    public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public static void setNomeProduto(String nomeProduto) {
-        Produtos.nomeProduto = nomeProduto;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
     public String getNumeroCod() {

@@ -36,7 +36,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuAlterarCli">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar/Exluir"/>
+                    <Property name="text" type="java.lang.String" value="Alterar/Excluir"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAlterarCliActionPerformed"/>
@@ -59,7 +59,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuAlterarProd">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Altera/Excluir"/>
+                    <Property name="text" type="java.lang.String" value="Alterar/Excluir"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAlterarProdActionPerformed"/>
