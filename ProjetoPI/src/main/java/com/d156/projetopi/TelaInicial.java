@@ -160,8 +160,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     private void mnuAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarProdActionPerformed
-       TelaIntermediariaProduto telaMeio = new TelaIntermediariaProduto();
-       telaMeio.setVisible(true);
+       
     }//GEN-LAST:event_mnuAlterarProdActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed

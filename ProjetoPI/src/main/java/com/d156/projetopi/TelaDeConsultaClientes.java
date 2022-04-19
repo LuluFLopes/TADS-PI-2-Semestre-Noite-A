@@ -84,10 +84,6 @@ public class TelaDeConsultaClientes extends javax.swing.JFrame {
 
     private void btnPesquisaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaClienteActionPerformed
 
-        TelaIntermediaria janelaIntermediaria = new TelaIntermediaria();
-        
-       janelaIntermediaria.setVisible(true);
-        
         // Integração a concluir.
         /*JOptionPane.showMessageDialog(this, txtCpf.getText());
         if (txtCpf.getText().equals("")) {
