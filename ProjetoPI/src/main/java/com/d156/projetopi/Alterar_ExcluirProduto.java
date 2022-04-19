@@ -51,7 +51,7 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblTitulo.setText("Cadstro de Produtos");
+        lblTitulo.setText("ALTERAR PRODUTO");
 
         btnAlterarProduto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnAlterarProduto.setText("Alterar");

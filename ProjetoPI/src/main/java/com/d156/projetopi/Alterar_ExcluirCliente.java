@@ -95,6 +95,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
             }
         });
 
+        txtNome.setName("Nome");
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -112,6 +113,11 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
 
         lblIdCadastro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
+        txtEndereco.setName("endereco");
+
+        txtEmail.setName("email");
+
+        txtTelefone.setName("telefone");
         txtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefoneActionPerformed(evt);
@@ -341,7 +347,6 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefoneActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        Clientes cliente = new Clientes();
 
         /* 
         //Estrutura de receber informações da classe e printar nos campos.
