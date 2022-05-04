@@ -55,6 +55,7 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Office-Client-Male-Light-icon.png"))); // NOI18N
         mnuClientes.setText("Clientes");
 
+        mnuCadastroCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-icon.png"))); // NOI18N
         mnuCadastroCli.setText("Cadastrar");
         mnuCadastroCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +64,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         mnuClientes.add(mnuCadastroCli);
 
+        mnuAlterarCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-edit-undo-icon.png"))); // NOI18N
         mnuAlterarCli.setText("Alterar/Excluir");
         mnuAlterarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,8 +75,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
         mnuCadastro.add(mnuClientes);
 
+        mnuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/product-icon.png"))); // NOI18N
         mnuProdutos.setText("Produtos");
 
+        mnuCadastroProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-icon.png"))); // NOI18N
         mnuCadastroProd.setText("Cadastrar");
         mnuCadastroProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +87,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         mnuProdutos.add(mnuCadastroProd);
 
+        mnuAlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-edit-undo-icon.png"))); // NOI18N
         mnuAlterarProd.setText("Alterar/Excluir");
         mnuAlterarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,8 +100,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
         mnuBarra.add(mnuCadastro);
 
+        mnuRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sheets-icon.png"))); // NOI18N
         mnuRelatorios.setText("Relatórios");
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custom-reports-icon.png"))); // NOI18N
         jMenuItem7.setText("Relatórios");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,8 +114,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
         mnuBarra.add(mnuRelatorios);
 
+        mnuVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sales-report-icon.png"))); // NOI18N
         mnuVendas.setText("Vendas");
 
+        mnuNovaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/shop-cart-add-icon.png"))); // NOI18N
         mnuNovaVenda.setText("Nova Venda");
         mnuNovaVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +142,7 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
+                .addContainerGap(392, Short.MAX_VALUE)
                 .addComponent(lblReference)
                 .addContainerGap())
         );

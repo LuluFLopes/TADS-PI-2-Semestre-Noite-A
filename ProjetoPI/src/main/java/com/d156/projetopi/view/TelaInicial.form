@@ -34,6 +34,9 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuCadastroCli">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/add-icon.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Cadastrar"/>
                   </Properties>
                   <Events>
@@ -42,6 +45,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuAlterarCli">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Actions-edit-undo-icon.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Alterar/Excluir"/>
                   </Properties>
                   <Events>
@@ -52,11 +58,17 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="mnuProdutos">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/product-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuCadastroProd">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/add-icon.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Cadastrar"/>
                   </Properties>
                   <Events>
@@ -65,6 +77,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuAlterarProd">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Actions-edit-undo-icon.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Alterar/Excluir"/>
                   </Properties>
                   <Events>
@@ -77,11 +92,17 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuRelatorios">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Sheets-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/custom-reports-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
               </Properties>
               <Events>
@@ -92,11 +113,17 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuVendas">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Sales-report-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vendas"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuNovaVenda">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/shop-cart-add-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nova Venda"/>
               </Properties>
               <Events>
@@ -141,7 +168,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="388" max="32767" attributes="0"/>
+              <EmptySpace pref="392" max="32767" attributes="0"/>
               <Component id="lblReference" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

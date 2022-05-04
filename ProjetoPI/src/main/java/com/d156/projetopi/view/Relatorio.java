@@ -15,6 +15,7 @@ public class Relatorio extends javax.swing.JFrame {
      */
     public Relatorio() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -47,7 +48,7 @@ public class Relatorio extends javax.swing.JFrame {
         jMenu2.setText("null");
         jMenuBar1.add(jMenu2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         checkboxRelatórioAnalítico.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         checkboxRelatórioAnalítico.setLabel("Relatório Analítico");

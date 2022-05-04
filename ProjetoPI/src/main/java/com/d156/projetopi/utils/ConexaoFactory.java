@@ -7,13 +7,12 @@ package com.d156.projetopi.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author luciano.flopes
  */
+
 public class ConexaoFactory {
 
     public static Connection getConexao() {
@@ -40,6 +39,7 @@ public class ConexaoFactory {
 
         // OBS: Colocar validação de a conexão foi gerada com sucesso!
         return conexao;
+        
     }
 
 }
