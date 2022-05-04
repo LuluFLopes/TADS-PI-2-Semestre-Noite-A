@@ -18,11 +18,17 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuCadastro">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Clients-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cadastro"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="mnuClientes">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Office-Client-Male-Light-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clientes"/>
               </Properties>
               <SubComponents>
@@ -126,7 +132,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="421" max="32767" attributes="0"/>
+              <EmptySpace pref="719" max="32767" attributes="0"/>
               <Component id="lblReference" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -135,7 +141,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="283" max="32767" attributes="0"/>
+              <EmptySpace pref="388" max="32767" attributes="0"/>
               <Component id="lblReference" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

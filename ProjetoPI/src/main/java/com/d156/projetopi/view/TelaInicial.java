@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.d156.projetopi;
+package com.d156.projetopi.view;
 
 /**
  *
@@ -49,8 +49,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
         mnuBarra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        mnuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clients-icon.png"))); // NOI18N
         mnuCadastro.setText("Cadastro");
 
+        mnuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Office-Client-Male-Light-icon.png"))); // NOI18N
         mnuClientes.setText("Clientes");
 
         mnuCadastroCli.setText("Cadastrar");
@@ -124,14 +126,14 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(421, Short.MAX_VALUE)
+                .addContainerGap(719, Short.MAX_VALUE)
                 .addComponent(lblReference)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(283, Short.MAX_VALUE)
+                .addContainerGap(388, Short.MAX_VALUE)
                 .addComponent(lblReference)
                 .addContainerGap())
         );

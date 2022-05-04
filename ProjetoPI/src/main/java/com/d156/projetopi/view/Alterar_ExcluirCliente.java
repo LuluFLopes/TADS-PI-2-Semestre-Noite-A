@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.d156.projetopi;
+package com.d156.projetopi.view;
 
-import com.d156.projetopi.classes.Validador;
+import com.d156.projetopi.model.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import com.d156.projetopi.classes.Clientes;
+import com.d156.projetopi.model.Clientes;
 
 /**
  *

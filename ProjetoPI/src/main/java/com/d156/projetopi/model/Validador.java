@@ -1,4 +1,4 @@
-package com.d156.projetopi.classes;
+package com.d156.projetopi.model;
 
 import java.awt.Color;
 import java.util.ArrayList;
