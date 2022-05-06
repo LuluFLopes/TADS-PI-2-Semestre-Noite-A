@@ -10,30 +10,39 @@ package com.d156.projetopi.model;
  */
 public class Produtos {
 
-    private String nomeProduto = "";
-    private String numeroCod = "";
-    private String modelo = "";
-    private int qtdDisponivel = 0;
-    private float preco = 0;
+    private int idProduto;
+    private String nome;
+    private String codigo;
+    private String modelo;
+    private int qtd;
+    private float preco;
 
     public Produtos() {
 
     }
 
-    public String getNomeProduto() {
-        return nomeProduto;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public String getNumeroCod() {
-        return numeroCod;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNumeroCod(String numeroCod) {
-        this.numeroCod = numeroCod;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getModelo() {
@@ -44,12 +53,12 @@ public class Produtos {
         this.modelo = modelo;
     }
 
-    public int getQtdDisponivel() {
-        return qtdDisponivel;
+    public int getQtd() {
+        return qtd;
     }
 
-    public void setQtdDisponivel(int qtdDisponivel) {
-        this.qtdDisponivel = qtdDisponivel;
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 
     public float getPreco() {

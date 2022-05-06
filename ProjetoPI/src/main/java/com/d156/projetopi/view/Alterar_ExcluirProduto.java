@@ -252,15 +252,13 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
             // Gravação dos dados na classe "Produtos".
-            classes.setNomeProduto(nome);
-            classes.setNumeroCod(codigo);
+            classes.setNome(nome);
+            classes.setCodigo(codigo);
             classes.setModelo(modelo);
-            classes.setQtdDisponivel(Integer.parseInt(quantidade));
+            classes.setQtd(Integer.parseInt(quantidade));
             classes.setPreco(Float.parseFloat(preco));
           
-            // Impressão dos dados inseridos na classe.
-            JOptionPane.showMessageDialog(this, "Nome: " + classes.getNomeProduto() + ", Código: " + classes.getNumeroCod() + ", Modelo: " + classes.getModelo() + ", Quantidade: "
-                    + classes.getQtdDisponivel() + ", Preço: " + classes.getPreco());
+            
         }
 
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
@@ -272,15 +270,13 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
        // Simulação de Exclusão dos dados.
         Produtos classe = new Produtos();
-        classe.setNomeProduto("");
-        classe.setNumeroCod("");
+        classe.setNome("");
+        classe.setCodigo("");
         classe.setModelo("");
-        classe.setQtdDisponivel(0);
+        classe.setQtd(0);
         classe.setPreco(0);
 
-        // Pegando dados nulos dentro da classe sobrescrita.
-        JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeProduto() + " , Codigo Produto: " + classe.getNumeroCod() + " , Modelo: " + classe.getModelo() + " , Quantidade disponivel: " + classe.getQtdDisponivel()
-                + " , Preco: " + classe.getPreco());
+        
         this.dispose();
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 

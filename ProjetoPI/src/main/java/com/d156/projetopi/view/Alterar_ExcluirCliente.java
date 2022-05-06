@@ -297,8 +297,8 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
             // Gravação dos dados na classe "Produtos".
-            classe.setNomeCli(nome);
-            classe.setCfp(cpf);
+            classe.setNome(nome);
+            classe.setCpf(cpf);
             classe.setEndereco(endereco);
             classe.setNumero(numero);
             classe.setEmail(email);
@@ -306,17 +306,15 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
             classe.setTelefone(telefone);
             classe.setGenero(genero);
 
-            // Impressão dos dados inseridos na classe.
-            JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli() + " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
-                    + " , Genero: " + classe.getGenero() + " , Estado Civil: " + classe.getEstadoCivil() + " , Telefone: " + classe.getTelefone());
+            
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExlcuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExlcuirActionPerformed
         // Simulação de Exclusão dos dados.
         Clientes classe = new Clientes();
-        classe.setNomeCli("");
-        classe.setCfp("");
+        classe.setNome("");
+        classe.setCpf("");
         classe.setEndereco("");
         classe.setNumero("");
         classe.setEmail("");
@@ -324,9 +322,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         classe.setTelefone("");
         classe.setGenero("");
 
-        // Pegando dados nulos dentro da classe sobrescrita.
-        JOptionPane.showMessageDialog(null, "Nome: " + classe.getNomeCli() + " , CPF: " + classe.getCfp() + " , Email: " + classe.getEmail() + " , Endereço: " + classe.getEndereco()
-                + " , Genero: " + classe.getGenero() + " , Estado Civil: " + classe.getEstadoCivil() + " , Telefone: " + classe.getTelefone());
+        
         this.dispose();
     }//GEN-LAST:event_btnExlcuirActionPerformed
 

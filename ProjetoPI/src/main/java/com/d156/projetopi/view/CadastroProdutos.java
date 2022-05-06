@@ -243,15 +243,12 @@ public class CadastroProdutos extends javax.swing.JFrame {
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
             // Gravação dos dados na classe "Produtos".
-            classes.setNomeProduto(nome);
-            classes.setNumeroCod(codigo);
+            classes.setNome(nome);
+            classes.setCodigo(codigo);
             classes.setModelo(modelo);
-            classes.setQtdDisponivel(Integer.parseInt(quantidade));
+            classes.setQtd(Integer.parseInt(quantidade));
             classes.setPreco(Float.parseFloat(preco));
 
-            // Impressão dos dados inseridos na classe.
-            JOptionPane.showMessageDialog(this, "Nome: " + classes.getNomeProduto() + ", Código: " + classes.getNumeroCod() + ", Modelo: " + classes.getModelo() + ", Quantidade: "
-                    + classes.getQtdDisponivel() + ", Preço: " + classes.getPreco());
         }
 
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed

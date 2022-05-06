@@ -548,12 +548,12 @@ public class Venda extends javax.swing.JFrame {
         validador.ExibirMensagensErro();
 
         String cpf = txtCpf.getText();
-        classe.setCfp(cpf);
+        classe.setCpf(cpf);
 
         // Estrutura de decisão para verificar se cpf bate com o armazenado na classe.
-        if (cpf.equals(classe.getCfp())) {
+        if (cpf.equals(classe.getCpf())) {
 
-            JOptionPane.showMessageDialog(this, "CPF: " + classe.getCfp() + " Nome: " + txtNome.getText());
+            JOptionPane.showMessageDialog(this, "CPF: " + classe.getCpf() + " Nome: " + txtNome.getText());
 
         }
 

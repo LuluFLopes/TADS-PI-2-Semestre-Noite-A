@@ -10,58 +10,58 @@ package com.d156.projetopi.model;
  */
 public class Vendas {
 
-    public int codProduto = 0;
-    public String descProduto = "";
-    public String modelProduto = "";
-    public int qtdProduto = 0;
-    public int codVenda = 0;
-    public float valorProduto = 0;
-    public float valorTotal = 0;
-    public float valorRecebido = 0;
-    public float troco = 0;
+    public int idVenda;
+    public int idProduto;
+    public String descricao;
+    public String modelo;
+    public int qtd;
+    public float valorProduto;
+    public float valorTotal;
+    public float valorRecebido;
+    public float troco;
 
     public Vendas() {
 
     }
 
-    public int getCodProduto() {
-        return codProduto;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setCodProduto(int codProduto) {
-        this.codProduto = codProduto;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public String getDescProduto() {
-        return descProduto;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescProduto(String descProduto) {
-        this.descProduto = descProduto;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getModelProduto() {
-        return modelProduto;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setModelProduto(String modelProduto) {
-        this.modelProduto = modelProduto;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
-    public int getQtdProduto() {
-        return qtdProduto;
+    public int getQtd() {
+        return qtd;
     }
 
-    public void setQtdProduto(int qtdProduto) {
-        this.qtdProduto = qtdProduto;
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 
-    public int getCodVenda() {
-        return codVenda;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public void setCodVenda(int codVenda) {
-        this.codVenda = codVenda;
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
     }
 
     public float getValorProduto() {

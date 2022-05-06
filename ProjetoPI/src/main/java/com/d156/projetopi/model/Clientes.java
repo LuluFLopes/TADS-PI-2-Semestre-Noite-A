@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.model;
 
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
@@ -14,33 +15,51 @@ import javax.swing.JTextField;
  */
 public class Clientes {
 
-    public String nomeCli = "";
-    public String cfp = "";
-    public String endereco = "";
-    public String numero = "";
-    public String genero = "";
-    public String estadoCivil = "";
-    public String email = "";
-    public String telefone = "";
+    public int idCliente;
+    public String nome;
+    public String cpf;
+    public String endereco;
+    public String numero;
+    public String genero;
+    public String estadoCivil;
+    public String email;
+    public String telefone;
+    public Date dataNascimento;
 
     public Clientes() {
 
     }
 
-    public String getNomeCli() {
-        return nomeCli;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setNomeCli(String nomeCli) {
-        this.nomeCli = nomeCli;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public String getCfp() {
-        return cfp;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCfp(String cfp) {
-        this.cfp = cfp;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEndereco() {
@@ -91,6 +110,12 @@ public class Clientes {
         this.telefone = telefone;
     }
 
-    
+    public Date getData() {
+        return dataNascimento;
+    }
+
+    public void setData(Date data) {
+        this.dataNascimento = data;
+    }
 
 }
