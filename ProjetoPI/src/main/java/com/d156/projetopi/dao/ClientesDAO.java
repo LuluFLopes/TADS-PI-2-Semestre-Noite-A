@@ -57,7 +57,7 @@ public class ClientesDAO {
         return retorno;
     }
 
-    public static ArrayList<Clientes> listaComputador(Clientes obj) {
+    public static ArrayList<Clientes> listaClientes(Clientes obj) {
 
         Connection conexao = null;
         ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
@@ -159,7 +159,7 @@ public class ClientesDAO {
 
     }
 
-    public static boolean excluir(int idComputador, Clientes obj) {
+    public static boolean excluir(Clientes obj) {
 
         Connection conexao = null;
         boolean retorno = false;
@@ -193,7 +193,7 @@ public class ClientesDAO {
         return retorno;
     }
 
-    public static Clientes consultarComputador(Clientes obj, int idComputador) {
+    public static Clientes consultarComputador(Clientes obj) {
 
         Connection conexao = null;
         ResultSet rs = null;
@@ -202,27 +202,24 @@ public class ClientesDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where idCliente = ?");
-            sql.setInt(1, idComputador);
+            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf=? or nome=?");
+            sql.setString(1, obj.getCpf());
+            sql.setString(2, obj.getNome());
             rs = sql.executeQuery();
 
-            while (rs.next()) {
-
-                obj.setIdCliente(rs.getInt("idCliente"));
-                obj.setNome(rs.getString("nome"));
-                obj.setCpf(rs.getString("cpf"));
-                obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getString("numero"));
-                obj.setGenero(rs.getString("genero"));
-                obj.setEstadoCivil(rs.getString("estadoCivil"));
-                obj.setEmail(rs.getString("email"));
-                obj.setTelefone(rs.getString("telefone"));
-                obj.setData(rs.getDate("dataNascimento"));
-
-            }
+            obj.setIdCliente(rs.getInt("idCliente"));
+            obj.setNome(rs.getString("nome"));
+            obj.setCpf(rs.getString("cpf"));
+            obj.setEndereco(rs.getString("endereco"));
+            obj.setNumero(rs.getString("numero"));
+            obj.setGenero(rs.getString("genero"));
+            obj.setEstadoCivil(rs.getString("estadoCivil"));
+            obj.setEmail(rs.getString("email"));
+            obj.setTelefone(rs.getString("telefone"));
+            obj.setData(rs.getDate("dataNascimento"));
 
         } catch (Exception e) {
-            System.out.println("Erro ao listar os computadores!");
+            System.out.println("Erro ao consultar o Cliente!");
         } finally {
 
             try {

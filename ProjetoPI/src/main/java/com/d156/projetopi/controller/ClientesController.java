@@ -29,7 +29,39 @@ public class ClientesController {
         obj.setData(dataNascimento);
 
         return ClientesDAO.salvar(obj);
+
+    }
+
+    public static boolean alterar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento) {
+
+        Clientes obj = new Clientes();
+
+        obj.setNome(nome);
+        obj.setCpf(cpf);
+        obj.setEndereco(endereco);
+        obj.setNumero(numero);
+        obj.setEmail(email);
+        obj.setEstadoCivil(estadoCivil);
+        obj.setTelefone(telefone);
+        obj.setGenero(genero);
+        obj.setData(dataNascimento);
+
+        return ClientesDAO.atualizar(obj);
+
+    }
+    
+    public static Clientes consultar (Clientes obj) {
+          
+        return ClientesDAO.consultarComputador(obj);
         
     }
+    
+    public static boolean excluir(){
+        
+        return false;
+        
+    }
+    
+    
 
 }

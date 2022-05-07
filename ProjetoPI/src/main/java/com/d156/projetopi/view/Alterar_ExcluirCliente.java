@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ClientesController;
 import com.d156.projetopi.model.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -74,11 +75,6 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         cboSexo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Feminino" }));
         cboSexo.setName("Sexo");
-        cboSexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSexoActionPerformed(evt);
-            }
-        });
 
         lblEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblEmail.setText("E-mail:");
@@ -89,18 +85,8 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         cboEstadoCivil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado Civil", "Solteiro ", "Divorciado", "Casado", " ", " " }));
         cboEstadoCivil.setName("Estado Civil");
-        cboEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboEstadoCivilActionPerformed(evt);
-            }
-        });
 
         txtNome.setName("Nome");
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
 
         btnPesquisar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnPesquisar.setText("Pesquisar");
@@ -118,11 +104,6 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         txtEmail.setName("email");
 
         txtTelefone.setName("telefone");
-        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefoneActionPerformed(evt);
-            }
-        });
 
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -306,41 +287,13 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
             classe.setTelefone(telefone);
             classe.setGenero(genero);
 
-            
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExlcuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExlcuirActionPerformed
-        // Simulação de Exclusão dos dados.
-        Clientes classe = new Clientes();
-        classe.setNome("");
-        classe.setCpf("");
-        classe.setEndereco("");
-        classe.setNumero("");
-        classe.setEmail("");
-        classe.setEstadoCivil("");
-        classe.setTelefone("");
-        classe.setGenero("");
 
-        
         this.dispose();
     }//GEN-LAST:event_btnExlcuirActionPerformed
-
-    private void cboEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoCivilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboEstadoCivilActionPerformed
-
-    private void cboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSexoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboSexoActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
-    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefoneActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
@@ -382,22 +335,22 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         cboEstadoCivil.setSelectedIndex(indiceEstado);
         cboSexo.setSelectedIndex(indiceGenero);
          */
-        
- 
-
-        if (txtNome.getText().equals("") && txtCpf.getText().equals("   .   .   -  ") ) {
+        if (txtNome.getText().equals("") && txtCpf.getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(this, txtNome.getName() + " ou " + txtCpf.getName() + " invalidos !!");
         } else {
-            //Simulação da pesquisa.
-            lblIdCadastro.setText("1");
-            txtCpf.setText("111.111.111-11");
-            txtNome.setText("Henry");
-            txtEndereco.setText("Rua Senac");
-            txtEmail.setText("senac@senac.com.br");
-            txtNumero.setText("12");
-            txtTelefone.setText("(22)2222-2222");
-            cboEstadoCivil.setSelectedIndex(2);
-            cboSexo.setSelectedIndex(1);
+            
+            Clientes obj = new Clientes();
+            
+            lblIdCadastro.setText(Integer.toString(obj.getIdCliente()));
+            txtCpf.setText(obj.getCpf());
+            txtNome.setText(obj.getNome());
+            txtEndereco.setText(obj.getEndereco());
+            txtEmail.setText(obj.getEmail());
+            txtNumero.setText(obj.getNumero());
+            txtTelefone.setText(obj.getTelefone());
+            cboEstadoCivil.setSelectedItem(obj.getEstadoCivil());
+            cboSexo.setSelectedItem(obj.getGenero());
+            
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
