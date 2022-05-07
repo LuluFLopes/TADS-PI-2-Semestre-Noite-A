@@ -56,7 +56,7 @@ public class ClientesController {
         
     }
     
-    public static boolean excluir(){
+    public static boolean excluir(int idProduto){
         
         return false;
         

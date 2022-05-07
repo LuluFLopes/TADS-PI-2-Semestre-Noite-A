@@ -44,7 +44,7 @@ public class ClientesDAO {
                 retorno = true;
             } else {
                 retorno = false;
-                throw new Exception("Não foi possível inserir o computador");
+                throw new Exception("Não foi possível inserir o cliente");
             }
 
         } catch (ClassNotFoundException ex) {
@@ -181,7 +181,7 @@ public class ClientesDAO {
                 retorno = false;
             }
         } catch (Exception e) {
-            System.out.println("Erro ao excluir o computador!");
+            System.out.println("Erro ao excluir o cliente!");
         } finally {
             try {
                 if (conexao != null) {
