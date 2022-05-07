@@ -39,7 +39,8 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuCadastroProd = new javax.swing.JMenuItem();
         mnuAlterarProd = new javax.swing.JMenuItem();
         mnuRelatorios = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        mnuSintetico = new javax.swing.JMenuItem();
+        mnuAnalitico = new javax.swing.JMenuItem();
         mnuVendas = new javax.swing.JMenu();
         mnuNovaVenda = new javax.swing.JMenuItem();
 
@@ -103,14 +104,23 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sheets-icon.png"))); // NOI18N
         mnuRelatorios.setText("Relatórios");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custom-reports-icon.png"))); // NOI18N
-        jMenuItem7.setText("Relatórios");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        mnuSintetico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custom-reports-icon.png"))); // NOI18N
+        mnuSintetico.setText("Relatórios Sintético");
+        mnuSintetico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                mnuSinteticoActionPerformed(evt);
             }
         });
-        mnuRelatorios.add(jMenuItem7);
+        mnuRelatorios.add(mnuSintetico);
+
+        mnuAnalitico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custom-reports-icon.png"))); // NOI18N
+        mnuAnalitico.setText("Relatorio Analítico");
+        mnuAnalitico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAnaliticoActionPerformed(evt);
+            }
+        });
+        mnuRelatorios.add(mnuAnalitico);
 
         mnuBarra.add(mnuRelatorios);
 
@@ -175,10 +185,15 @@ public class TelaInicial extends javax.swing.JFrame {
         CadastroExcluir.setVisible(true);
     }//GEN-LAST:event_mnuAlterarProdActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        Relatorio telaRelatorio = new Relatorio();
-        telaRelatorio.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void mnuSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSinteticoActionPerformed
+        RelatorioSintetico sintetico = new RelatorioSintetico();
+        sintetico.setVisible(true);
+    }//GEN-LAST:event_mnuSinteticoActionPerformed
+
+    private void mnuAnaliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAnaliticoActionPerformed
+        RelatorioAnalitico analitico = new RelatorioAnalitico();
+        analitico.setVisible(true);
+    }//GEN-LAST:event_mnuAnaliticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,10 +232,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JLabel lblReference;
     private javax.swing.JMenuItem mnuAlterarCli;
     private javax.swing.JMenuItem mnuAlterarProd;
+    private javax.swing.JMenuItem mnuAnalitico;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuCadastro;
     private javax.swing.JMenuItem mnuCadastroCli;
@@ -229,6 +244,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuNovaVenda;
     private javax.swing.JMenu mnuProdutos;
     private javax.swing.JMenu mnuRelatorios;
+    private javax.swing.JMenuItem mnuSintetico;
     private javax.swing.JMenu mnuVendas;
     // End of variables declaration//GEN-END:variables
 }
