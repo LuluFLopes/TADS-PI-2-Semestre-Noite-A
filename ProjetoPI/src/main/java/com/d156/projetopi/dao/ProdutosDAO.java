@@ -40,7 +40,6 @@ public class ProdutosDAO {
             } else {
                 retorno = false;
                 throw new Exception("Não foi possivel inserir o Produto");
-
             }
 
         } catch (ClassNotFoundException ex) {
