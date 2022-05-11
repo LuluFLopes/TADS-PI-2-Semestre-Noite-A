@@ -6,12 +6,15 @@ package com.d156.projetopi.controller;
 
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.Vendas;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author lucme
  */
 public class VendasController {
+    
     public static boolean salvar(int idVenda,int idProduto,String descriçao,String modelo,int qtd,float valorProduto,float valorTotal,float valorRecebido,float troco){
       
         Vendas obj = new Vendas();
@@ -59,4 +62,29 @@ public class VendasController {
         VendasDAO.excluir(obj);
     }
     
+    public static ArrayList<Vendas>listaSinteticoController(int idCliente,float valorTotal, Date dataVenda) {
+    
+        Vendas obj = new Vendas();
+        
+       obj.setIdCliente(idCliente);
+       obj.setValorTotal(valorTotal);
+       obj.setDataVenda(dataVenda);
+    
+       return VendasDAO.listaSintetico(obj);
+    }
+
+    public static ArrayList<Vendas>listaAnaliticoController (int idVenda,int idCliente,Date dataVenda) {
+
+Vendas obj  = new Vendas();
+
+obj.setIdVenda(idVenda);
+obj.setIdCliente(idCliente);
+obj.setDataVenda(dataVenda);
+
+return VendasDAO.listaAnalitico(obj);
+
+    }
 }
+
+
+

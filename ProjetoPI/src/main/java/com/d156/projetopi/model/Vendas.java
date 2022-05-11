@@ -4,12 +4,15 @@
  */
 package com.d156.projetopi.model;
 
+import java.util.Date;
+
 /**
  *
  * @author lucme
  */
 public class Vendas {
 
+    public int idCliente;
     public int idVenda;
     public int idProduto;
     public String descricao;
@@ -19,9 +22,26 @@ public class Vendas {
     public float valorTotal;
     public float valorRecebido;
     public float troco;
-
+    public Date dataVenda;
+    
     public Vendas() {
 
+    }
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public int getIdProduto() {

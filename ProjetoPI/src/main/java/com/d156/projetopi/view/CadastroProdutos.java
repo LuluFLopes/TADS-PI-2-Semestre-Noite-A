@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.model.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -225,8 +226,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
         String modelo = txtModeloProduto.getText();
-        String quantidade = txtQuantidade.getText();
-        String preco = txtPrecoProduto.getText();
+        int quantidade = Integer.parseInt(txtQuantidade.getText());
+        float preco = Float.parseFloat(txtPrecoProduto.getText());
 
         // Verificando se os campos estão vazios ou com dados incorretos.
         validador.ValidarTexto(txtNomeProduto);
@@ -242,15 +243,21 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
-            // Gravação dos dados na classe "Produtos".
-            classes.setNome(nome);
-            classes.setCodigo(codigo);
-            classes.setModelo(modelo);
-            classes.setQtd(Integer.parseInt(quantidade));
-            classes.setPreco(Float.parseFloat(preco));
-
-        }
-
+            
+           if(ProdutosController.salvar(nome, codigo, modelo,quantidade,preco)){
+               
+        JOptionPane.showMessageDialog(this,"Cadastro Realizado");
+               
+           }else 
+               
+               JOptionPane.showMessageDialog(this,"Erro no Cadastro");
+                   
+       }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed
 
     private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed

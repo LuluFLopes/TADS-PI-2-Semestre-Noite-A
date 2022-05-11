@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -263,5 +264,88 @@ public class VendasDAO {
         }
 
     }
- 
+
+    public static ArrayList<Vendas> listaSintetico(Vendas obj) {
+
+        Connection conexao = null;
+        ArrayList<Vendas> listaRetorno = new ArrayList<Vendas>();
+        ResultSet rs = null;
+
+        
+        try {
+            conexao = ConexaoFactory.getConexao();
+            
+            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where idCliente like ?");
+                sql.setDate(1,new java.sql.Date(obj.getDataVenda().getTime()));
+                rs = sql.executeQuery();
+
+            while (rs.next()) {
+                obj.setIdCliente(rs.getInt("idCliente"));
+                obj.setValorTotal(rs.getFloat("valorTotal"));
+                obj.setDataVenda(rs.getDate("dataVenda"));
+                listaRetorno.add(obj);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage());
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return listaRetorno;
+    }
+
+    // busca para gerar o relatorio analitico
+    // precisa ver um jeito de arrumar a data como criterio like
+
+    public static ArrayList<Vendas> listaAnalitico (Vendas obj) {
+
+        Connection conexao = null;
+        ArrayList<Vendas> listaRetorno = new ArrayList<Vendas>();
+        ResultSet rs = null;
+
+        
+        try {
+            conexao = ConexaoFactory.getConexao();
+            
+            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where idVenda like ?");
+                sql.setDate(1,new java.sql.Date(obj.getDataVenda().getTime()));
+                rs = sql.executeQuery();
+
+            while (rs.next()) {
+                obj.setIdCliente(rs.getInt("idCliente"));
+                obj.setIdVenda(rs.getInt("idVenda"));
+                obj.setDataVenda(rs.getDate("dataVenda"));
+                listaRetorno.add(obj);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage());
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return listaRetorno;
+    }
+
+
+    
 }

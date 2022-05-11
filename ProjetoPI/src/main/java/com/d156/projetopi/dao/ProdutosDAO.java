@@ -30,8 +30,8 @@ public class ProdutosDAO {
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCodigo());
             sql.setString(3, obj.getModelo());
-            sql.setInt(3, obj.getQtd());
-            sql.setFloat(4, obj.getPreco());
+            sql.setInt(4, obj.getQtd());
+            sql.setFloat(5, obj.getPreco());
 
             int linhasAfetadas = sql.executeUpdate();
 
