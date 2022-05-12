@@ -50,9 +50,17 @@ public class ClientesController {
 
     }
     
+    /*public static Clientes parametroCliente(String nome, String cpf){
+        
+        // Terminar de criar a lógica de pesquisa para gravação dos dados dentro da alteração.
+        
+        return ;
+        
+    }*/
+    
     public static Clientes consultar (Clientes obj) {
           
-        return ClientesDAO.consultarComputador(obj);
+        return ClientesDAO.consultarCliente(obj);
         
     }
     

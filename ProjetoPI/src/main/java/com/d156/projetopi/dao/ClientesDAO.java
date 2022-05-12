@@ -193,7 +193,53 @@ public class ClientesDAO {
         return retorno;
     }
 
-    public static Clientes consultarComputador(Clientes obj) {
+    public static Clientes consultarCliente(Clientes obj) {
+
+        Connection conexao = null;
+        ResultSet rs = null;
+
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf=? or nome=?");
+            sql.setString(1, obj.getCpf());
+            sql.setString(2, obj.getNome());
+            rs = sql.executeQuery();
+
+            obj.setIdCliente(rs.getInt("idCliente"));
+            obj.setNome(rs.getString("nome"));
+            obj.setCpf(rs.getString("cpf"));
+            obj.setEndereco(rs.getString("endereco"));
+            obj.setNumero(rs.getString("numero"));
+            obj.setGenero(rs.getString("genero"));
+            obj.setEstadoCivil(rs.getString("estadoCivil"));
+            obj.setEmail(rs.getString("email"));
+            obj.setTelefone(rs.getString("telefone"));
+            obj.setData(rs.getDate("dataNascimento"));
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar o Cliente!");
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+        return obj;
+
+    }
+    
+    public static Clientes parametroCliente(Clientes obj) {
 
         Connection conexao = null;
         ResultSet rs = null;
@@ -248,8 +294,8 @@ public class ClientesDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("insert into clientes"
-                    + "(nome,cpf,endereco,numero,genero,estadoCivil,email,telefone,dataNascimento)values(?,?,?,?,?,?,?,?,?)");
+            PreparedStatement sql = conexao.prepareStatement("update clientes"
+                    + " set ?,?,?,?,?,?,?,?,? where idCliente = ?");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf());
