@@ -256,8 +256,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
         
         
         
-        
-        
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed
 
     private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed

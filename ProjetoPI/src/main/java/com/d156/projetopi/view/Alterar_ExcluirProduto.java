@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.model.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -281,16 +282,36 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
-   
+
+         Validador validador = new Validador();;
+         Produtos obj = new Produtos();
+         String nome = txtNomeProduto.getText();
+         String codigo = txtCodigo.getText();
+        
+         validador.ValidarTexto(txtNomeProduto);
+         
+        // Verificando de existem erros antes de gravar na classe.
+        boolean temErro = validador.temErro();
+        validador.limpaVeriicador();
+        
+        if (temErro) {
+            
+            // Gravação dos dados na classe "Produtos".
+             obj = ProdutosController.consultar(nome,codigo);
+            
+        }
+
+        
         if(txtNomeProduto.getText().equals("") && txtCodigo.getText().equals("")){
             
             JOptionPane.showMessageDialog(this, txtNomeProduto.getName()+" ou " + txtCodigo.getName() + " invalidos !!");
         }else{
-            txtNomeProduto.setText("Guitarra");
-            txtCodigo.setText("111dasd");
-            txtModeloProduto.setText("giberson");
-            txtQuantidade.setText("3");
-            txtPrecoProduto.setText("1500");
+            
+            txtNomeProduto.setText(obj.getNome());
+            txtCodigo.setText(obj.getCodigo());
+            txtModeloProduto.setText(obj.getModelo());
+            txtQuantidade.setText(String.valueOf(obj.getQtd()));
+            txtPrecoProduto.setText(String.valueOf(obj.getPreco()));
  
         }
         

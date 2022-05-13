@@ -193,7 +193,7 @@ public class ClientesDAO {
         return retorno;
     }
 
-    public static Clientes consultarComputador(Clientes obj) {
+    public static Clientes consultarCliente(Clientes obj) {
 
         Connection conexao = null;
         ResultSet rs = null;

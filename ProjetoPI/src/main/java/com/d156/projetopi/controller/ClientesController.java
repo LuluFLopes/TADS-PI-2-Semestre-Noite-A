@@ -52,7 +52,7 @@ public class ClientesController {
     
     public static Clientes consultar (Clientes obj) {
           
-        return ClientesDAO.consultarComputador(obj);
+        return ClientesDAO.consultarCliente(obj);
         
     }
     
