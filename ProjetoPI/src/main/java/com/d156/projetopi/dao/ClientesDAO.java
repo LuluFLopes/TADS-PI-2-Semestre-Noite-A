@@ -194,8 +194,7 @@ public class ClientesDAO {
     }
 
     public static Clientes consultarCliente(Clientes obj) {
-<<<<<<< HEAD
-=======
+
 
         Connection conexao = null;
         ResultSet rs = null;
@@ -242,7 +241,6 @@ public class ClientesDAO {
     }
     
     public static Clientes parametroCliente(Clientes obj) {
->>>>>>> c41cd5958a015c57ff1c3cd351f93ae0ca5c656a
 
         Connection conexao = null;
         ResultSet rs = null;

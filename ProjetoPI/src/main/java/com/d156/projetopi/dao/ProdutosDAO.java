@@ -185,7 +185,7 @@ public class ProdutosDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from produtos like nome=? or codigo=?");
+            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where nome=? or codigo=?");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCodigo());
