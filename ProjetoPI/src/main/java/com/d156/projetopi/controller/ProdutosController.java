@@ -28,7 +28,7 @@ public class ProdutosController {
 
     }
     
-    public static boolean atualizar(String nome, String codigo, String modelo, int qtd, float preco){
+    public static Produtos atualizar(String nome, String codigo, String modelo, int qtd, float preco){
 
         
         Produtos obj = new Produtos();

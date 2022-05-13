@@ -140,9 +140,10 @@ public class ProdutosDAO {
     return listaRetorno;
     }
 
-    public static boolean atualizar(Produtos obj) {
+    public static Produtos atualizar(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
+        ResultSet rs = null;
 
         try {
 
@@ -156,30 +157,28 @@ public class ProdutosDAO {
             sql.setInt(3, obj.getQtd());
             sql.setFloat(4, obj.getPreco());
 
-            int linhasAfetadas = sql.executeUpdate();
-
-            if (linhasAfetadas > 0) {
-                retorno = true;
-            } else {
-                retorno = false;
-                throw new Exception("Erro ao Aterar o Produto");
-
+            rs = sql.executeQuery();
+            
+               while(rs.next()){
+            //obj.setIdProduto(rs.getInt("idProduto"));
+            //obj.setNome(rs.getString("nome"));
+            //obj.setCodigo(rs.getString("codigo"));
+            //obj.setModelo(rs.getString("modelo"));
+            //obj.setQtd(rs.getInt("qtd"));
+            //obj.setPreco(rs.getFloat("preco"));
+         
             }
-
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Erro:" + ex.getMessage());
-            retorno = false;
+           
         } catch (Exception ex) {
             System.out.println("Erro:" + ex.getMessage());
             retorno = false;
         }
-        return retorno;
+        return obj;
     }
 
     public static Produtos consultarProduto(Produtos obj) {
         Connection conexao = null;
         ResultSet rs = null;
-        
         
         try {
 

@@ -227,15 +227,15 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-        // Classes instanciadas.
-        Produtos classes = new Produtos();
-        Validador validador = new Validador();
 
+        Validador validador = new Validador();;
+        
+        Produtos obj = new Produtos();
         // Criando variáveis para salvar na Classe Produtos.
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
         String modelo = txtModeloProduto.getText();
-        String quantidade = txtQuantidade.getText();
+        String qtd = txtQuantidade.getText();
         String preco = txtPrecoProduto.getText();
 
         // Verificando se os campos estão vazios ou com dados incorretos.
@@ -245,22 +245,20 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
         validador.ValidarNumero(txtQuantidade);
         validador.ValidarFloat(txtPrecoProduto);
         validador.ExibirMensagensErro();
-
+      
+        
+        
         // Verificando de existem erros antes de gravar na classe.
         boolean temErro = validador.temErro();
         validador.limpaVeriicador();
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
-            // Gravação dos dados na classe "Produtos".
-            classes.setNome(nome);
-            classes.setCodigo(codigo);
-            classes.setModelo(modelo);
-            classes.setQtd(Integer.parseInt(quantidade));
-            classes.setPreco(Float.parseFloat(preco));
-          
+           
+             obj = ProdutosController.atualizar(nome, codigo, modelo,Integer.parseInt(qtd), Float.parseFloat(preco));
             
         }
+             
 
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
 
