@@ -267,16 +267,24 @@ public class Alterar_ExcluirProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
-       // Simulação de Exclusão dos dados.
-        Produtos classe = new Produtos();
-        classe.setNome("");
-        classe.setCodigo("");
-        classe.setModelo("");
-        classe.setQtd(0);
-        classe.setPreco(0);
-
+     Validador validador = new Validador();;
+     Produtos obj = new Produtos();
+     
+     String nome = txtNomeProduto.getText();
+     String codigo = txtCodigo.getText();
+     
+     validador.ValidarTexto(txtNomeProduto);
+     boolean temErro = validador.temErro();
+     validador.limpaVeriicador();
+     
+        if (temErro) {
+            
+            // Gravação dos dados na classe "Produtos".
+             obj = ProdutosController.excluir(nome,codigo);
+            
+        }
         
-        this.dispose();
+        
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed

@@ -53,9 +53,13 @@ public class ProdutosController {
         
     }
     
-    public static void excluir (Produtos obj){
+    public static Produtos excluir (String nome , String codigo){
+         
+        Produtos obj = new Produtos();
+        obj.setNome(nome);
+        obj.setCodigo(codigo);
         
-        ProdutosDAO.excluir(obj);
+        return ProdutosDAO.excluir(obj);
     }
     
 }

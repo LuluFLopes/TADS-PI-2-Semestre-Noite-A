@@ -223,7 +223,7 @@ public class ProdutosDAO {
         return obj;
     }
 
-    public static void excluir(Produtos obj) {
+    public static Produtos excluir(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
 
@@ -231,7 +231,7 @@ public class ProdutosDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Delete from protudos where idProduto=?");
+            PreparedStatement sql = conexao.prepareStatement("Delete from protudos where  nome=? or codigo=?");
             sql.setInt(1, obj.getIdProduto());
 
             int linhasAfetadas = sql.executeUpdate();
@@ -251,6 +251,7 @@ public class ProdutosDAO {
             } catch (Exception ex) {
             }
         }
+        return obj;
 
     }
 }
