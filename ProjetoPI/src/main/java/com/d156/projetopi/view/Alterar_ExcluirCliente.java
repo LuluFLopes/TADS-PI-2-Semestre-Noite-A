@@ -9,6 +9,7 @@ import com.d156.projetopi.model.Validador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import com.d156.projetopi.model.Clientes;
+import java.util.Date;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
     public Alterar_ExcluirCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -51,6 +53,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         txtTelefone = new javax.swing.JTextField();
         txtCpf = new javax.swing.JFormattedTextField();
         txtNumero = new javax.swing.JTextField();
+        jdcDataNascimento = new com.toedter.calendar.JDateChooser();
         btnAlterar = new javax.swing.JButton();
         btnExlcuir = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
@@ -112,6 +115,8 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         }
         txtCpf.setName("CPF");
 
+        jdcDataNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data de Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,20 +137,23 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
                     .addComponent(txtTelefone)
                     .addComponent(txtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNumero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumero))
-                    .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNumCadastro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblIdCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumero))
+                            .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisar))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblNumCadastro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblIdCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jdcDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -175,15 +183,21 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
                     .addComponent(lblNumero)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefone)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEmail)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefone)
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jdcDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         btnAlterar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -246,9 +260,9 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+
         // Classes instanciadas.
         Validador validador = new Validador();
-        Clientes classe = new Clientes();
 
         // Criando variáveis para salvar na Classe Produtos.
         String nome = txtNome.getText();
@@ -259,6 +273,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         String estadoCivil = cboEstadoCivil.getSelectedItem().toString();
         String telefone = txtTelefone.getText();
         String genero = cboSexo.getSelectedItem().toString();
+        Date dataNascimento = jdcDataNascimento.getDate();
 
         // Verificando se os campos estão vazios ou com dados incorretos.
         validador.ValidarTexto(txtNome);
@@ -277,15 +292,12 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
-            // Gravação dos dados na classe "Produtos".
-            classe.setNome(nome);
-            classe.setCpf(cpf);
-            classe.setEndereco(endereco);
-            classe.setNumero(numero);
-            classe.setEmail(email);
-            classe.setEstadoCivil(estadoCivil);
-            classe.setTelefone(telefone);
-            classe.setGenero(genero);
+
+            if (ClientesController.alterar(nome, cpf, endereco, numero, email, estadoCivil, telefone, genero, dataNascimento)) {
+                JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar!");
+            }
 
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
@@ -335,12 +347,13 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         cboEstadoCivil.setSelectedIndex(indiceEstado);
         cboSexo.setSelectedIndex(indiceGenero);
          */
+        
         if (txtNome.getText().equals("") && txtCpf.getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(this, txtNome.getName() + " ou " + txtCpf.getName() + " invalidos !!");
         } else {
-            
+
             Clientes obj = new Clientes();
-            
+
             lblIdCadastro.setText(Integer.toString(obj.getIdCliente()));
             txtCpf.setText(obj.getCpf());
             txtNome.setText(obj.getNome());
@@ -350,7 +363,6 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
             txtTelefone.setText(obj.getTelefone());
             cboEstadoCivil.setSelectedItem(obj.getEstadoCivil());
             cboSexo.setSelectedItem(obj.getGenero());
-            
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -396,6 +408,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboEstadoCivil;
     private javax.swing.JComboBox<String> cboSexo;
     private javax.swing.JPanel jPanel1;
+    private com.toedter.calendar.JDateChooser jdcDataNascimento;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEndereco;

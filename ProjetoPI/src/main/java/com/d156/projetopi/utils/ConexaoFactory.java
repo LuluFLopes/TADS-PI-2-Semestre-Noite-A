@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author luciano.flopes
  */
+
 public class ConexaoFactory {
 
     public static Connection getConexao() {

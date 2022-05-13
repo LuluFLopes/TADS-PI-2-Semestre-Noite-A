@@ -87,23 +87,28 @@
                       <Component id="txtCpf" pref="259" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtNumero" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="cboSexo" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cboEstadoCivil" min="-2" pref="105" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="lblNumCadastro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblIdCadastro" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtNumero" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="cboSexo" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cboEstadoCivil" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblNumCadastro" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="lblIdCadastro" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                      <Component id="jdcDataNascimento" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -144,17 +149,26 @@
                       <Component id="txtEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jdcDataNascimento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -321,6 +335,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNumero">
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jdcDataNascimento">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Data de Nascimento">
+                  <Font PropertyName="font" name="Arial" size="14" style="1"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
