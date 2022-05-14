@@ -57,9 +57,12 @@ public class VendasController {
         
     }
     
-    public static void excluir (Vendas obj){
+    public static Vendas excluir (int idVendas){
         
-        VendasDAO.excluir(obj);
+        Vendas obj = new Vendas();
+        obj.setIdVenda(idVendas);
+        
+        return VendasDAO.excluir(obj);
     }
     
     public static ArrayList<Vendas>listaSinteticoController(int idCliente,float valorTotal, Date dataVenda) {
