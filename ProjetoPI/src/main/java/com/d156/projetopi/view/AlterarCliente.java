@@ -15,12 +15,12 @@ import java.util.Date;
  *
  * @author luciano.flopes
  */
-public class Alterar_ExcluirCliente extends javax.swing.JFrame {
+public class AlterarCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroClientes
      */
-    public Alterar_ExcluirCliente() {
+    public AlterarCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -351,7 +351,7 @@ public class Alterar_ExcluirCliente extends javax.swing.JFrame {
         if (txtNome.getText().equals("") && txtCpf.getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(this, txtNome.getName() + " ou " + txtCpf.getName() + " invalidos !!");
         } else {
-
+            
             Clientes obj = new Clientes();
 
             lblIdCadastro.setText(Integer.toString(obj.getIdCliente()));

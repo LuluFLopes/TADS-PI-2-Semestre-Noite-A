@@ -6,6 +6,7 @@ package com.d156.projetopi.controller;
 
 import com.d156.projetopi.dao.ClientesDAO;
 import com.d156.projetopi.model.Clientes;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -49,7 +50,7 @@ public class ClientesController {
         return ClientesDAO.atualizar(obj);
 
     }
-    
+
     /*public static Clientes parametroCliente(String nome, String cpf){
         
         // Terminar de criar a lógica de pesquisa para gravação dos dados dentro da alteração.
@@ -57,19 +58,34 @@ public class ClientesController {
         return ;
         
     }*/
-    
-    public static Clientes consultar (Clientes obj) {
-          
+    public static Clientes consultar(Clientes obj) {
+
         return ClientesDAO.consultarCliente(obj);
-        
+
     }
-    
-    public static boolean excluir(int idProduto){
-        
+
+    public static boolean excluir(int idProduto) {
+
         return false;
-        
+
     }
-    
-    
+
+    // Função quando o usuário digitar o nome na pesquisa.
+    public static ArrayList<Clientes> listaProdutosNome(Clientes obj) {
+
+        obj.setNome(obj.getNome());
+
+        return ClientesDAO.listaClientesNome(obj);
+
+    }
+
+    // Função quando o usuário digitar o código na pesquisa.
+    public static ArrayList<Clientes> listaProdutosCpf(Clientes obj) {
+
+        obj.setCpf(obj.getCpf());
+
+        return ClientesDAO.listaClientesCpf(obj);
+
+    }
 
 }

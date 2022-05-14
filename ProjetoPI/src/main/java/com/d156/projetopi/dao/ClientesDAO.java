@@ -159,6 +159,104 @@ public class ClientesDAO {
 
     }
 
+    public static ArrayList<Clientes> listaClientesNome(Clientes obj) {
+        Connection conexao = null;
+        ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
+        ResultSet rs = null;
+
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where nome like ?");
+            sql.setString(1, '%' + obj.getNome() + '%');
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+
+                obj.setIdCliente(rs.getInt("idCliente"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getString("numero"));
+                obj.setGenero(rs.getString("genero"));
+                obj.setEstadoCivil(rs.getString("estadoCivil"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setData(rs.getDate("dataNascimento"));
+
+                listaRetorno.add(obj);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage() + "Aqui!!");
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+        return listaRetorno;
+    }
+
+    public static ArrayList<Clientes> listaClientesCpf(Clientes obj) {
+        Connection conexao = null;
+        ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
+        ResultSet rs = null;
+
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf like ?");
+            sql.setString(1, '%' + obj.getCpf() + '%');
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+
+                obj.setIdCliente(rs.getInt("idCliente"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getString("numero"));
+                obj.setGenero(rs.getString("genero"));
+                obj.setEstadoCivil(rs.getString("estadoCivil"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setData(rs.getDate("dataNascimento"));
+
+                listaRetorno.add(obj);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage());
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+        return listaRetorno;
+    }
+    
     public static boolean excluir(Clientes obj) {
 
         Connection conexao = null;

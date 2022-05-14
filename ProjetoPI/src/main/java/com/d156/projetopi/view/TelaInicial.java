@@ -29,6 +29,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         lblReference = new javax.swing.JLabel();
         mnuBarra = new javax.swing.JMenuBar();
         mnuCadastro = new javax.swing.JMenu();
@@ -45,6 +46,8 @@ public class TelaInicial extends javax.swing.JFrame {
         mnuNovaVenda = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,7 +164,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuAlterarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarCliActionPerformed
-        Alterar_ExcluirCliente alterarExcluir = new Alterar_ExcluirCliente();
+        AlterarCliente alterarExcluir = new AlterarCliente();
         alterarExcluir.setVisible(true);
     }//GEN-LAST:event_mnuAlterarCliActionPerformed
 
@@ -181,8 +184,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     private void mnuAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarProdActionPerformed
-        Alterar_ExcluirProduto CadastroExcluir = new Alterar_ExcluirProduto();
-        CadastroExcluir.setVisible(true);
+        PesquisaProduto pesquisa = new PesquisaProduto();
+        pesquisa.setVisible(true);
     }//GEN-LAST:event_mnuAlterarProdActionPerformed
 
     private void mnuSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSinteticoActionPerformed
@@ -232,6 +235,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel lblReference;
     private javax.swing.JMenuItem mnuAlterarCli;
     private javax.swing.JMenuItem mnuAlterarProd;

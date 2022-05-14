@@ -93,33 +93,80 @@ public class ProdutosDAO {
         }
         return listaRetorno;
     }
-    
-    public static ArrayList<Produtos> listaProdutos (Produtos obj, String nome){
+
+    public static ArrayList<Produtos> listaProdutosNome(Produtos obj) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
         ResultSet rs = null;
-        
-        try{
-            
-                conexao = ConexaoFactory.getConexao();
-                
-                PreparedStatement sql = conexao.prepareStatement("Select * from clientes where nome like ?");
-                sql.setString(1, '%' + nome + '%');
-                rs = sql.executeQuery();
-                
-                while (rs.next()) {
+        String nome = obj.getNome();
 
-                obj.setIdProduto(rs.getInt("idproduto"));
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where nome like ?");
+            sql.setString(1, '%' + nome + '%');
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+
+                obj.setIdProduto(rs.getInt("idProduto"));
                 obj.setNome(rs.getString("nome"));
                 obj.setCodigo(rs.getString("codigo"));
                 obj.setModelo(rs.getString("modelo"));
                 obj.setQtd(rs.getInt("qtd"));
-                obj.setPreco(rs.getFloat("preço"));
+                obj.setPreco(rs.getFloat("preco"));
 
                 listaRetorno.add(obj);
             }
-        
-    }catch (Exception e) {
+
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage() + "Aqui!!");
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+        return listaRetorno;
+    }
+
+    public static ArrayList<Produtos> listaProdutosCod(Produtos obj) {
+        Connection conexao = null;
+        ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
+        ResultSet rs = null;
+        String codigo = obj.getCodigo();
+
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where codigo like ?");
+            sql.setString(1, '%' + codigo + '%');
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+
+                obj.setIdProduto(rs.getInt("idProduto"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCodigo(rs.getString("codigo"));
+                obj.setModelo(rs.getString("modelo"));
+                obj.setQtd(rs.getInt("qtd"));
+                obj.setPreco(rs.getFloat("preco"));
+
+                listaRetorno.add(obj);
+            }
+
+        } catch (Exception e) {
             System.out.println("Erro:" + e.getMessage());
         } finally {
 
@@ -135,51 +182,47 @@ public class ProdutosDAO {
             }
 
         }
-                
-    
-    return listaRetorno;
+
+        return listaRetorno;
     }
 
-    public static Produtos atualizar(Produtos obj) {
+    public static boolean alterar(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
-        ResultSet rs = null;
 
         try {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("insert into produtos" + "(nome,codigo,modelo,qtd,preco)Values(?,?,?,?,?)");
+            PreparedStatement sql = conexao.prepareStatement("update produtos set nome=?,codigo=?,modelo=?,qtd=?,preco=? where idProduto = ?");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCodigo());
             sql.setString(3, obj.getModelo());
-            sql.setInt(3, obj.getQtd());
-            sql.setFloat(4, obj.getPreco());
+            sql.setInt(4, obj.getQtd());
+            sql.setFloat(5, obj.getPreco());
+            sql.setInt(6, obj.getIdProduto());
 
-            rs = sql.executeQuery();
-            
-               while(rs.next()){
-            //obj.setIdProduto(rs.getInt("idProduto"));
-            //obj.setNome(rs.getString("nome"));
-            //obj.setCodigo(rs.getString("codigo"));
-            //obj.setModelo(rs.getString("modelo"));
-            //obj.setQtd(rs.getInt("qtd"));
-            //obj.setPreco(rs.getFloat("preco"));
-         
+            int linhasAfetadas = sql.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+                throw new Exception("Não foi possivel inserir o Produto");
             }
-           
+
         } catch (Exception ex) {
             System.out.println("Erro:" + ex.getMessage());
             retorno = false;
         }
-        return obj;
+        return retorno;
     }
 
     public static Produtos consultarProduto(Produtos obj) {
         Connection conexao = null;
         ResultSet rs = null;
-        
+
         try {
 
             conexao = ConexaoFactory.getConexao();
@@ -188,21 +231,18 @@ public class ProdutosDAO {
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCodigo());
-            
-     
-            
-            rs = sql.executeQuery();
-            while(rs.next()){
-            obj.setIdProduto(rs.getInt("idProduto"));
-            obj.setNome(rs.getString("nome"));
-            obj.setCodigo(rs.getString("codigo"));
-            obj.setModelo(rs.getString("modelo"));
-            obj.setQtd(rs.getInt("qtd"));
-            obj.setPreco(rs.getFloat("preco"));
-         
-            }
 
-            
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+                obj.setIdProduto(rs.getInt("idProduto"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCodigo(rs.getString("codigo"));
+                obj.setModelo(rs.getString("modelo"));
+                obj.setQtd(rs.getInt("qtd"));
+                obj.setPreco(rs.getFloat("preco"));
+
+            }
 
         } catch (Exception ex) {
             System.out.println("Erro ao consultar o Produto");
