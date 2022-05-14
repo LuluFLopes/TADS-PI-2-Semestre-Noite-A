@@ -52,6 +52,15 @@ public class ProdutosController {
         return ProdutosDAO.consultarProduto(obj);
 
     }
+    
+    public static Produtos consultaId(int id) {
+        
+        Produtos obj = new Produtos();
+        obj.setIdProduto(id);
+
+        return ProdutosDAO.consultarProduto(obj);
+
+    }
 
     public static Produtos excluir(String nome, String codigo) {
 
@@ -61,7 +70,6 @@ public class ProdutosController {
 
         return ProdutosDAO.excluir(obj);
     }
-
     
     // Função quando o usuário digitar o nome na pesquisa.
     public static ArrayList<Produtos> listaProdutosNome(Produtos obj) {

@@ -22,7 +22,20 @@ public class AlterarProduto extends javax.swing.JFrame {
     public AlterarProduto() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        Produtos obj = new Produtos();
+
+        // Conseguir uma maneira de passar o id para dentro.
+
+        if (obj != null) {
+
+            txtNomeProduto.setText(obj.getNome());
+            txtCodigo.setText(obj.getModelo());
+            txtModeloProduto.setText(obj.getModelo());
+            txtQuantidade.setText(String.valueOf(obj.getQtd()));
+            txtPrecoProduto.setText(String.valueOf(obj.getPreco()));
+
+        }
+
     }
 
     /**
@@ -224,10 +237,9 @@ public class AlterarProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-        
+
         Validador validador = new Validador();
-        
-        Produtos obj = new Produtos();
+
         // Criando variáveis para salvar na Classe Produtos.
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
@@ -249,67 +261,59 @@ public class AlterarProduto extends javax.swing.JFrame {
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
-            
+
             if (ProdutosController.alterar(nome, codigo, modelo, Integer.parseInt(qtd), Float.parseFloat(preco))) {
                 JOptionPane.showMessageDialog(this, "Alteração Realizada");
             } else {
                 JOptionPane.showMessageDialog(this, "Erro na Alteração");
             }
-            
+
         }
 
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
-        Validador validador = new Validador();;
         Produtos obj = new Produtos();
-        
+        Validador validador = new Validador();;
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
-        
+
         validador.ValidarTexto(txtNomeProduto);
         boolean temErro = validador.temErro();
         validador.limpaVeriicador();
-        
+
         if (temErro) {
 
             // Gravação dos dados na classe "Produtos".
             obj = ProdutosController.excluir(nome, codigo);
-            
+
         }
 
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
-        
-        Validador validador = new Validador();;
         Produtos obj = new Produtos();
+        Validador validador = new Validador();;
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
-        
+
         validador.ValidarTexto(txtNomeProduto);
 
         // Verificando de existem erros antes de gravar na classe.
         boolean temErro = validador.temErro();
         validador.limpaVeriicador();
-        
+
         if (temErro) {
 
             // Gravação dos dados na classe "Produtos".
             obj = ProdutosController.consultar(nome, codigo);
-            
+
         }
-        
+
         if (txtNomeProduto.getText().equals("") && txtCodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, txtNomeProduto.getName() + " ou " + txtCodigo.getName() + " invalidos !!");
         } else {
-            
-            txtNomeProduto.setText(obj.getNome());
-            txtCodigo.setText(obj.getCodigo());
-            txtModeloProduto.setText(obj.getModelo());
-            txtQuantidade.setText(String.valueOf(obj.getQtd()));
-            txtPrecoProduto.setText(String.valueOf(obj.getPreco()));
-            
+
         }
 
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
@@ -328,21 +332,21 @@ public class AlterarProduto extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(CadastroProdutos.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(CadastroProdutos.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(CadastroProdutos.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadastroProdutos.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);

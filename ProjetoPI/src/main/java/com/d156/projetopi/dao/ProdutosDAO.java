@@ -227,22 +227,18 @@ public class ProdutosDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where nome=? or codigo=?");
+            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where idProduto=?");
 
-            sql.setString(1, obj.getNome());
-            sql.setString(2, obj.getCodigo());
+            sql.setInt(1, obj.getIdProduto());
 
             rs = sql.executeQuery();
 
-            while (rs.next()) {
-                obj.setIdProduto(rs.getInt("idProduto"));
-                obj.setNome(rs.getString("nome"));
-                obj.setCodigo(rs.getString("codigo"));
-                obj.setModelo(rs.getString("modelo"));
-                obj.setQtd(rs.getInt("qtd"));
-                obj.setPreco(rs.getFloat("preco"));
-
-            }
+            obj.setIdProduto(rs.getInt("idProduto"));
+            obj.setNome(rs.getString("nome"));
+            obj.setCodigo(rs.getString("codigo"));
+            obj.setModelo(rs.getString("modelo"));
+            obj.setQtd(rs.getInt("qtd"));
+            obj.setPreco(rs.getFloat("preco"));
 
         } catch (Exception ex) {
             System.out.println("Erro ao consultar o Produto");

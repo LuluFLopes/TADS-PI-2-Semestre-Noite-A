@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.view.AlterarProduto;
 import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.model.Produtos;
 import java.util.ArrayList;
@@ -164,11 +165,8 @@ public class PesquisaProduto extends javax.swing.JFrame {
         Produtos obj = new Produtos();
 
         if (txtPesquisarNome.getText().equals("")) {
-
             obj.setCodigo(txtPesquisarCod.getText());
-
             ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(obj);
-
             modelo.setRowCount(0);
             for (Produtos produto : listaProdutos) {
                 modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
@@ -185,8 +183,14 @@ public class PesquisaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisarCodKeyTyped
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+
         int indice = tblListagem.getSelectedRow();
 
+        Object obj = tblListagem.getValueAt(indice, 0);
+        String dados = String.valueOf(obj);
+        
+        int id = Integer.parseInt(dados);
+        
         if (indice < 0) {
 
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
@@ -195,7 +199,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
 
             AlterarProduto alterar = new AlterarProduto();
             alterar.setVisible(true);
-            
+
             this.dispose();
 
         }
