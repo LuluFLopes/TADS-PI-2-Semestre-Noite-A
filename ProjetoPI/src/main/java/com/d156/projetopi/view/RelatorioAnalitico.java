@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
@@ -133,6 +134,36 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        Date dataVenda = jdcDataInical.getDate();
+
+  
+    
+ ArrayList<Vendas>listaVendas = VendasController.listaAnaliticoController(dataVenda);
+      DefaultTableModel modelo = (DefaultTableModel)tblRelatorioAnalitico.getModel();
+
+      modelo.setRowCount(0);
+      
+      
+ for(Vendas venda : listaVendas){
+     modelo.addRow(new String [] {String.valueOf(venda.getIdVenda()),venda.getNome(),String.valueOf(venda.getDataVenda())
+     });
+     
+  
+}
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

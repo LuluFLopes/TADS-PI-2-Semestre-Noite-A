@@ -274,14 +274,14 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where idCliente like ?");
+            PreparedStatement sql = conexao.prepareStatement("select b.nome,a.dataVenda,a.valorTotal  from vendas a join clientes b on b.idCliente = a.fk_cliente_idCliente \n" +
+" join produtos c on c.idProduto = fk_produto_idProduto where dataVenda like ?");
             sql.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                obj.setIdCliente(rs.getInt("idCliente"));
-                obj.setValorTotal(rs.getFloat("valorTotal"));
-                obj.setDataVenda(rs.getDate("dataVenda"));
+                obj.setNome(rs.getString(1));
+                obj.setDataVenda(rs.getDate(2));
                 listaRetorno.add(obj);
             }
 
@@ -302,9 +302,7 @@ public class VendasDAO {
         }
         return listaRetorno;
     }
-
-    // busca para gerar o relatorio analitico
-    // precisa ver um jeito de arrumar a data como criterio like
+    
     public static ArrayList<Vendas> listaAnalitico(Vendas obj) {
 
         Connection conexao = null;
@@ -314,14 +312,15 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where idVenda like ?");
+            PreparedStatement sql = conexao.prepareStatement("select a.idvenda,b.nome,a.dataVenda  from vendas a join clientes b on b.idCliente = a.fk_cliente_idCliente \n" +
+" join produtos c on c.idProduto = fk_produto_idProduto where dataVenda like ?");
             sql.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                obj.setIdCliente(rs.getInt("idCliente"));
-                obj.setIdVenda(rs.getInt("idVenda"));
-                obj.setDataVenda(rs.getDate("dataVenda"));
+                obj.setNome(rs.getString(2));
+                obj.setIdVenda(rs.getInt(1));
+                obj.setDataVenda(rs.getDate(3));
                 listaRetorno.add(obj);
             }
 

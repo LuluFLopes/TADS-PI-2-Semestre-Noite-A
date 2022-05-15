@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class RelatorioSintetico extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,7 +105,37 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+Date dataVenda = jdcDataInical.getDate();
 
+  
+    
+ ArrayList<Vendas>listaVendas = VendasController.listaSinteticoController(dataVenda);
+      DefaultTableModel modelo = (DefaultTableModel)tblRelatorioSintetico.getModel();
+
+      modelo.setRowCount(0);
+      
+     
+      
+ for(Vendas venda : listaVendas){
+      
+     modelo.addRow(new String [] {venda.getNome(),String.valueOf(venda.getDataVenda()),String.valueOf(venda.getValorTotal())
+     });
+
+     
+ }
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**

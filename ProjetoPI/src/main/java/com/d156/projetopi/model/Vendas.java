@@ -23,11 +23,21 @@ public class Vendas {
     public float valorRecebido;
     public float troco;
     public Date dataVenda;
+    public String nome="";
     
     public Vendas() {
 
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    
     public Date getDataVenda() {
         return dataVenda;
     }
