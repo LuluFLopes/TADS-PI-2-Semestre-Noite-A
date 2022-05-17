@@ -62,30 +62,25 @@ public class ProdutosController {
 
     }
 
-    public static Produtos excluir(String nome, String codigo) {
+    public static boolean excluir(int id) {
 
         Produtos obj = new Produtos();
-        obj.setNome(nome);
-        obj.setCodigo(codigo);
+        obj.setIdProduto(id);
 
         return ProdutosDAO.excluir(obj);
     }
 
     // Função quando o usuário digitar o nome na pesquisa.
-    public static ArrayList<Produtos> listaProdutosNome(Produtos obj) {
+    public static ArrayList<Produtos> listaProdutosNome(String nome) {
 
-        obj.setNome(obj.getNome());
-
-        return ProdutosDAO.listaProdutosNome(obj);
+        return ProdutosDAO.listaProdutosNome(nome);
 
     }
 
     // Função quando o usuário digitar o código na pesquisa.
-    public static ArrayList<Produtos> listaProdutosCod(Produtos obj) {
+    public static ArrayList<Produtos> listaProdutosCod(String codigo) {
 
-        obj.setCodigo(obj.getCodigo());
-
-        return ProdutosDAO.listaProdutosCod(obj);
+        return ProdutosDAO.listaProdutosCod(codigo);
 
     }
 

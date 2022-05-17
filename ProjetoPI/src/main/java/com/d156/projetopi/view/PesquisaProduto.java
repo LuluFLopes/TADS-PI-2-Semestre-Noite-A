@@ -4,7 +4,6 @@
  */
 package com.d156.projetopi.view;
 
-import com.d156.projetopi.view.AlterarProduto;
 import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.model.Produtos;
 import java.util.ArrayList;
@@ -70,6 +69,11 @@ public class PesquisaProduto extends javax.swing.JFrame {
 
         btnExcluir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         tblListagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,74 +140,73 @@ public class PesquisaProduto extends javax.swing.JFrame {
 
     private void txtPesquisarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarNomeKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
-        Produtos obj = new Produtos();
-
-        if (txtPesquisarCod.getText().equals("")) {
-
-            obj.setNome(txtPesquisarNome.getText());
-
-            ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(obj);
-
-            modelo.setRowCount(0);
-            for (Produtos produto : listaProdutos) {
-                modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                    obj.getNome(),
-                    String.valueOf(obj.getQtd())});
-
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "Por favor, não pesquisar com nome e cpf ao mesmo tempo!");
-
+        String nome = txtPesquisarNome.getText();
+        ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(nome);
+        modelo.setRowCount(0);
+        for (Produtos obj : listaProdutos) {
+            modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
+                obj.getNome(),
+                String.valueOf(obj.getQtd())});
         }
-
     }//GEN-LAST:event_txtPesquisarNomeKeyTyped
 
     private void txtPesquisarCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarCodKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
-        Produtos obj = new Produtos();
-
-        if (txtPesquisarNome.getText().equals("")) {
-            obj.setCodigo(txtPesquisarCod.getText());
-            ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(obj);
-            modelo.setRowCount(0);
-            for (Produtos produto : listaProdutos) {
-                modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                    obj.getNome(),
-                    String.valueOf(obj.getQtd())});
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "Por favor, não pesquisar com nome e cpf ao mesmo tempo!");
-
+        String codigo = txtPesquisarCod.getText();
+        ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(codigo);
+        modelo.setRowCount(0);
+        for (Produtos obj : listaProdutos) {
+            modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
+                obj.getNome(),
+                String.valueOf(obj.getQtd())});
         }
-
     }//GEN-LAST:event_txtPesquisarCodKeyTyped
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-
         int indice = tblListagem.getSelectedRow();
-
         Object obj = tblListagem.getValueAt(indice, 0);
         String dados = String.valueOf(obj);
-        
         int id = Integer.parseInt(dados);
-        
         if (indice < 0) {
-
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
-
         } else {
-
             AlterarProduto alterar = new AlterarProduto(id);
             alterar.setVisible(true);
-
             this.dispose();
-
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
+        int indice = tblListagem.getSelectedRow();
+        Object obj1 = tblListagem.getValueAt(indice, 0);
+        String dados = String.valueOf(obj1);
+        int id = Integer.parseInt(dados);
+        if (ProdutosController.excluir(id)) {
+            JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
+            if (txtPesquisarCod.equals("")) {
+                String nome = txtPesquisarNome.getText();
+                ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(nome);
+                modelo.setRowCount(0);
+                for (Produtos obj : listaProdutos) {
+                    modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
+                        obj.getNome(),
+                        String.valueOf(obj.getQtd())});
+                }
+            } else {
+                String codigo = txtPesquisarCod.getText();
+                ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(codigo);
+                modelo.setRowCount(0);
+                for (Produtos obj : listaProdutos) {
+                    modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
+                        obj.getNome(),
+                        String.valueOf(obj.getQtd())});
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao Excluir");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

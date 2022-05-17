@@ -95,11 +95,10 @@ public class ProdutosDAO {
         return listaRetorno;
     }
 
-    public static ArrayList<Produtos> listaProdutosNome(Produtos obj) {
+    public static ArrayList<Produtos> listaProdutosNome(String nome) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
         ResultSet rs = null;
-        String nome = obj.getNome();
 
         try {
 
@@ -110,6 +109,8 @@ public class ProdutosDAO {
             rs = sql.executeQuery();
 
             while (rs.next()) {
+                
+                Produtos obj = new Produtos();
 
                 obj.setIdProduto(rs.getInt("idProduto"));
                 obj.setNome(rs.getString("nome"));
@@ -141,11 +142,10 @@ public class ProdutosDAO {
         return listaRetorno;
     }
 
-    public static ArrayList<Produtos> listaProdutosCod(Produtos obj) {
+    public static ArrayList<Produtos> listaProdutosCod(String codigo) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
         ResultSet rs = null;
-        String codigo = obj.getCodigo();
 
         try {
 
@@ -156,6 +156,8 @@ public class ProdutosDAO {
             rs = sql.executeQuery();
 
             while (rs.next()) {
+                
+                Produtos obj = new Produtos();
 
                 obj.setIdProduto(rs.getInt("idProduto"));
                 obj.setNome(rs.getString("nome"));
@@ -204,7 +206,7 @@ public class ProdutosDAO {
             sql.setFloat(5, obj.getPreco());
             sql.setInt(6, obj.getIdProduto());
 
-            System.out.println(obj.getNome() + obj.getCodigo() + obj.getModelo() + obj.getQtd() + obj.getPreco() + obj.getIdProduto());
+            System.out.println(obj.getIdProduto());
 
             int linhasAfetadas = sql.executeUpdate();
 
@@ -266,7 +268,7 @@ public class ProdutosDAO {
         return obj;
     }
 
-    public static Produtos excluir(Produtos obj) {
+    public static boolean excluir(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
 
@@ -274,7 +276,7 @@ public class ProdutosDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Delete from protudos where  nome=? or codigo=?");
+            PreparedStatement sql = conexao.prepareStatement("Delete from produtos where idProduto=?");
             sql.setInt(1, obj.getIdProduto());
 
             int linhasAfetadas = sql.executeUpdate();
@@ -294,7 +296,7 @@ public class ProdutosDAO {
             } catch (Exception ex) {
             }
         }
-        return obj;
+        return retorno;
 
     }
 }
