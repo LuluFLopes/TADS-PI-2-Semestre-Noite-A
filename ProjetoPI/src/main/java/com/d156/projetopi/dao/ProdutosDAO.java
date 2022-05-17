@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -203,6 +204,8 @@ public class ProdutosDAO {
             sql.setFloat(5, obj.getPreco());
             sql.setInt(6, obj.getIdProduto());
 
+            System.out.println(obj.getNome() + obj.getCodigo() + obj.getModelo() + obj.getQtd() + obj.getPreco() + obj.getIdProduto());
+
             int linhasAfetadas = sql.executeUpdate();
 
             if (linhasAfetadas > 0) {
@@ -233,12 +236,16 @@ public class ProdutosDAO {
 
             rs = sql.executeQuery();
 
-            obj.setIdProduto(rs.getInt("idProduto"));
-            obj.setNome(rs.getString("nome"));
-            obj.setCodigo(rs.getString("codigo"));
-            obj.setModelo(rs.getString("modelo"));
-            obj.setQtd(rs.getInt("qtd"));
-            obj.setPreco(rs.getFloat("preco"));
+            while (rs.next()) {
+
+                obj.setIdProduto(rs.getInt("idProduto"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCodigo(rs.getString("codigo"));
+                obj.setModelo(rs.getString("modelo"));
+                obj.setQtd(rs.getInt("qtd"));
+                obj.setPreco(rs.getFloat("preco"));
+
+            }
 
         } catch (Exception ex) {
             System.out.println("Erro ao consultar o Produto");

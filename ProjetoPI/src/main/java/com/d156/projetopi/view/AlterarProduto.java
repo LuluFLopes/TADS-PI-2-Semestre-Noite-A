@@ -22,20 +22,30 @@ public class AlterarProduto extends javax.swing.JFrame {
     public AlterarProduto() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public AlterarProduto(int idProduto) {
+        initComponents();
+        this.setLocationRelativeTo(null);
         Produtos obj = new Produtos();
-
-        // Conseguir uma maneira de passar o id para dentro.
-
+        obj = ProdutosController.consultaId(idProduto);
+        
         if (obj != null) {
 
+            txtId.setText(String.valueOf(obj.getIdProduto()));
             txtNomeProduto.setText(obj.getNome());
             txtCodigo.setText(obj.getModelo());
             txtModeloProduto.setText(obj.getModelo());
             txtQuantidade.setText(String.valueOf(obj.getQtd()));
             txtPrecoProduto.setText(String.valueOf(obj.getPreco()));
 
+        } else {
+            
+            JOptionPane.showMessageDialog(this, "Não foi possível retornar o cadastro!");
+            
         }
-
+        
+        
     }
 
     /**
@@ -63,6 +73,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         lblNome2 = new javax.swing.JLabel();
         btnBuscarProduto = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -194,6 +205,10 @@ public class AlterarProduto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txtId.setEditable(false);
+        txtId.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,18 +230,25 @@ public class AlterarProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(lblTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitulo)
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,6 +263,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         Validador validador = new Validador();
 
         // Criando variáveis para salvar na Classe Produtos.
+        int id = Integer.parseInt(txtId.getText());
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
         String modelo = txtModeloProduto.getText();
@@ -262,8 +285,9 @@ public class AlterarProduto extends javax.swing.JFrame {
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
 
-            if (ProdutosController.alterar(nome, codigo, modelo, Integer.parseInt(qtd), Float.parseFloat(preco))) {
+            if (ProdutosController.alterar(id, nome, codigo, modelo, Integer.parseInt(qtd), Float.parseFloat(preco))) {
                 JOptionPane.showMessageDialog(this, "Alteração Realizada");
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Erro na Alteração");
             }
@@ -274,7 +298,7 @@ public class AlterarProduto extends javax.swing.JFrame {
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
         Produtos obj = new Produtos();
-        Validador validador = new Validador();;
+        Validador validador = new Validador();
         String nome = txtNomeProduto.getText();
         String codigo = txtCodigo.getText();
 
@@ -374,6 +398,7 @@ public class AlterarProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome3;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtModeloProduto;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPrecoProduto;

@@ -28,16 +28,16 @@ public class ProdutosController {
 
     }
 
-    public static boolean alterar(String nome, String codigo, String modelo, int qtd, float preco) {
+    public static boolean alterar(int id, String nome, String codigo, String modelo, int qtd, float preco) {
 
         Produtos obj = new Produtos();
 
-        obj.setIdProduto(obj.getIdProduto());
-        obj.setNome(obj.getNome());
-        obj.setCodigo(obj.getCodigo());
-        obj.setModelo(obj.getModelo());
-        obj.setQtd(obj.getQtd());
-        obj.setPreco(obj.getPreco());
+        obj.setIdProduto(id);
+        obj.setNome(nome);
+        obj.setCodigo(codigo);
+        obj.setModelo(modelo);
+        obj.setQtd(qtd);
+        obj.setPreco(preco);
 
         return ProdutosDAO.alterar(obj);
 
@@ -52,9 +52,9 @@ public class ProdutosController {
         return ProdutosDAO.consultarProduto(obj);
 
     }
-    
+
     public static Produtos consultaId(int id) {
-        
+
         Produtos obj = new Produtos();
         obj.setIdProduto(id);
 
@@ -70,7 +70,7 @@ public class ProdutosController {
 
         return ProdutosDAO.excluir(obj);
     }
-    
+
     // Função quando o usuário digitar o nome na pesquisa.
     public static ArrayList<Produtos> listaProdutosNome(Produtos obj) {
 
@@ -79,7 +79,7 @@ public class ProdutosController {
         return ProdutosDAO.listaProdutosNome(obj);
 
     }
-    
+
     // Função quando o usuário digitar o código na pesquisa.
     public static ArrayList<Produtos> listaProdutosCod(Produtos obj) {
 

@@ -197,7 +197,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
 
         } else {
 
-            AlterarProduto alterar = new AlterarProduto();
+            AlterarProduto alterar = new AlterarProduto(id);
             alterar.setVisible(true);
 
             this.dispose();
