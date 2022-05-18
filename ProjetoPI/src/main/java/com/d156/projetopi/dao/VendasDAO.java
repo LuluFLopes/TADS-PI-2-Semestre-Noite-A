@@ -4,6 +4,8 @@
  */
 package com.d156.projetopi.dao;
 
+import com.d156.projetopi.model.RelatorioAnalitico;
+import com.d156.projetopi.model.RelatórioSintetico;
 import com.d156.projetopi.model.Vendas;
 import com.d156.projetopi.utils.ConexaoFactory;
 import java.sql.Connection;
@@ -265,7 +267,7 @@ public class VendasDAO {
 
     }
 
-    public static ArrayList<Vendas> listaSintetico(Vendas obj) {
+    public static ArrayList<Vendas> listaSintetico(RelatórioSintetico objSintetico, Vendas obj) {
 
         Connection conexao = null;
         ArrayList<Vendas> listaRetorno = new ArrayList<Vendas>();
@@ -274,9 +276,10 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("select b.nome,a.dataVenda,a.valorTotal  from vendas a join clientes b on b.idCliente = a.fk_cliente_idCliente \n" +
-" join produtos c on c.idProduto = fk_produto_idProduto where dataVenda like ?");
-            sql.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
+            PreparedStatement sql = conexao.prepareStatement(" select b.nome,a.dataVenda,a.valorTotal  from vendas a join clientes b on b.idCliente = a.fk_cliente_idCliente \n" +
+" join produtos c on c.idProduto = fk_produto_idProduto where dataVenda between ? and ? ");
+            sql.setDate(1,  new java.sql.Date(objSintetico.getDataInicio().getTime()));
+            sql.setDate(2,  new java.sql.Date(objSintetico.getDataFim().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
@@ -303,7 +306,7 @@ public class VendasDAO {
         return listaRetorno;
     }
     
-    public static ArrayList<Vendas> listaAnalitico(Vendas obj) {
+    public static ArrayList<Vendas> listaAnalitico(RelatorioAnalitico objAnalitico,Vendas obj) {
 
         Connection conexao = null;
         ArrayList<Vendas> listaRetorno = new ArrayList<Vendas>();
@@ -312,9 +315,10 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("select a.idvenda,b.nome,a.dataVenda  from vendas a join clientes b on b.idCliente = a.fk_cliente_idCliente \n" +
-" join produtos c on c.idProduto = fk_produto_idProduto where dataVenda like ?");
-            sql.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
+            PreparedStatement sql = conexao.prepareStatement(" select a.idvenda,b.nome,a.valorTotal  from vendas a join clientes b on b.idCliente = a.fk_cliente_idCliente \n" +
+" join produtos c on c.idProduto = fk_produto_idProduto where dataVenda  between ? and ? ");
+            sql.setDate(1,  new java.sql.Date(objAnalitico.getDataInicio().getTime()));
+            sql.setDate(2,  new java.sql.Date(objAnalitico.getDataFim().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
