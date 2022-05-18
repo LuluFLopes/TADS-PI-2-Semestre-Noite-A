@@ -5,7 +5,6 @@
 package com.d156.projetopi.view;
 
 import com.d156.projetopi.controller.ClientesController;
-import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.model.Clientes;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -22,6 +21,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
      */
     public PesquisaCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -78,9 +78,19 @@ public class PesquisaCliente extends javax.swing.JFrame {
         btnAlterar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,9 +116,9 @@ public class PesquisaCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addComponent(txtPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPesquisarCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,53 +135,85 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
     private void txtPesquisarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarNomeKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
-        Clientes obj = new Clientes();
-
+        String nome = txtPesquisarNome.getText();
         if (txtPesquisarNome.getText().equals("")) {
-
-            obj.setNome(txtPesquisarNome.getText());
-
-            ArrayList<Clientes> listaClientes = ClientesController.listaProdutosNome(obj);
-
+            ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(nome);
             modelo.setRowCount(0);
-            for (Clientes clientes : listaClientes) {
+            for (Clientes obj : listaClientes) {
                 modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
                     obj.getNome(),
                     obj.getCpf()});
-
             }
-
         } else {
-
             JOptionPane.showMessageDialog(this, "Por favor, não pesquisar com nome e cpf ao mesmo tempo!");
-
         }
     }//GEN-LAST:event_txtPesquisarNomeKeyTyped
 
     private void txtPesquisarCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarCpfKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
-        Clientes obj = new Clientes();
-
+        String cpf = txtPesquisarNome.getText();
         if (txtPesquisarCpf.getText().equals("")) {
-
-            obj.setNome(txtPesquisarNome.getText());
-
-            ArrayList<Clientes> listaClientes = ClientesController.listaProdutosCpf(obj);
-
+            ArrayList<Clientes> listaClientes = ClientesController.listaClientesCpf(cpf);
             modelo.setRowCount(0);
-            for (Clientes clientes : listaClientes) {
+            for (Clientes obj : listaClientes) {
                 modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
                     obj.getNome(),
                     obj.getCpf()});
-
             }
-
         } else {
-
             JOptionPane.showMessageDialog(this, "Por favor, não pesquisar com nome e cpf ao mesmo tempo!");
-
         }
     }//GEN-LAST:event_txtPesquisarCpfKeyTyped
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        int indice = tblListagem.getSelectedRow();
+        if (indice < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha!");
+        } else {
+            Object obj1 = tblListagem.getValueAt(indice, 0);
+            String dados = String.valueOf(obj1);
+            int id = Integer.parseInt(dados);
+            AlterarCliente alterar = new AlterarCliente(id);
+            alterar.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
+        int indice = tblListagem.getSelectedRow();
+        if (indice < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha!");
+        } else {
+            Object obj1 = tblListagem.getValueAt(indice, 0);
+            String dados = String.valueOf(obj1);
+            int id = Integer.parseInt(dados);
+            if (ClientesController.excluir(id)) {
+                JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
+                if (txtPesquisarCpf.equals("")) {
+                    String nome = txtPesquisarNome.getText();
+                    ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(nome);
+                    modelo.setRowCount(0);
+                    for (Clientes obj : listaClientes) {
+                        modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
+                            obj.getNome(),
+                            String.valueOf(obj.getCpf())});
+                    }
+                } else {
+                    String cpf = txtPesquisarCpf.getText();
+                    ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(cpf);
+                    modelo.setRowCount(0);
+                    for (Clientes obj : listaClientes) {
+                        modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
+                            obj.getNome(),
+                            String.valueOf(obj.getCpf())});
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao Excluir");
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

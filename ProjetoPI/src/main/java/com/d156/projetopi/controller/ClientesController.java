@@ -33,10 +33,11 @@ public class ClientesController {
 
     }
 
-    public static boolean alterar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento) {
+    public static boolean alterar(int id,String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento) {
 
         Clientes obj = new Clientes();
 
+        obj.setIdCliente(id);
         obj.setNome(nome);
         obj.setCpf(cpf);
         obj.setEndereco(endereco);
@@ -51,14 +52,10 @@ public class ClientesController {
 
     }
 
-    /*public static Clientes parametroCliente(String nome, String cpf){
-        
-        // Terminar de criar a lógica de pesquisa para gravação dos dados dentro da alteração.
-        
-        return ;
-        
-    }*/
-    public static Clientes consultar(Clientes obj) {
+    public static Clientes consultaId(int id) {
+
+        Clientes obj = new Clientes();
+        obj.setIdCliente(id);
 
         return ClientesDAO.consultarCliente(obj);
 
@@ -71,20 +68,16 @@ public class ClientesController {
     }
 
     // Função quando o usuário digitar o nome na pesquisa.
-    public static ArrayList<Clientes> listaProdutosNome(Clientes obj) {
+    public static ArrayList<Clientes> listaClientesNome(String nome) {
 
-        obj.setNome(obj.getNome());
-
-        return ClientesDAO.listaClientesNome(obj);
+        return ClientesDAO.listaClientesNome(nome);
 
     }
 
     // Função quando o usuário digitar o código na pesquisa.
-    public static ArrayList<Clientes> listaProdutosCpf(Clientes obj) {
+    public static ArrayList<Clientes> listaClientesCpf(String cpf) {
 
-        obj.setCpf(obj.getCpf());
-
-        return ClientesDAO.listaClientesCpf(obj);
+        return ClientesDAO.listaClientesCpf(cpf);
 
     }
 

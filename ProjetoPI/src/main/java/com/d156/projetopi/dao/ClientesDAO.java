@@ -107,7 +107,7 @@ public class ClientesDAO {
 
     }
 
-    public static ArrayList<Clientes> listaComputador(Clientes obj, String cpf) {
+    public static ArrayList<Clientes> listaClientes(Clientes obj, String cpf) {
 
         Connection conexao = null;
         ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
@@ -159,7 +159,7 @@ public class ClientesDAO {
 
     }
 
-    public static ArrayList<Clientes> listaClientesNome(Clientes obj) {
+    public static ArrayList<Clientes> listaClientesNome(String nome) {
         Connection conexao = null;
         ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
         ResultSet rs = null;
@@ -169,10 +169,12 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("Select * from clientes where nome like ?");
-            sql.setString(1, '%' + obj.getNome() + '%');
+            sql.setString(1, '%' + nome + '%');
             rs = sql.executeQuery();
 
             while (rs.next()) {
+
+                Clientes obj = new Clientes();
 
                 obj.setIdCliente(rs.getInt("idCliente"));
                 obj.setNome(rs.getString("nome"));
@@ -208,7 +210,7 @@ public class ClientesDAO {
         return listaRetorno;
     }
 
-    public static ArrayList<Clientes> listaClientesCpf(Clientes obj) {
+    public static ArrayList<Clientes> listaClientesCpf(String cpf) {
         Connection conexao = null;
         ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
         ResultSet rs = null;
@@ -218,10 +220,12 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf like ?");
-            sql.setString(1, '%' + obj.getCpf() + '%');
+            sql.setString(1, '%' + cpf + '%');
             rs = sql.executeQuery();
 
             while (rs.next()) {
+
+                Clientes obj = new Clientes();
 
                 obj.setIdCliente(rs.getInt("idCliente"));
                 obj.setNome(rs.getString("nome"));
@@ -240,9 +244,7 @@ public class ClientesDAO {
         } catch (Exception e) {
             System.out.println("Erro:" + e.getMessage());
         } finally {
-
             try {
-
                 if (rs != null) {
                     rs.close();
                 }
@@ -251,12 +253,10 @@ public class ClientesDAO {
                 }
             } catch (Exception e) {
             }
-
         }
-
         return listaRetorno;
     }
-    
+
     public static boolean excluir(Clientes obj) {
 
         Connection conexao = null;
@@ -293,7 +293,6 @@ public class ClientesDAO {
 
     public static Clientes consultarCliente(Clientes obj) {
 
-
         Connection conexao = null;
         ResultSet rs = null;
 
@@ -301,10 +300,11 @@ public class ClientesDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf=? or nome=?");
-            sql.setString(1, obj.getCpf());
-            sql.setString(2, obj.getNome());
+            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where idCliente=?");
+            sql.setInt(1, obj.getIdCliente());
             rs = sql.executeQuery();
+            
+            while (rs.next()) {
 
             obj.setIdCliente(rs.getInt("idCliente"));
             obj.setNome(rs.getString("nome"));
@@ -316,52 +316,8 @@ public class ClientesDAO {
             obj.setEmail(rs.getString("email"));
             obj.setTelefone(rs.getString("telefone"));
             obj.setData(rs.getDate("dataNascimento"));
-
-        } catch (Exception e) {
-            System.out.println("Erro ao consultar o Cliente!");
-        } finally {
-
-            try {
-
-                if (rs != null) {
-                    rs.close();
-                }
-                if (conexao != null) {
-                    conexao.close();
-                }
-            } catch (Exception e) {
+            
             }
-
-        }
-
-        return obj;
-
-    }
-    
-    public static Clientes parametroCliente(Clientes obj) {
-
-        Connection conexao = null;
-        ResultSet rs = null;
-
-        try {
-
-            conexao = ConexaoFactory.getConexao();
-
-            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf=? or nome=?");
-            sql.setString(1, obj.getCpf());
-            sql.setString(2, obj.getNome());
-            rs = sql.executeQuery();
-
-            obj.setIdCliente(rs.getInt("idCliente"));
-            obj.setNome(rs.getString("nome"));
-            obj.setCpf(rs.getString("cpf"));
-            obj.setEndereco(rs.getString("endereco"));
-            obj.setNumero(rs.getString("numero"));
-            obj.setGenero(rs.getString("genero"));
-            obj.setEstadoCivil(rs.getString("estadoCivil"));
-            obj.setEmail(rs.getString("email"));
-            obj.setTelefone(rs.getString("telefone"));
-            obj.setData(rs.getDate("dataNascimento"));
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar o Cliente!");
@@ -394,7 +350,7 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("update clientes"
-                    + " set ?,?,?,?,?,?,?,?,? where idCliente = ?");
+                    + " set nome=?,cpf?,endereco=?,numero=?,genero=?,estadoCivil=?,email=?,telefone=?,dataNascimento=? where idCliente = ?");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf());
@@ -414,7 +370,7 @@ public class ClientesDAO {
                 retorno = false;
             }
         } catch (Exception e) {
-            System.out.println("Erro ao excluir alterar!");
+            System.out.println("Erro ao alterar!");
         } finally {
             try {
                 if (conexao != null) {

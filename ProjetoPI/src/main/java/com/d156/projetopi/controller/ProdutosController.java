@@ -43,16 +43,6 @@ public class ProdutosController {
 
     }
 
-    public static Produtos consultar(String nome, String codigo) {
-
-        Produtos obj = new Produtos();
-        obj.setNome(nome);
-        obj.setCodigo(codigo);
-
-        return ProdutosDAO.consultarProduto(obj);
-
-    }
-
     public static Produtos consultaId(int id) {
 
         Produtos obj = new Produtos();

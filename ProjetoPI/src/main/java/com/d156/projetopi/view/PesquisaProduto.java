@@ -122,7 +122,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPesquisarCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,47 +164,55 @@ public class PesquisaProduto extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         int indice = tblListagem.getSelectedRow();
-        Object obj = tblListagem.getValueAt(indice, 0);
-        String dados = String.valueOf(obj);
-        int id = Integer.parseInt(dados);
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
         } else {
-            AlterarProduto alterar = new AlterarProduto(id);
-            alterar.setVisible(true);
-            this.dispose();
+            Object obj = tblListagem.getValueAt(indice, 0);
+            String dados = String.valueOf(obj);
+            int id = Integer.parseInt(dados);
+            if (indice < 0) {
+                JOptionPane.showMessageDialog(this, "Selecione uma linha!");
+            } else {
+                AlterarProduto alterar = new AlterarProduto(id);
+                alterar.setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
         int indice = tblListagem.getSelectedRow();
-        Object obj1 = tblListagem.getValueAt(indice, 0);
-        String dados = String.valueOf(obj1);
-        int id = Integer.parseInt(dados);
-        if (ProdutosController.excluir(id)) {
-            JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
-            if (txtPesquisarCod.equals("")) {
-                String nome = txtPesquisarNome.getText();
-                ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(nome);
-                modelo.setRowCount(0);
-                for (Produtos obj : listaProdutos) {
-                    modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                        obj.getNome(),
-                        String.valueOf(obj.getQtd())});
+        if (indice < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha!");
+        } else {
+            Object obj1 = tblListagem.getValueAt(indice, 0);
+            String dados = String.valueOf(obj1);
+            int id = Integer.parseInt(dados);
+            if (ProdutosController.excluir(id)) {
+                JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
+                if (txtPesquisarCod.equals("")) {
+                    String nome = txtPesquisarNome.getText();
+                    ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(nome);
+                    modelo.setRowCount(0);
+                    for (Produtos obj : listaProdutos) {
+                        modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
+                            obj.getNome(),
+                            String.valueOf(obj.getQtd())});
+                    }
+                } else {
+                    String codigo = txtPesquisarCod.getText();
+                    ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(codigo);
+                    modelo.setRowCount(0);
+                    for (Produtos obj : listaProdutos) {
+                        modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
+                            obj.getNome(),
+                            String.valueOf(obj.getQtd())});
+                    }
                 }
             } else {
-                String codigo = txtPesquisarCod.getText();
-                ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(codigo);
-                modelo.setRowCount(0);
-                for (Produtos obj : listaProdutos) {
-                    modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                        obj.getNome(),
-                        String.valueOf(obj.getQtd())});
-                }
+                JOptionPane.showMessageDialog(this, "Erro ao Excluir");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro ao Excluir");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 

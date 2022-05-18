@@ -148,14 +148,14 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(719, Short.MAX_VALUE)
+                .addContainerGap(888, Short.MAX_VALUE)
                 .addComponent(lblReference)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(392, Short.MAX_VALUE)
+                .addContainerGap(507, Short.MAX_VALUE)
                 .addComponent(lblReference)
                 .addContainerGap())
         );
@@ -164,8 +164,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuAlterarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarCliActionPerformed
-        AlterarCliente alterarExcluir = new AlterarCliente();
-        alterarExcluir.setVisible(true);
+        PesquisaCliente pesquisa = new PesquisaCliente();
+        pesquisa.setVisible(true);
     }//GEN-LAST:event_mnuAlterarCliActionPerformed
 
     private void mnuCadastroCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroCliActionPerformed
