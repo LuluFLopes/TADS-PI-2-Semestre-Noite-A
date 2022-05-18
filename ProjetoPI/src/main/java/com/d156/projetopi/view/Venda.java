@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ClientesController;
 import com.d156.projetopi.model.Clientes;
 import com.d156.projetopi.model.Validador;
 import javax.swing.JOptionPane;
@@ -537,25 +538,26 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorRecebidoActionPerformed
 
     private void btnBuscaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaCliActionPerformed
-        //Intanciando classe "Clientes".
-        Clientes classe = new Clientes();
-
-        //Instanciando classe "Validador".
         Validador validador = new Validador();
+        Clientes obj = new Clientes();
 
         validador.ValidarCpf(txtCpf);
-        validador.ValidarTexto(txtNome);
         validador.ExibirMensagensErro();
 
         String cpf = txtCpf.getText();
-        classe.setCpf(cpf);
+        obj.setCpf(cpf);
 
         // Estrutura de decisão para verificar se cpf bate com o armazenado na classe.
-        if (cpf.equals(classe.getCpf())) {
+       // if (cpf.equals(obj.getCpf())) {
 
-            JOptionPane.showMessageDialog(this, "CPF: " + classe.getCpf() + " Nome: " + txtNome.getText());
-
-        }
+         //   JOptionPane.showMessageDialog(this, "CPF: " + obj.getCpf() + " Nome: " + txtNome.getText());
+      // }
+      boolean temErro = validador.temErro();
+      validador.limpaVeriicador();
+      if(temErro){
+          ClientesController.consultar(obj);
+          txtNome.setText(obj.getNome());
+      }
 
     }//GEN-LAST:event_btnBuscaCliActionPerformed
 

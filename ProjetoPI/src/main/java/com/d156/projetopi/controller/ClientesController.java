@@ -80,5 +80,10 @@ public class ClientesController {
         return ClientesDAO.listaClientesCpf(cpf);
 
     }
+    public static Clientes consultar(Clientes obj) {
+
+        return ClientesDAO.consultarCliente(obj);
+
+    }
 
 }

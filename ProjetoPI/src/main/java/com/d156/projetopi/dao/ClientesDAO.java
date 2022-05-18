@@ -57,6 +57,56 @@ public class ClientesDAO {
         return retorno;
     }
 
+    public static Clientes consultarCliente(Clientes obj) {
+
+
+        Connection conexao = null;
+        ResultSet rs = null;
+
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf=?");
+            sql.setString(1, obj.getCpf());
+            rs = sql.executeQuery();
+
+            while(rs.next()){
+                
+            obj.setIdCliente(rs.getInt("idCliente"));
+            obj.setNome(rs.getString("nome"));
+            obj.setCpf(rs.getString("cpf"));
+            obj.setEndereco(rs.getString("endereco"));
+            obj.setNumero(rs.getString("numero"));
+            obj.setGenero(rs.getString("genero"));
+            obj.setEstadoCivil(rs.getString("estadoCivil"));
+            obj.setEmail(rs.getString("email"));
+            obj.setTelefone(rs.getString("telefone"));
+            obj.setData(rs.getDate("dataNascimento"));
+                
+            }
+            
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar o Cliente!");
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+        return obj;
+
+    }
     public static ArrayList<Clientes> listaClientes(Clientes obj) {
 
         Connection conexao = null;
@@ -290,56 +340,7 @@ public class ClientesDAO {
         }
         return retorno;
     }
-
-    public static Clientes consultarCliente(Clientes obj) {
-
-        Connection conexao = null;
-        ResultSet rs = null;
-
-        try {
-
-            conexao = ConexaoFactory.getConexao();
-
-            PreparedStatement sql = conexao.prepareStatement("Select * from clientes where idCliente=?");
-            sql.setInt(1, obj.getIdCliente());
-            rs = sql.executeQuery();
-            
-            while (rs.next()) {
-
-            obj.setIdCliente(rs.getInt("idCliente"));
-            obj.setNome(rs.getString("nome"));
-            obj.setCpf(rs.getString("cpf"));
-            obj.setEndereco(rs.getString("endereco"));
-            obj.setNumero(rs.getString("numero"));
-            obj.setGenero(rs.getString("genero"));
-            obj.setEstadoCivil(rs.getString("estadoCivil"));
-            obj.setEmail(rs.getString("email"));
-            obj.setTelefone(rs.getString("telefone"));
-            obj.setData(rs.getDate("dataNascimento"));
-            
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro ao consultar o Cliente!");
-        } finally {
-
-            try {
-
-                if (rs != null) {
-                    rs.close();
-                }
-                if (conexao != null) {
-                    conexao.close();
-                }
-            } catch (Exception e) {
-            }
-
-        }
-
-        return obj;
-
-    }
-
+    
     public static boolean atualizar(Clientes obj) {
 
         Connection conexao = null;

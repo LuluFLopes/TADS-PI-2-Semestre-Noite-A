@@ -4,10 +4,37 @@
  */
 package com.d156.projetopi.model;
 
+import java.util.Date;
+
 /**
  *
  * @author lucme
  */
 public class RelatórioSintetico {
+    
+    public Date dataInicio;
+    public Date dataFim;
+    
+    public RelatórioSintetico(){
+        
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public Date getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+
+   
     
 }
