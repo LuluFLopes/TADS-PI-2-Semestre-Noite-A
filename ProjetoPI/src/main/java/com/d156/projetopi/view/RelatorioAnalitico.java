@@ -134,11 +134,11 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        Date dataVenda = jdcDataInical.getDate();
-
+        Date dataIncial = jdcDataInical.getDate();
+       Date datafim = jdcDataFim.getDate();
   
     
- ArrayList<Vendas>listaVendas = VendasController.listaAnaliticoController(dataVenda);
+ ArrayList<Vendas>listaVendas = VendasController.listaAnaliticoController(dataIncial,datafim);
       DefaultTableModel modelo = (DefaultTableModel)tblRelatorioAnalitico.getModel();
 
       modelo.setRowCount(0);

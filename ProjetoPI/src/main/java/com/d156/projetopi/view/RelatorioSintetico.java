@@ -6,6 +6,7 @@ package com.d156.projetopi.view;
 
 import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.dao.VendasDAO;
+import com.d156.projetopi.model.RelatórioSintetico;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,11 +106,16 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-Date dataVenda = jdcDataInical.getDate();
+Date dataInicial = jdcDataInical.getDate();
+Date dataFim = jdcDataFim.getDate();
 
-  
+RelatórioSintetico ClasseRelatórioSintetico = new RelatórioSintetico();
+
+ClasseRelatórioSintetico.setDataInicio(dataInicial);
+ClasseRelatórioSintetico.setDataFim(dataFim);
+
     
- ArrayList<Vendas>listaVendas = VendasController.listaSinteticoController(dataVenda);
+ ArrayList<Vendas>listaVendas = VendasController.listaSinteticoController(dataInicial,dataFim);
       DefaultTableModel modelo = (DefaultTableModel)tblRelatorioSintetico.getModel();
 
       modelo.setRowCount(0);
