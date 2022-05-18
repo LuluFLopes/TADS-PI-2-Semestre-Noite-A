@@ -41,8 +41,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
         tblListagem = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 520));
-        setSize(new java.awt.Dimension(600, 520));
+        setSize(new java.awt.Dimension(602, 522));
 
         txtPesquisarNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtPesquisarNome.addKeyListener(new java.awt.event.KeyAdapter() {

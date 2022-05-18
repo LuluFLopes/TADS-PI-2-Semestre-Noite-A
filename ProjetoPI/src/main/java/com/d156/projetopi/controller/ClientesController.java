@@ -57,13 +57,16 @@ public class ClientesController {
         Clientes obj = new Clientes();
         obj.setIdCliente(id);
 
-        return ClientesDAO.consultarCliente(obj);
+        return ClientesDAO.consultarClienteId(obj);
 
     }
 
-    public static boolean excluir(int idProduto) {
+    public static boolean excluir(int id) {
+        
+        Clientes obj = new Clientes();
+        obj.setIdCliente(id);
 
-        return false;
+        return ClientesDAO.excluir(obj);
 
     }
 

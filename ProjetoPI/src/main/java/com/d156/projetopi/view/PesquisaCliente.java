@@ -40,7 +40,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblListagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,7 +148,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
     private void txtPesquisarCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarCpfKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
-        String cpf = txtPesquisarNome.getText();
+        String cpf = txtPesquisarCpf.getText();
         ArrayList<Clientes> listaClientes = ClientesController.listaClientesCpf(cpf);
         modelo.setRowCount(0);
         for (Clientes obj : listaClientes) {
