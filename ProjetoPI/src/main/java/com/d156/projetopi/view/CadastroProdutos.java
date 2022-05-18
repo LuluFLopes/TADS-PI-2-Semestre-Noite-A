@@ -6,7 +6,6 @@ package com.d156.projetopi.view;
 
 import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.model.Validador;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import com.d156.projetopi.model.Produtos;
 

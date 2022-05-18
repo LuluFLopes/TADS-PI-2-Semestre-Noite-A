@@ -136,32 +136,25 @@ public class PesquisaCliente extends javax.swing.JFrame {
     private void txtPesquisarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarNomeKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
         String nome = txtPesquisarNome.getText();
-        if (txtPesquisarNome.getText().equals("")) {
-            ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(nome);
-            modelo.setRowCount(0);
-            for (Clientes obj : listaClientes) {
-                modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
-                    obj.getNome(),
-                    obj.getCpf()});
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, não pesquisar com nome e cpf ao mesmo tempo!");
+        ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(nome);
+        modelo.setRowCount(0);
+        for (Clientes obj : listaClientes) {
+            modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
+                obj.getNome(),
+                obj.getCpf()});
         }
+
     }//GEN-LAST:event_txtPesquisarNomeKeyTyped
 
     private void txtPesquisarCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarCpfKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
         String cpf = txtPesquisarNome.getText();
-        if (txtPesquisarCpf.getText().equals("")) {
-            ArrayList<Clientes> listaClientes = ClientesController.listaClientesCpf(cpf);
-            modelo.setRowCount(0);
-            for (Clientes obj : listaClientes) {
-                modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
-                    obj.getNome(),
-                    obj.getCpf()});
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, não pesquisar com nome e cpf ao mesmo tempo!");
+        ArrayList<Clientes> listaClientes = ClientesController.listaClientesCpf(cpf);
+        modelo.setRowCount(0);
+        for (Clientes obj : listaClientes) {
+            modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
+                obj.getNome(),
+                obj.getCpf()});
         }
     }//GEN-LAST:event_txtPesquisarCpfKeyTyped
 

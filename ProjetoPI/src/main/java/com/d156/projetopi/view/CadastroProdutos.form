@@ -112,12 +112,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtQuantidade" pref="550" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtCodigo" alignment="1" pref="550" max="32767" attributes="0"/>
-                          <Component id="txtModeloProduto" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtPrecoProduto" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtNomeProduto" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="txtCodigo" alignment="1" pref="550" max="32767" attributes="0"/>
+                      <Component id="txtModeloProduto" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtPrecoProduto" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtNomeProduto" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="66" max="32767" attributes="0"/>
                   <Component id="jTextField1" min="-2" pref="60" max="-2" attributes="0"/>
