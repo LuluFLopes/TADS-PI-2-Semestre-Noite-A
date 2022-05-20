@@ -4,7 +4,9 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ItemVendasController;
 import com.d156.projetopi.controller.VendasController;
+import com.d156.projetopi.dao.ItemVendasDAO;
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.RelatórioSintetico;
 import com.d156.projetopi.model.Vendas;
@@ -115,7 +117,7 @@ ClasseRelatórioSintetico.setDataInicio(dataInicial);
 ClasseRelatórioSintetico.setDataFim(dataFim);
 
     
- ArrayList<Vendas>listaVendas = VendasController.listaSinteticoController(dataInicial,dataFim);
+ ArrayList<Vendas>listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
       DefaultTableModel modelo = (DefaultTableModel)tblRelatorioSintetico.getModel();
 
       modelo.setRowCount(0);
@@ -124,7 +126,7 @@ ClasseRelatórioSintetico.setDataFim(dataFim);
       
  for(Vendas venda : listaVendas){
       
-     modelo.addRow(new String [] {venda.getNome(),String.valueOf(venda.getDataVenda()),String.valueOf(venda.getValorTotal())
+     modelo.addRow(new String [] {venda.getNomeCliente(),String.valueOf(venda.getDataVenda()),String.valueOf(venda.getValorTotal())
      });
 
      

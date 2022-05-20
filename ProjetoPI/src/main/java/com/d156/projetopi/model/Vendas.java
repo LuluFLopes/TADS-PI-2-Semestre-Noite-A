@@ -12,94 +12,15 @@ import java.util.Date;
  */
 public class Vendas {
 
-    public int idCliente;
+    
     public int idVenda;
-    public int idProduto;
     public String descricao;
-    public String modelo;
-    public int qtd;
-    public float valorProduto;
-    public float valorTotal;
-    public float valorRecebido;
-    public float troco;
     public Date dataVenda;
-    public String nome="";
+    public String nomeCliente;
+    public float valorTotal;        
     
     public Vendas() {
 
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    
-    public Date getDataVenda() {
-        return dataVenda;
-    }
-
-    public void setDataVenda(Date dataVenda) {
-        this.dataVenda = dataVenda;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
-    }
-
-    public int getIdVenda() {
-        return idVenda;
-    }
-
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
-    }
-
-    public float getValorProduto() {
-        return valorProduto;
-    }
-
-    public void setValorProduto(float valorProduto) {
-        this.valorProduto = valorProduto;
     }
 
     public float getValorTotal() {
@@ -110,20 +31,38 @@ public class Vendas {
         this.valorTotal = valorTotal;
     }
 
-    public float getValorRecebido() {
-        return valorRecebido;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public void setValorRecebido(float valorRecebido) {
-        this.valorRecebido = valorRecebido;
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
-    public float getTroco() {
-        return troco;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public void setTroco(float troco) {
-        this.troco = troco;
+    public String getDescricao() {
+        return descricao;
     }
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+
 
 }

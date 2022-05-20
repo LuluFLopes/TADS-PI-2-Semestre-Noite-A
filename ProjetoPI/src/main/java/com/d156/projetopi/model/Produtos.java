@@ -16,9 +16,19 @@ public class Produtos {
     private String modelo;
     private int qtd;
     private float preco;
+    private float valorProduto;
+
 
     public Produtos() {
 
+    }
+
+    public float getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(float valorProduto) {
+        this.valorProduto = valorProduto;
     }
 
     public int getIdProduto() {

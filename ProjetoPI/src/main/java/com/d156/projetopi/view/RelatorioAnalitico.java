@@ -4,8 +4,9 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ItemVendasController;
 import com.d156.projetopi.controller.VendasController;
-import com.d156.projetopi.dao.VendasDAO;
+import com.d156.projetopi.dao.ItemVendasDAO;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -145,7 +146,7 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
       
       
  for(Vendas venda : listaVendas){
-     modelo.addRow(new String [] {String.valueOf(venda.getIdVenda()),venda.getNome(),String.valueOf(venda.getDataVenda())
+     modelo.addRow(new String [] {String.valueOf(venda.getIdVenda()),venda.getNomeCliente(),String.valueOf(venda.getDataVenda())
      });
      
   
