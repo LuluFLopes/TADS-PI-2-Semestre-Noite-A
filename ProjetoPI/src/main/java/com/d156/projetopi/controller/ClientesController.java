@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class ClientesController {
 
-    public static boolean salvar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento) {
+    public static boolean salvar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
 
         Clientes obj = new Clientes();
 
@@ -28,12 +28,17 @@ public class ClientesController {
         obj.setTelefone(telefone);
         obj.setGenero(genero);
         obj.setData(dataNascimento);
+        obj.setComplemento(complemento);
+        obj.setBairro(bairro);
+        obj.setCidade(cidade);
+        obj.setCep(cep);
+        obj.setEstado(estado);
 
         return ClientesDAO.salvar(obj);
 
     }
 
-    public static boolean alterar(int id,String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento) {
+    public static boolean alterar(int id, String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
 
         Clientes obj = new Clientes();
 
@@ -47,6 +52,11 @@ public class ClientesController {
         obj.setTelefone(telefone);
         obj.setGenero(genero);
         obj.setData(dataNascimento);
+        obj.setComplemento(complemento);
+        obj.setBairro(bairro);
+        obj.setCidade(cidade);
+        obj.setCep(cep);
+        obj.setEstado(estado);
 
         return ClientesDAO.atualizar(obj);
 
@@ -62,7 +72,7 @@ public class ClientesController {
     }
 
     public static boolean excluir(int id) {
-        
+
         Clientes obj = new Clientes();
         obj.setIdCliente(id);
 
@@ -73,16 +83,23 @@ public class ClientesController {
     // Função quando o usuário digitar o nome na pesquisa.
     public static ArrayList<Clientes> listaClientesNome(String nome) {
 
-        return ClientesDAO.listaClientesNome(nome);
+        Clientes obj = new Clientes();
+        obj.setNome(nome);
+
+        return ClientesDAO.listaClientesNome(obj);
 
     }
 
     // Função quando o usuário digitar o código na pesquisa.
     public static ArrayList<Clientes> listaClientesCpf(String cpf) {
 
-        return ClientesDAO.listaClientesCpf(cpf);
+        Clientes obj = new Clientes();
+        obj.setCpf(cpf);
+
+        return ClientesDAO.listaClientesCpf(obj);
 
     }
+
     public static Clientes consultar(Clientes obj) {
 
         return ClientesDAO.consultarCliente(obj);

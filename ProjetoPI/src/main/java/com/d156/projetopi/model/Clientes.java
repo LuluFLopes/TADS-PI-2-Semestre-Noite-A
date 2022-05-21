@@ -5,9 +5,6 @@
 package com.d156.projetopi.model;
 
 import java.util.Date;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
 
 /**
  *
@@ -25,6 +22,11 @@ public class Clientes {
     public String email;
     public String telefone;
     public Date dataNascimento;
+    public String complemento;
+    public String bairro;
+    public String cidade;
+    public String cep;
+    public String estado;
 
     public Clientes() {
 
@@ -116,6 +118,46 @@ public class Clientes {
 
     public void setData(Date data) {
         this.dataNascimento = data;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

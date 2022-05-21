@@ -26,7 +26,7 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("insert into clientes"
-                    + "(nome,cpf,endereco,numero,genero,estadoCivil,email,telefone,dataNascimento)values(?,?,?,?,?,?,?,?,?)");
+                    + "(nome,cpf,endereco,numero,genero,estadoCivil,email,telefone,dataNascimento,complemento, bairro, cidade, cep, estado)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf());
@@ -37,6 +37,11 @@ public class ClientesDAO {
             sql.setString(7, obj.getEmail());
             sql.setString(8, obj.getTelefone());
             sql.setDate(9, new java.sql.Date(obj.getData().getTime()));
+            sql.setString(10, obj.getComplemento());
+            sql.setString(11, obj.getBairro());
+            sql.setString(12, obj.getCidade());
+            sql.setString(13, obj.getCep());
+            sql.setString(14, obj.getEstado());
 
             int linhasAfetadas = sql.executeUpdate();
 
@@ -59,7 +64,6 @@ public class ClientesDAO {
 
     public static Clientes consultarCliente(Clientes obj) {
 
-
         Connection conexao = null;
         ResultSet rs = null;
 
@@ -71,21 +75,25 @@ public class ClientesDAO {
             sql.setString(1, obj.getCpf());
             rs = sql.executeQuery();
 
-            while(rs.next()){
-                
-            obj.setIdCliente(rs.getInt("idCliente"));
-            obj.setNome(rs.getString("nome"));
-            obj.setCpf(rs.getString("cpf"));
-            obj.setEndereco(rs.getString("endereco"));
-            obj.setNumero(rs.getString("numero"));
-            obj.setGenero(rs.getString("genero"));
-            obj.setEstadoCivil(rs.getString("estadoCivil"));
-            obj.setEmail(rs.getString("email"));
-            obj.setTelefone(rs.getString("telefone"));
-            obj.setData(rs.getDate("dataNascimento"));
+            while (rs.next()) {
+
+                obj.setIdCliente(rs.getInt("idCliente"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getString("numero"));
+                obj.setGenero(rs.getString("genero"));
+                obj.setEstadoCivil(rs.getString("estadoCivil"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setData(rs.getDate("dataNascimento"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEstado(rs.getString("estado"));
                 
             }
-            
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar o Cliente!");
@@ -107,9 +115,8 @@ public class ClientesDAO {
         return obj;
 
     }
-    
-    public static Clientes consultarClienteId(Clientes obj) {
 
+    public static Clientes consultarClienteId(Clientes obj) {
 
         Connection conexao = null;
         ResultSet rs = null;
@@ -122,21 +129,25 @@ public class ClientesDAO {
             sql.setInt(1, obj.getIdCliente());
             rs = sql.executeQuery();
 
-            while(rs.next()){
-                
-            obj.setIdCliente(rs.getInt("idCliente"));
-            obj.setNome(rs.getString("nome"));
-            obj.setCpf(rs.getString("cpf"));
-            obj.setEndereco(rs.getString("endereco"));
-            obj.setNumero(rs.getString("numero"));
-            obj.setGenero(rs.getString("genero"));
-            obj.setEstadoCivil(rs.getString("estadoCivil"));
-            obj.setEmail(rs.getString("email"));
-            obj.setTelefone(rs.getString("telefone"));
-            obj.setData(rs.getDate("dataNascimento"));
-                
+            while (rs.next()) {
+
+                obj.setIdCliente(rs.getInt("idCliente"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getString("numero"));
+                obj.setGenero(rs.getString("genero"));
+                obj.setEstadoCivil(rs.getString("estadoCivil"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setData(rs.getDate("dataNascimento"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEstado(rs.getString("estado"));
+
             }
-            
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar o Cliente!");
@@ -158,7 +169,7 @@ public class ClientesDAO {
         return obj;
 
     }
-    
+
     public static ArrayList<Clientes> listaClientes(Clientes obj) {
 
         Connection conexao = null;
@@ -184,6 +195,11 @@ public class ClientesDAO {
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setData(rs.getDate("dataNascimento"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEstado(rs.getString("estado"));
 
                 listaRetorno.add(obj);
             }
@@ -235,6 +251,11 @@ public class ClientesDAO {
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setData(rs.getDate("dataNascimento"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEstado(rs.getString("estado"));
 
                 listaRetorno.add(obj);
 
@@ -261,7 +282,7 @@ public class ClientesDAO {
 
     }
 
-    public static ArrayList<Clientes> listaClientesNome(String nome) {
+    public static ArrayList<Clientes> listaClientesNome(Clientes obj) {
         Connection conexao = null;
         ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
         ResultSet rs = null;
@@ -271,12 +292,12 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("Select * from clientes where nome like ?");
-            sql.setString(1, '%' + nome + '%');
+            sql.setString(1, '%' + obj.getNome() + '%');
             rs = sql.executeQuery();
 
             while (rs.next()) {
 
-                Clientes obj = new Clientes();
+                obj = new Clientes();
 
                 obj.setIdCliente(rs.getInt("idCliente"));
                 obj.setNome(rs.getString("nome"));
@@ -288,6 +309,11 @@ public class ClientesDAO {
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setData(rs.getDate("dataNascimento"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEstado(rs.getString("estado"));
 
                 listaRetorno.add(obj);
             }
@@ -312,7 +338,7 @@ public class ClientesDAO {
         return listaRetorno;
     }
 
-    public static ArrayList<Clientes> listaClientesCpf(String cpf) {
+    public static ArrayList<Clientes> listaClientesCpf(Clientes obj) {
         Connection conexao = null;
         ArrayList<Clientes> listaRetorno = new ArrayList<Clientes>();
         ResultSet rs = null;
@@ -322,12 +348,12 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("Select * from clientes where cpf like ?");
-            sql.setString(1, '%' + cpf + '%');
+            sql.setString(1, '%' + obj.getCpf() + '%');
             rs = sql.executeQuery();
 
             while (rs.next()) {
 
-                Clientes obj = new Clientes();
+                obj = new Clientes();
 
                 obj.setIdCliente(rs.getInt("idCliente"));
                 obj.setNome(rs.getString("nome"));
@@ -339,6 +365,11 @@ public class ClientesDAO {
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setData(rs.getDate("dataNascimento"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEstado(rs.getString("estado"));
 
                 listaRetorno.add(obj);
             }
@@ -392,7 +423,7 @@ public class ClientesDAO {
         }
         return retorno;
     }
-    
+
     public static boolean atualizar(Clientes obj) {
 
         Connection conexao = null;
@@ -403,7 +434,7 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("update clientes"
-                    + " set nome=?,cpf=?,endereco=?,numero=?,genero=?,estadoCivil=?,email=?,telefone=?,dataNascimento=? where idCliente=?");
+                    + " set nome=?,cpf=?,endereco=?,numero=?,genero=?,estadoCivil=?,email=?,telefone=?,dataNascimento=?,complemento=?,bairro=?,cidade=?,cep=?,estado=? where idCliente=?");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf());
@@ -414,7 +445,12 @@ public class ClientesDAO {
             sql.setString(7, obj.getEmail());
             sql.setString(8, obj.getTelefone());
             sql.setDate(9, new java.sql.Date(obj.getData().getTime()));
-            sql.setInt(10, obj.getIdCliente());
+            sql.setString(10, obj.getComplemento());
+            sql.setString(11, obj.getBairro());
+            sql.setString(12, obj.getCidade());
+            sql.setString(13, obj.getCep());
+            sql.setString(14, obj.getEstado());
+            sql.setInt(15, obj.getIdCliente());
 
             int linhasAfetadas = sql.executeUpdate();
 
