@@ -25,13 +25,14 @@ public class ProdutosDAO {
 
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("insert into produtos" + "(nome,codigo,modelo,qtd,preco)Values(?,?,?,?,?)");
+            PreparedStatement sql = conexao.prepareStatement("insert into produtos" + "(nome,codigo,modelo,qtd,preco, descricao)Values(?,?,?,?,?,?)");
 
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCodigo());
             sql.setString(3, obj.getModelo());
             sql.setInt(4, obj.getQtd());
             sql.setFloat(5, obj.getPreco());
+            sql.setString(6, obj.getDescricao());
 
             int linhasAfetadas = sql.executeUpdate();
 

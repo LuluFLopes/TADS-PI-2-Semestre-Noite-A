@@ -4,12 +4,19 @@
  */
 package com.d156.projetopi.model;
 
+import java.util.Date;
+
 /**
  *
  * @author Compaq
  */
 public class ItemVendas {
     
+ public String NomeCliente ="";
+ public String NomeProduto ="";
+ public String Descricao = "";
+ public String codigo ="";
+ public Date dataVenda ;
  public int idItemVenda;
  public int idVenda;
  public int idProduto;
@@ -18,8 +25,6 @@ public class ItemVendas {
  public float Valortotal;
  public float troco;
  public float valorRecebido;
- public String descricao;
- public String modelo;
  public float valorProduto;
 
  public ItemVendas(){
@@ -27,20 +32,53 @@ public class ItemVendas {
     
 }
 
+    public String getNomeCliente() {
+        return NomeCliente;
+    }
+
+    public void setNomeCliente(String NomeCliente) {
+        this.NomeCliente = NomeCliente;
+    }
+
+    public String getNomeProduto() {
+        return NomeProduto;
+    }
+
+    public void setNomeProduto(String NomeProduto) {
+        this.NomeProduto = NomeProduto;
+    }
+
+    public String getDescricao() {
+        return Descricao;
+    }
+
+    public void setDescricao(String Descricao) {
+        this.Descricao = Descricao;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+ 
     public void setIdcliente(int idcliente) {
         this.idcliente = idcliente;
     }
 
     public int getIdcliente() {
         return idcliente;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
 
     public float getValorProduto() {
@@ -53,15 +91,7 @@ public class ItemVendas {
 
   
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getIdItemVenda() {
+     public int getIdItemVenda() {
         return idItemVenda;
     }
 

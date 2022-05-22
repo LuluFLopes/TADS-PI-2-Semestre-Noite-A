@@ -16,13 +16,31 @@ public class Vendas {
     public int idVenda;
     public String descricao;
     public Date dataVenda;
-    public String nomeCliente;
+    public int idCliente;
     public float valorTotal;        
-    
+    public String NomeCliente ="";
     public Vendas() {
 
     }
 
+    public String getNomeCliente() {
+        return NomeCliente;
+    }
+
+    public void setNomeCliente(String NomeCliente) {
+        this.NomeCliente = NomeCliente;
+    }
+
+    
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    
     public float getValorTotal() {
         return valorTotal;
     }
@@ -31,13 +49,7 @@ public class Vendas {
         this.valorTotal = valorTotal;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
+  
 
     public int getIdVenda() {
         return idVenda;

@@ -29,18 +29,17 @@ public class ItemVendasDAO {
         try {
 
             conexao = ConexaoFactory.getConexao();
-            PreparedStatement sql = conexao.prepareStatement("insert into vendas"
-                    + "(idVenda,idProduto,descriçao,modelo,qtd,valorProduto,valorTotal,valorRecebido,troco)values(?,?,?,?,?,?,?,?,?)");
+            PreparedStatement sql = conexao.prepareStatement("insert into itensVendas (fk_cliente_id_Cliente,Fk_Venda_id_Venda, Fk_Produto_id_Produto, QuantidadeVendido,Valortotal,troco,valorRecebido) \n" +
+" values (?,?,?,?,?,?,?)\n" +
+" ");
             //sql.setString(1, obj.getNome());
-            sql.setInt(1, objItem.getIdVenda());
-            sql.setInt(2, objItem.getIdProduto());
-            sql.setString(3, objItem.getDescricao());
-            sql.setString(4, objItem.getModelo());
-            sql.setInt(5, objItem.getQuantidade());
-            sql.setFloat(6, objItem.getValorProduto());
+            sql.setInt(1, objItem.getIdcliente());
+            sql.setInt(2, objItem.getIdVenda());
+            sql.setInt(5, objItem.getIdProduto());
+            sql.setFloat(6, objItem.getQuantidade());
             sql.setFloat(7, objItem.getValortotal());
-            sql.setFloat(8, objItem.getValorRecebido());
-            sql.setFloat(9, objItem.getTroco());
+            sql.setFloat(8, objItem.getTroco());
+            sql.setFloat(9, objItem.getValorRecebido());
 
             int linhasafetadas = sql.executeUpdate();
 
@@ -73,8 +72,6 @@ public class ItemVendasDAO {
             //sql.setString(1, obj.getNome());
             sql.setInt(1, objItem.getIdVenda());
             sql.setInt(2, objItem.getIdProduto());
-            sql.setString(3, objItem.getDescricao());
-            sql.setString(4, objItem.getModelo());
             sql.setInt(5, objItem.getQuantidade());
             sql.setFloat(6, objItem.getValorProduto());
             sql.setFloat(7, objItem.getValortotal());
@@ -101,98 +98,6 @@ public class ItemVendasDAO {
         return retorno;
     }
 
-    public static ArrayList<ItemVendas> listaProdutos(ItemVendas obj) {
-
-        Connection conexao = null;
-        ArrayList<ItemVendas> listaRetorno = new ArrayList<ItemVendas>();
-        ResultSet rs = null;
-
-        try {
-            conexao = ConexaoFactory.getConexao();
-
-            PreparedStatement sql = conexao.prepareStatement("Select * from vendas");
-            rs = sql.executeQuery();
-
-            while (rs.next()) {
-
-                //obj.setIdProduto(rs.getInt("idproduto"));
-                obj.setIdVenda(rs.getInt("idVendas"));
-                obj.setIdProduto(rs.getInt("idProdutos"));
-                obj.setDescricao(rs.getString("descricao"));
-                obj.setModelo(rs.getString("modelo"));
-                obj.setQuantidade(rs.getInt("qtd"));
-                obj.setValorProduto(rs.getFloat("valorProduto"));
-                obj.setValortotal(rs.getFloat("valorTotal"));
-                obj.setValorRecebido(rs.getFloat("valorRecebido"));
-                obj.setTroco(rs.getFloat("troco"));
-
-                listaRetorno.add(obj);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro:" + e.getMessage());
-        } finally {
-
-            try {
-
-                if (rs != null) {
-                    rs.close();
-                }
-                if (conexao != null) {
-                    conexao.close();
-                }
-            } catch (Exception e) {
-            }
-        }
-        return listaRetorno;
-    }
-
-    public static ArrayList<ItemVendas> listaProdutos(ItemVendas obj, int idVendas) {
-
-        Connection conexao = null;
-        ArrayList<ItemVendas> listaRetorno = new ArrayList<ItemVendas>();
-        ResultSet rs = null;
-
-        try {
-            conexao = ConexaoFactory.getConexao();
-
-            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where idVendas like ?");
-            sql.setInt(1, '%' + idVendas + '%');
-            rs = sql.executeQuery();
-
-            while (rs.next()) {
-
-                obj.setIdVenda(rs.getInt("idVendas"));
-                obj.setIdProduto(rs.getInt("idProdutos"));
-                obj.setDescricao(rs.getString("descricao"));
-                obj.setModelo(rs.getString("modelo"));
-                obj.setQuantidade(rs.getInt("qtd"));
-                obj.setValorProduto(rs.getFloat("valorProduto"));
-                obj.setValortotal(rs.getFloat("valorTotal"));
-                obj.setValorRecebido(rs.getFloat("valorRecebido"));
-                obj.setTroco(rs.getFloat("troco"));
-
-                listaRetorno.add(obj);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro:" + e.getMessage());
-        } finally {
-
-            try {
-
-                if (rs != null) {
-                    rs.close();
-                }
-                if (conexao != null) {
-                    conexao.close();
-                }
-            } catch (Exception e) {
-            }
-        }
-        return listaRetorno;
-    }
-
     public static ItemVendas consultarItemVendas(ItemVendas obj) {
         Connection conexao = null;
         ResultSet rs = null;
@@ -209,8 +114,6 @@ public class ItemVendasDAO {
 
             obj.setIdVenda(rs.getInt("idVendas"));
             obj.setIdProduto(rs.getInt("idProdutos"));
-            obj.setDescricao(rs.getString("descricao"));
-            obj.setModelo(rs.getString("modelo"));
             obj.setQuantidade(rs.getInt("qtd"));
             obj.setValorProduto(rs.getFloat("valorProduto"));
             obj.setValortotal(rs.getFloat("valorTotal"));

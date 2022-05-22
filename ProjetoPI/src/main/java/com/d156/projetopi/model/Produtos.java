@@ -17,12 +17,22 @@ public class Produtos {
     private int qtd;
     private float preco;
     private float valorProduto;
+    private String descricao ="";
 
 
     public Produtos() {
 
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    
     public float getValorProduto() {
         return valorProduto;
     }

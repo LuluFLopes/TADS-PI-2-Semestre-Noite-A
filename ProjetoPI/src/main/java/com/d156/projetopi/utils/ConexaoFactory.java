@@ -26,8 +26,8 @@ public class ConexaoFactory {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Abrindo conexão.
-                conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/ lojainstrumentos"
-                    + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "root","");
+                conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/ lojainstrumento"
+                    + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "root","Filipe@56");
 
         } catch (ClassNotFoundException ex) {
 

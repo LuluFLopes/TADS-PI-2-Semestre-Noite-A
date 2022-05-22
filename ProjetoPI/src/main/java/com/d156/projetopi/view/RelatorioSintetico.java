@@ -8,10 +8,13 @@ import com.d156.projetopi.controller.ItemVendasController;
 import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.dao.ItemVendasDAO;
 import com.d156.projetopi.dao.VendasDAO;
+import com.d156.projetopi.model.ItemVendas;
 import com.d156.projetopi.model.RelatórioSintetico;
+import com.d156.projetopi.model.Validador;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,31 +40,13 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblRelatorioSintetico = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
         jdcDataInical = new com.toedter.calendar.JDateChooser();
         jdcDataFim = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRelatorioSintetico = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Cliente", "Data", "Valor Total"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblRelatorioSintetico);
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,14 +55,29 @@ public class RelatorioSintetico extends javax.swing.JFrame {
             }
         });
 
+        tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código Venda", "Cliente", "Valor Total", "Data Venda"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblRelatorioSintetico.setToolTipText("");
+        jScrollPane1.setViewportView(tblRelatorioSintetico);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -85,7 +85,11 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                     .addComponent(jdcDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(103, 103, 103)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,13 +98,13 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 52, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jdcDataInical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jdcDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -111,22 +115,23 @@ public class RelatorioSintetico extends javax.swing.JFrame {
 Date dataInicial = jdcDataInical.getDate();
 Date dataFim = jdcDataFim.getDate();
 
+
 RelatórioSintetico ClasseRelatórioSintetico = new RelatórioSintetico();
 
 ClasseRelatórioSintetico.setDataInicio(dataInicial);
 ClasseRelatórioSintetico.setDataFim(dataFim);
 
     
- ArrayList<Vendas>listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
+ ArrayList<ItemVendas>listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
       DefaultTableModel modelo = (DefaultTableModel)tblRelatorioSintetico.getModel();
 
       modelo.setRowCount(0);
       
      
       
- for(Vendas venda : listaVendas){
-      
-     modelo.addRow(new String [] {venda.getNomeCliente(),String.valueOf(venda.getDataVenda()),String.valueOf(venda.getValorTotal())
+ for(ItemVendas venda : listaVendas){
+   
+     modelo.addRow(new String [] {String.valueOf(venda.getIdVenda()),venda.getNomeCliente(),String.valueOf(venda.getValortotal()),String.valueOf(venda.getDataVenda())
      });
 
      

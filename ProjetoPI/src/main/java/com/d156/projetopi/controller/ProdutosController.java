@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class ProdutosController {
 
-    public static boolean salvar(String nome, String codigo, String modelo, int qtd, float preco) {
+    public static boolean salvar(String nome, String codigo, String modelo, int qtd, float preco,String descricao) {
 
         Produtos obj = new Produtos();
 
@@ -23,6 +23,7 @@ public class ProdutosController {
         obj.setModelo(modelo);
         obj.setQtd(qtd);
         obj.setPreco(preco);
+        obj.setDescricao(descricao);
 
         return ProdutosDAO.salvar(obj);
 

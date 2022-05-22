@@ -18,37 +18,33 @@ import java.util.Date;
  */
 public class ItemVendasController {
     
-    public static boolean salvar(int idVenda,int idProduto,String descriçao,String modelo,int qtd,float valorProduto,int valorTotal,float valorRecebido,float troco){
+    public static boolean salvar(int idVenda,int idProduto,int qtd,float valorProduto,int valorTotal,float valorRecebido,float troco){
       
         ItemVendas objItem = new ItemVendas();
         
         objItem.setIdVenda(idVenda);
         objItem.setIdProduto(idProduto);
-        objItem.setDescricao(descriçao);
         objItem.setQuantidade(qtd);
         objItem.setValortotal(valorTotal);
         objItem.setValorRecebido(valorRecebido);
         objItem.setTroco(troco);        
         objItem.setIdProduto(idProduto);
-        objItem.setModelo(modelo);
         objItem.setValorProduto(valorProduto);
         
     return com.d156.projetopi.dao.ItemVendasDAO.salvar(objItem);
     }
     
-    public static boolean atualizar(int idVenda,int idProduto,String descriçao,String modelo,int qtd,float valorProduto,int valorTotal,float valorRecebido,float troco){
+    public static boolean atualizar(int idVenda,int idProduto,int qtd,float valorProduto,int valorTotal,float valorRecebido,float troco){
       
        ItemVendas objItem = new ItemVendas();
         
         objItem.setIdVenda(idVenda);
         objItem.setIdProduto(idProduto);
-        objItem.setDescricao(descriçao);
         objItem.setQuantidade(qtd);
         objItem.setValortotal(valorTotal);
         objItem.setValorRecebido(valorRecebido);
         objItem.setTroco(troco); 
         objItem.setIdProduto(idProduto);
-        objItem.setModelo(modelo);
         objItem.setValorProduto(valorProduto);
         
     return ItemVendasDAO.atualizar(objItem);
