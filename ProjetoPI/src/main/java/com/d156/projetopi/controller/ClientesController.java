@@ -15,7 +15,8 @@ import java.util.Date;
  */
 public class ClientesController {
 
-    public static boolean salvar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
+    public static boolean salvar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, 
+            String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
 
         Clientes obj = new Clientes();
 
@@ -38,13 +39,13 @@ public class ClientesController {
 
     }
 
-    public static boolean alterar(int id, String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
+    public static boolean alterar(int id, String nome, String endereco, String numero, String email, String estadoCivil, String telefone, 
+            String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
 
         Clientes obj = new Clientes();
 
         obj.setIdCliente(id);
         obj.setNome(nome);
-        obj.setCpf(cpf);
         obj.setEndereco(endereco);
         obj.setNumero(numero);
         obj.setEmail(email);

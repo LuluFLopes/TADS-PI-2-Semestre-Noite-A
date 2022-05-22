@@ -434,23 +434,22 @@ public class ClientesDAO {
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("update clientes"
-                    + " set nome=?,cpf=?,endereco=?,numero=?,genero=?,estadoCivil=?,email=?,telefone=?,dataNascimento=?,complemento=?,bairro=?,cidade=?,cep=?,estado=? where idCliente=?");
+                    + " set nome=?,endereco=?,numero=?,genero=?,estadoCivil=?,email=?,telefone=?,dataNascimento=?,complemento=?,bairro=?,cidade=?,cep=?,estado=? where idCliente=?");
 
             sql.setString(1, obj.getNome());
-            sql.setString(2, obj.getCpf());
-            sql.setString(3, obj.getEndereco());
-            sql.setString(4, obj.getNumero());
-            sql.setString(5, obj.getGenero());
-            sql.setString(6, obj.getEstadoCivil());
-            sql.setString(7, obj.getEmail());
-            sql.setString(8, obj.getTelefone());
-            sql.setDate(9, new java.sql.Date(obj.getData().getTime()));
-            sql.setString(10, obj.getComplemento());
-            sql.setString(11, obj.getBairro());
-            sql.setString(12, obj.getCidade());
-            sql.setString(13, obj.getCep());
-            sql.setString(14, obj.getEstado());
-            sql.setInt(15, obj.getIdCliente());
+            sql.setString(2, obj.getEndereco());
+            sql.setString(3, obj.getNumero());
+            sql.setString(4, obj.getGenero());
+            sql.setString(5, obj.getEstadoCivil());
+            sql.setString(6, obj.getEmail());
+            sql.setString(7, obj.getTelefone());
+            sql.setDate(8, new java.sql.Date(obj.getData().getTime()));
+            sql.setString(9, obj.getComplemento());
+            sql.setString(10, obj.getBairro());
+            sql.setString(11, obj.getCidade());
+            sql.setString(12, obj.getCep());
+            sql.setString(13, obj.getEstado());
+            sql.setInt(14, obj.getIdCliente());
 
             int linhasAfetadas = sql.executeUpdate();
 
