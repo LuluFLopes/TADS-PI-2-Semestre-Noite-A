@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.dao;
 
+import com.d156.projetopi.model.Clientes;
 import com.d156.projetopi.model.Produtos;
 import com.d156.projetopi.utils.ConexaoFactory;
 import java.sql.Connection;
@@ -299,4 +300,51 @@ public class ProdutosDAO {
         return retorno;
 
     }
+    
+      public static Produtos consultarProdutoPeloCodigo(Produtos obj) {
+
+        Connection conexao = null;
+        ResultSet rs = null;
+
+        try {
+
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where codigo=?");
+            sql.setString(1, obj.getCodigo());
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+
+                obj.setCodigo(rs.getString("codigo"));
+                obj.setPreco(rs.getFloat("preco"));
+                obj.setModelo(rs.getString("modelo"));
+                obj.setQtd(rs.getInt("qtd"));
+                obj.setNome(rs.getString("nome"));
+                obj.setIdProduto(rs.getInt("idProduto"));
+               
+           
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar o Cliente!");
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+        return obj;
+
+    }
+
 }

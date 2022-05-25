@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- *
+ * 
  * @author lucme
  */
 public class ClientesDAO {

@@ -15,6 +15,11 @@ import javax.swing.JOptionPane;
  */
 
 public class ConexaoFactory {
+    
+    /**
+     * 
+     * @return 
+     */
 
     public static Connection getConexao() {
 
@@ -27,7 +32,7 @@ public class ConexaoFactory {
 
             // Abrindo conexão.
                 conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/ lojainstrumento"
-                    + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "root","Filipe@56");
+                    + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "root","");
 
         } catch (ClassNotFoundException ex) {
 

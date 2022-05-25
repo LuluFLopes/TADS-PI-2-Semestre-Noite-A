@@ -5,7 +5,7 @@
 package com.d156.projetopi.view;
 
 import com.d156.projetopi.controller.ProdutosController;
-import com.d156.projetopi.model.Validador;
+import com.d156.projetopi.utils.Validador;
 import javax.swing.JOptionPane;
 import com.d156.projetopi.model.Produtos;
 
@@ -152,7 +152,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
             .addGroup(layout.createSequentialGroup()

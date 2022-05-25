@@ -10,7 +10,7 @@ import com.d156.projetopi.dao.ItemVendasDAO;
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.ItemVendas;
 import com.d156.projetopi.model.RelatórioSintetico;
-import com.d156.projetopi.model.Validador;
+import com.d156.projetopi.utils.Validador;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;

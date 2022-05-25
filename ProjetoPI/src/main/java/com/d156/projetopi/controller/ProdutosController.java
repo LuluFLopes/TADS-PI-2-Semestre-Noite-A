@@ -4,7 +4,9 @@
  */
 package com.d156.projetopi.controller;
 
+import com.d156.projetopi.dao.ClientesDAO;
 import com.d156.projetopi.dao.ProdutosDAO;
+import com.d156.projetopi.model.Clientes;
 import com.d156.projetopi.model.Produtos;
 import java.util.ArrayList;
 
@@ -74,5 +76,9 @@ public class ProdutosController {
         return ProdutosDAO.listaProdutosCod(codigo);
 
     }
+       public static Produtos consultar(Produtos obj) {
 
+        return ProdutosDAO.consultarProdutoPeloCodigo(obj);
+
+    }
 }
