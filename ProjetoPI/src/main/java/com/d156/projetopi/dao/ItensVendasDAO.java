@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Ageu
  */
-public class ItemVendasDAO {
+public class ItensVendasDAO {
 
     public static boolean salvar(ItensVendas obj) {
         boolean retorno = false;
@@ -118,7 +118,6 @@ public class ItemVendasDAO {
                 obj.setValorTotal(rs.getFloat("valorTotal"));
 
             }
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar a Venda!");
         } finally {
@@ -130,7 +129,47 @@ public class ItemVendasDAO {
                     conexao.close();
                 }
             } catch (Exception ex) {
+            }
+        }
+        return obj;
+    }
 
+    public static ItensVendas consultarId(ItensVendas obj) {
+        Connection conexao = null;
+        ResultSet rs = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("Select * from itensVendas where codigo=?");
+            sql.setInt(1, obj.getIdVenda());
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+                
+                obj.setIdItemVenda(rs.getInt("idItemVenda"));
+                obj.setIdCliente(rs.getInt("fk_idCliente"));
+                obj.setIdVenda(rs.getInt("fk_idVenda"));
+                obj.setIdProduto(rs.getInt("fk_idProdutos"));
+                obj.setNomeCliente(rs.getString("nomeCliente"));
+                obj.setDescricao(rs.getString("descricao"));
+                obj.setCodigo(rs.getString("codigo"));
+                obj.setQtdVenda(rs.getInt("qtdVenda"));
+                obj.setTroco(rs.getFloat("troco"));
+                obj.setValorRecebido(rs.getFloat("valorRecebido"));
+                obj.setValorProduto(rs.getFloat("valorProduto"));
+                obj.setValorTotal(rs.getFloat("valorTotal"));
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar a Venda!");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception ex) {
             }
         }
         return obj;
@@ -163,7 +202,7 @@ public class ItemVendasDAO {
         }
         return retorno;
     }
-    
+
     public static ArrayList<ItensVendas> listaDetalhamento(ItensVendas obj) {
 
         Connection conexao = null;
@@ -171,7 +210,6 @@ public class ItemVendasDAO {
         ResultSet rs = null;
 
         try {
-
             conexao = ConexaoFactory.getConexao();
 
             PreparedStatement sql = conexao.prepareStatement("Select * from itensVendas where idItemVenda=?");
@@ -179,7 +217,7 @@ public class ItemVendasDAO {
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                
+
                 obj = new ItensVendas();
                 obj.setIdItemVenda(rs.getInt("idItemVenda"));
                 obj.setIdCliente(rs.getInt("fk_idCliente"));
@@ -193,16 +231,13 @@ public class ItemVendasDAO {
                 obj.setValorRecebido(rs.getFloat("valorRecebido"));
                 obj.setValorProduto(rs.getFloat("valorProduto"));
                 obj.setValorTotal(rs.getFloat("valorTotal"));
-               
+
                 listaRetorno.add(obj);
             }
-
         } catch (Exception e) {
             System.out.println("Erro:" + e.getMessage());
         } finally {
-
             try {
-
                 if (rs != null) {
                     rs.close();
                 }
@@ -211,11 +246,8 @@ public class ItemVendasDAO {
                 }
             } catch (Exception e) {
             }
-
         }
-
         return listaRetorno;
-
     }
 
 }

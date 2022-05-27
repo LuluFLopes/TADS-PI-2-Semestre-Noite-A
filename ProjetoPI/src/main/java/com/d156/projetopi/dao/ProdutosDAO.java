@@ -178,7 +178,7 @@ public class ProdutosDAO {
         return retorno;
     }
 
-    public static Produtos consultarProduto(Produtos obj) {
+    public static Produtos consultarProdutoId(Produtos obj) {
         Connection conexao = null;
         ResultSet rs = null;
         try {

@@ -4,7 +4,7 @@
  */
 package com.d156.projetopi.view;
 
-import com.d156.projetopi.controller.ItemVendasController;
+import com.d156.projetopi.controller.ItensVendasController;
 import com.d156.projetopi.model.ItensVendas;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -29,7 +29,7 @@ public class Detalhamento extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) tblDetalhamento.getModel();
-        ArrayList<ItensVendas> listaDetalhamento = ItemVendasController.listaDetalhamentoController(id);
+        ArrayList<ItensVendas> listaDetalhamento = ItensVendasController.listaDetalhamentoController(id);
 
         if (!listaDetalhamento.isEmpty()) {
 

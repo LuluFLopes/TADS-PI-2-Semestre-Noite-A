@@ -4,7 +4,7 @@
  */
 package com.d156.projetopi.controller;
 
-import com.d156.projetopi.dao.ItemVendasDAO;
+import com.d156.projetopi.dao.ItensVendasDAO;
 import com.d156.projetopi.model.ItensVendas;
 import java.util.ArrayList;
 
@@ -12,21 +12,25 @@ import java.util.ArrayList;
  *
  * @author lucme
  */
-public class ItemVendasController {
+public class ItensVendasController {
 
-    public static boolean salvar(int idVenda, int idProduto, int qtd, float valorProduto, int valorTotal, float valorRecebido, float troco) {
-        ItensVendas objItem = new ItensVendas();
+    public static boolean salvar(int idCliente, int idVenda, int idProduto, String nomeCliente, String descricao, String codigo,
+            int qtd, float troco, float valorProduto, float valorTotal, float valorRecebido) {
+        ItensVendas obj = new ItensVendas();
 
-        objItem.setIdVenda(idVenda);
-        objItem.setIdProduto(idProduto);
-        objItem.setQtdVenda(qtd);
-        objItem.setValorTotal(valorTotal);
-        objItem.setValorRecebido(valorRecebido);
-        objItem.setTroco(troco);
-        objItem.setIdProduto(idProduto);
-        objItem.setValorProduto(valorProduto);
+        obj.setIdCliente(idCliente);
+        obj.setIdVenda(idVenda);
+        obj.setIdProduto(idProduto);
+        obj.setNomeCliente(nomeCliente);
+        obj.setDescricao(descricao);
+        obj.setCodigo(codigo);
+        obj.setQtdVenda(qtd);
+        obj.setTroco(troco);
+        obj.setValorRecebido(valorRecebido);
+        obj.setValorProduto(valorProduto);
+        obj.setValorTotal(valorTotal);
 
-        return ItemVendasDAO.salvar(objItem);
+        return ItensVendasDAO.salvar(obj);
     }
 
     /*  **Essa função é usada ?**
@@ -54,11 +58,12 @@ public class ItemVendasController {
     }
      */
     public static boolean excluir(int id) {
-        ItensVendas objItem = new ItensVendas();
 
-        objItem.setIdVenda(id);
+        ItensVendas obj = new ItensVendas();
 
-        return ItemVendasDAO.excluir(objItem);
+        obj.setIdVenda(id);
+
+        return ItensVendasDAO.excluir(obj);
     }
 
     public static ArrayList<ItensVendas> listaDetalhamentoController(int id) {
@@ -67,7 +72,16 @@ public class ItemVendasController {
 
         obj.setIdItemVenda(id);
 
-        return ItemVendasDAO.listaDetalhamento(obj);
+        return ItensVendasDAO.listaDetalhamento(obj);
+    }
+
+    public static ItensVendas consultaId(String codigo) {
+
+        ItensVendas obj = new ItensVendas();
+
+        obj.setCodigo(codigo);
+
+        return ItensVendasDAO.consultarId(obj);
     }
 
 }

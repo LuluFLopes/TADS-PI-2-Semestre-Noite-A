@@ -44,7 +44,7 @@ public class ProdutosController {
         Produtos obj = new Produtos();
         obj.setIdProduto(id);
         
-        return ProdutosDAO.consultarProduto(obj);
+        return ProdutosDAO.consultarProdutoId(obj);
     }
 
     // Função que exclui um produto a partir de um código.
