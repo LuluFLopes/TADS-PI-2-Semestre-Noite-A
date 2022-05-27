@@ -101,7 +101,10 @@ public class ClientesController {
 
     }
 
-    public static Clientes consultar(Clientes obj) {
+    public static Clientes consultar(String cpf) {
+        
+        Clientes obj = new Clientes();
+        obj.setCpf(cpf);
 
         return ClientesDAO.consultarCliente(obj);
 

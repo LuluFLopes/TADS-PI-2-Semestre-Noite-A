@@ -80,13 +80,13 @@ public class ProdutosDAO {
     }
 
     // Função utilizada para listar produtos quando a pesquisa for realizada por Nome.
-    public static ArrayList<Produtos> listaProdutosNome(Produtos obj) {
+    public static ArrayList<Produtos> listaProdutosDescricao(Produtos obj) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where nome like ?");
+            PreparedStatement sql = conexao.prepareStatement("Select * from produtos where descricao like ?");
             sql.setString(1, '%' + obj.getDescricao() + '%');
             rs = sql.executeQuery();
             while (rs.next()) {

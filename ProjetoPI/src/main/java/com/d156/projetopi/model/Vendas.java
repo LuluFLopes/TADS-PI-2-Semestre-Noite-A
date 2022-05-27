@@ -12,26 +12,22 @@ import java.util.Date;
  */
 public class Vendas {
 
-    
     public int idVenda;
-    public String descricao;
-    public Date dataVenda;
     public int idCliente;
-    public float valorTotal;        
-    public String NomeCliente ="";
+    public Date dataVenda;
+
     public Vendas() {
 
     }
 
-    public String getNomeCliente() {
-        return NomeCliente;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public void setNomeCliente(String NomeCliente) {
-        this.NomeCliente = NomeCliente;
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
     }
 
-    
     public int getIdCliente() {
         return idCliente;
     }
@@ -40,41 +36,12 @@ public class Vendas {
         this.idCliente = idCliente;
     }
 
-    
-    public float getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(float valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-  
-
-    public int getIdVenda() {
-        return idVenda;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public Date getDataVenda() {
         return dataVenda;
-    }
-
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
     }
-
-
-
+    
 }

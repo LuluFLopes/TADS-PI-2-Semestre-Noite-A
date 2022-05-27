@@ -4,17 +4,11 @@
  */
 package com.d156.projetopi.view;
 
-import com.d156.projetopi.controller.ItemVendasController;
 import com.d156.projetopi.controller.VendasController;
-import com.d156.projetopi.dao.ItemVendasDAO;
-import com.d156.projetopi.dao.VendasDAO;
-import com.d156.projetopi.model.ItemVendas;
+import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatórioSintetico;
-import com.d156.projetopi.utils.Validador;
-import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -112,43 +106,24 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-Date dataInicial = jdcDataInical.getDate();
-Date dataFim = jdcDataFim.getDate();
+        Date dataInicial = jdcDataInical.getDate();
+        Date dataFim = jdcDataFim.getDate();
 
+        RelatórioSintetico ClasseRelatórioSintetico = new RelatórioSintetico();
 
-RelatórioSintetico ClasseRelatórioSintetico = new RelatórioSintetico();
+        ClasseRelatórioSintetico.setDataInicio(dataInicial);
+        ClasseRelatórioSintetico.setDataFim(dataFim);
 
-ClasseRelatórioSintetico.setDataInicio(dataInicial);
-ClasseRelatórioSintetico.setDataFim(dataFim);
+        ArrayList<ItensVendas> listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
+        DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
 
-    
- ArrayList<ItemVendas>listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
-      DefaultTableModel modelo = (DefaultTableModel)tblRelatorioSintetico.getModel();
+        modelo.setRowCount(0);
+        for (ItensVendas itensvenda : listaVendas) {
+            modelo.addRow(new String[]{String.valueOf(itensvenda.getIdVenda()), itensvenda.getNomeCliente(),
+                String.valueOf(itensvenda.getValorTotal()), String.valueOf(itensvenda.getDataVenda())
+            });
+        }
 
-      modelo.setRowCount(0);
-      
-     
-      
- for(ItemVendas venda : listaVendas){
-   
-     modelo.addRow(new String [] {String.valueOf(venda.getIdVenda()),venda.getNomeCliente(),String.valueOf(venda.getValortotal()),String.valueOf(venda.getDataVenda())
-     });
-
-     
- }
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**

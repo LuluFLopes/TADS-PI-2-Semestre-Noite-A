@@ -4,13 +4,11 @@
  */
 package com.d156.projetopi.view;
 
-import com.d156.projetopi.controller.ItemVendasController;
 import com.d156.projetopi.controller.VendasController;
-import com.d156.projetopi.dao.ItemVendasDAO;
-import com.d156.projetopi.model.ItemVendas;
-import com.d156.projetopi.model.Vendas;
+import com.d156.projetopi.model.ItensVendas;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,20 +34,20 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRelatorioAnalitico = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnDetalhar = new javax.swing.JButton();
         jdcDataInical = new com.toedter.calendar.JDateChooser();
         jdcDataFim = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -58,14 +56,14 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código Venda", "Cliente", "Produto ", "Descrição", "Quantidade Compra", "Codigo Produto", "Valor Total", "Data Venda"
+                "Código Venda", "Cliente", "Valor Total", "Data da Venda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -78,11 +76,11 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblRelatorioAnalitico);
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton2.setText("Detalhar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDetalhar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnDetalhar.setText("Detalhar");
+        btnDetalhar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDetalharActionPerformed(evt);
             }
         });
 
@@ -97,8 +95,8 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
                     .addComponent(jdcDataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                    .addComponent(btnDetalhar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -106,7 +104,7 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDetalhar, btnPesquisar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,76 +116,56 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(29, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdcDataFim, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDetalhar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDetalhar, btnPesquisar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ResultadoAnalitico resultado = new ResultadoAnalitico();
-        resultado.setVisible(true);
+    private void btnDetalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharActionPerformed
+        int indice = tblRelatorioAnalitico.getSelectedRow();
+        if (indice < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha!");
+        } else {
+            Object obj1 = tblRelatorioAnalitico.getValueAt(indice, 0);
+            String dados = String.valueOf(obj1);
+            int id = Integer.parseInt(dados);
+            Detalhamento detalhamento = new Detalhamento(id);
+            detalhamento.setVisible(true);
+            this.dispose();
+        }
         
-        
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnDetalharActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Date dataIncial = jdcDataInical.getDate();
-       Date datafim = jdcDataFim.getDate();
-  
-    
- ArrayList<ItemVendas>listaVendas = VendasController.listaAnaliticoController(dataIncial, datafim);
-    DefaultTableModel modelo = (DefaultTableModel)tblRelatorioAnalitico.getModel();
-     
-      modelo.setRowCount(0);
-      
-      
- for(ItemVendas venda : listaVendas){
-     modelo.addRow(new String [] {
-         
-         String.valueOf(venda.getIdVenda()),
-         venda.getNomeCliente(),
-         venda.getNomeProduto(),
-         venda.getDescricao(),
-         String.valueOf(venda.getQuantidade()),
-         venda.getCodigo(),
-         String.valueOf(venda.getValortotal()),
-         String.valueOf(venda.getDataVenda())
-         
-         
-         
-         
-     });
-     
-  
-}
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Date datafim = jdcDataFim.getDate();
+
+        ArrayList<ItensVendas> listaVendas = VendasController.listaAnaliticoController(dataIncial, datafim);
+        DefaultTableModel modelo = (DefaultTableModel) tblRelatorioAnalitico.getModel();
+
+        if (!listaVendas.isEmpty()) {
+            modelo.setRowCount(0);
+            for (ItensVendas venda : listaVendas) {
+                modelo.addRow(new String[]{
+                    String.valueOf(venda.getIdVenda()),
+                    venda.getNomeCliente(),
+                    String.valueOf(venda.getValorTotal()),
+                    String.valueOf(venda.getDataVenda())});
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +203,8 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDetalhar;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdcDataFim;
     private com.toedter.calendar.JDateChooser jdcDataInical;

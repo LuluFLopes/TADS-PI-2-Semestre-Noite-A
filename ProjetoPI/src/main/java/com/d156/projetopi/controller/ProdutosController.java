@@ -12,7 +12,6 @@ import java.util.ArrayList;
  *
  * @author lucme
  */
-
 public class ProdutosController {
 
     // Grava as informações no objeto para inserção.
@@ -36,8 +35,7 @@ public class ProdutosController {
         obj.setModelo(modelo);
         obj.setQtdEstoque(qtdEstoque);
         obj.setPreco(preco);
-
-
+        
         return ProdutosDAO.alterar(obj);
     }
 
@@ -45,7 +43,7 @@ public class ProdutosController {
     public static Produtos consultaId(int id) {
         Produtos obj = new Produtos();
         obj.setIdProduto(id);
-
+        
         return ProdutosDAO.consultarProduto(obj);
     }
 
@@ -53,7 +51,7 @@ public class ProdutosController {
     public static boolean excluir(int id) {
         Produtos obj = new Produtos();
         obj.setIdProduto(id);
-
+        
         return ProdutosDAO.excluir(obj);
     }
 
@@ -61,21 +59,24 @@ public class ProdutosController {
     public static ArrayList<Produtos> listaProdutosNome(String descricao) {
         Produtos obj = new Produtos();
         obj.setDescricao(descricao);
-
-        return ProdutosDAO.listaProdutosNome(obj);
+        
+        return ProdutosDAO.listaProdutosDescricao(obj);
     }
 
     // Função quando o usuário digitar o código na pesquisa.
     public static ArrayList<Produtos> listaProdutosCod(String codigo) {
         Produtos obj = new Produtos();
         obj.setCodigo(codigo);
-
+        
         return ProdutosDAO.listaProdutosCod(obj);
     }
-    
-    // Função que retorna um objeto preenchido a partir do Código. Usada na tela de "Venda".
-    public static Produtos consultar(Produtos obj) {
 
+    // Função que retorna um objeto preenchido a partir do Código. Usada na tela de "Venda".
+    public static Produtos consultar(String codigo) {
+        
+        Produtos obj = new Produtos();
+        obj.setCodigo(codigo);
+        
         return ProdutosDAO.consultarProdutoPeloCodigo(obj);
     }
 }
