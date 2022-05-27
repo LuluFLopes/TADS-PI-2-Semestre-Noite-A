@@ -7,7 +7,6 @@ package com.d156.projetopi.view;
 import com.d156.projetopi.controller.ProdutosController;
 import com.d156.projetopi.utils.Validador;
 import javax.swing.JOptionPane;
-import com.d156.projetopi.model.Produtos;
 
 /**
  *
@@ -72,11 +71,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         txtPrecoProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtPrecoProduto.setName("Preço");
-        txtPrecoProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecoProdutoActionPerformed(evt);
-            }
-        });
 
         txtModeloProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modelo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtModeloProduto.setName("Modelo");
@@ -174,16 +168,13 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadastroProdutoActionPerformed
-        // Classes instanciadas.
-        Produtos classes = new Produtos();
         Validador validador = new Validador();
 
         // Criando variáveis para salvar na Classe Produtos.
-        String nome = txtDescricaoProduto.getText();
+        String descricao = txtDescricaoProduto.getText();
         String codigo = txtCodigo.getText();
         String modelo = txtModeloProduto.getText();
-        String descricao = txtDescricaoProduto.getText();
-        int quantidadeEstoque = Integer.parseInt(txtQuantidade.getText());
+        int qtdEstoque = Integer.parseInt(txtQuantidade.getText());
         float preco = Float.parseFloat(txtPrecoProduto.getText());
 
         // Verificando se os campos estão vazios ou com dados incorretos.
@@ -200,24 +191,13 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
-            
-           if(ProdutosController.salvar(nome, codigo, modelo, WIDTH, preco, descricao)){
-               
-        JOptionPane.showMessageDialog(this,"Cadastro Realizado");
-               
-           }else 
-               
-               JOptionPane.showMessageDialog(this,"Erro no Cadastro");
-                   
-       }
-        
-        
-        
+            if (ProdutosController.salvar(descricao, codigo, modelo, qtdEstoque, preco)) {
+                JOptionPane.showMessageDialog(this, "Cadastro Realizado");
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro no Cadastro");
+            }
+        }
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed
-
-    private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed
-
-    }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
     private void btnCancelarCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCadastroProdutoActionPerformed
         this.dispose();

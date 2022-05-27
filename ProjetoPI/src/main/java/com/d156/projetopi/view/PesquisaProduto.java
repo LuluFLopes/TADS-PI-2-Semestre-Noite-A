@@ -144,8 +144,8 @@ public class PesquisaProduto extends javax.swing.JFrame {
         modelo.setRowCount(0);
         for (Produtos obj : listaProdutos) {
             modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                obj.getNome(),
-                String.valueOf(obj.getQtd())});
+                obj.getDescricao(),
+                String.valueOf(obj.getQtdEstoque())});
         }
     }//GEN-LAST:event_txtPesquisarNomeKeyTyped
 
@@ -156,8 +156,8 @@ public class PesquisaProduto extends javax.swing.JFrame {
         modelo.setRowCount(0);
         for (Produtos obj : listaProdutos) {
             modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                obj.getNome(),
-                String.valueOf(obj.getQtd())});
+                obj.getDescricao(),
+                String.valueOf(obj.getQtdEstoque())});
         }
     }//GEN-LAST:event_txtPesquisarCodKeyTyped
 
@@ -196,8 +196,8 @@ public class PesquisaProduto extends javax.swing.JFrame {
                     modelo.setRowCount(0);
                     for (Produtos obj : listaProdutos) {
                         modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                            obj.getNome(),
-                            String.valueOf(obj.getQtd())});
+                            obj.getDescricao(),
+                            String.valueOf(obj.getQtdEstoque())});
                     }
                 } else {
                     String codigo = txtPesquisarCod.getText();
@@ -205,8 +205,8 @@ public class PesquisaProduto extends javax.swing.JFrame {
                     modelo.setRowCount(0);
                     for (Produtos obj : listaProdutos) {
                         modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                            obj.getNome(),
-                            String.valueOf(obj.getQtd())});
+                            obj.getDescricao(),
+                            String.valueOf(obj.getQtdEstoque())});
                     }
                 }
             } else {

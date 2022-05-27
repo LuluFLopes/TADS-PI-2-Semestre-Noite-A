@@ -298,7 +298,7 @@ public class Venda extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemover))
                 .addGap(14, 14, 14)
@@ -307,11 +307,6 @@ public class Venda extends javax.swing.JFrame {
         );
 
         txtValorRecebido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor Recebido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
-        txtValorRecebido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorRecebidoActionPerformed(evt);
-            }
-        });
 
         txtPrintTotal.setEditable(false);
         txtPrintTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
@@ -407,7 +402,6 @@ public class Venda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-
         // Cálculo de Total.
         int quantidade = Integer.parseInt(txtQtd.getText());
         float valor = Float.parseFloat(txtValor.getText());
@@ -418,12 +412,9 @@ public class Venda extends javax.swing.JFrame {
 
         // Calculando troco.
         float troco = Float.parseFloat(recebido) - total;
-
-
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-
         //Variável que recebe o índice da linha.
         int linhaSelecionada = tabCarrinho.getSelectedRow();
 
@@ -443,10 +434,10 @@ public class Venda extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // Recebendo modelo padrão.
         DefaultTableModel modelo = (DefaultTableModel) tabCarrinho.getModel();
-
+        
         // Intanciando validador.
         Validador validador = new Validador();
-
+        
         // Chamada do validador.
         validador.ValidarTexto(txtCod);
         validador.ValidarTexto(txtDescricao);
@@ -454,35 +445,28 @@ public class Venda extends javax.swing.JFrame {
         validador.ValidarNumero(txtQtd);
         validador.ValidarFloat(txtValor);
         validador.ExibirMensagensErro();
-
+        
         // Estrutura de validação para verificar se há erros.
         boolean temErro = validador.temErro();
         if (temErro) {
-
+            
             // Armazenando valores dos campos.
             String descricao = txtDescricao.getText();
             String modelCampo = txtModelo.getText();
             int quantidade = Integer.parseInt(txtQtd.getText());
             float valor = Float.parseFloat(txtValor.getText());
             float total = quantidade * valor;
-
+            
             // Adicionando linha ao JTable.
             modelo.addRow(new Object[]{descricao, modelCampo, quantidade, valor, total});
-
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
-
-    private void txtValorRecebidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorRecebidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorRecebidoActionPerformed
 
     private void btnBuscaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaCliActionPerformed
         Validador validador = new Validador();
         Clientes obj = new Clientes();
-
         String codigo = txtCod.getText();
         obj.setCpf(codigo);
-
         // Estrutura de decisão para verificar se cpf bate com o armazenado na classe.
         // if (cpf.equals(obj.getCpf())) {
         //   JOptionPane.showMessageDialog(this, "CPF: " + obj.getCpf() + " Nome: " + txtNome.getText());
@@ -493,7 +477,6 @@ public class Venda extends javax.swing.JFrame {
             ClientesController.consultar(obj);
             txtNome.setText(obj.getNome());
         }
-
     }//GEN-LAST:event_btnBuscaCliActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
@@ -516,29 +499,23 @@ public class Venda extends javax.swing.JFrame {
         txtPrintTotal.setText(Float.toString(total));
         float troco = Float.parseFloat(txtValorRecebido.getText()) - total;
         txtPrintTroco.setText(Float.toString(troco));
-
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      
         Validador validador = new Validador();
         Produtos obj = new Produtos();
         String Codigo = txtCod.getText();
         obj.setCodigo(Codigo);
-
         boolean temErro = validador.temErro();
         validador.limpaVeriicador();
         if (temErro) {
             ProdutosController.consultar(obj);
-            txtNome.setText(obj.getNome());
-            txtDescricao.setText(obj.getNome());
+            txtCod.setText(obj.getCodigo());
+            txtDescricao.setText(obj.getDescricao());
             txtModelo.setText(obj.getModelo());
-            txtQtd.setText(String.valueOf(obj.getQtd()));
+            txtQtd.setText(String.valueOf(obj.getQtdEstoque()));
             txtValor.setText(String.valueOf(obj.getValorProduto()));
-        }
-        
-        
-       
+        }   
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**

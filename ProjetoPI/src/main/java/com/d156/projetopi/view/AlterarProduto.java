@@ -23,28 +23,22 @@ public class AlterarProduto extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    // Construtor criado para enviar o id como parâmetro e gravar as informações na tela de alteração.
     public AlterarProduto(int idProduto) {
         initComponents();
         this.setLocationRelativeTo(null);
         Produtos obj = new Produtos();
         obj = ProdutosController.consultaId(idProduto);
-        
         if (obj != null) {
-
             txtId.setText(String.valueOf(obj.getIdProduto()));
-            txtNomeProduto.setText(obj.getNome());
+            txtDescricaoProduto.setText(obj.getDescricao());
             txtCodigo.setText(obj.getModelo());
             txtModeloProduto.setText(obj.getModelo());
-            txtQuantidade.setText(String.valueOf(obj.getQtd()));
+            txtQuantidade.setText(String.valueOf(obj.getQtdEstoque()));
             txtPrecoProduto.setText(String.valueOf(obj.getPreco()));
-
         } else {
-            
             JOptionPane.showMessageDialog(this, "Não foi possível retornar o cadastro!");
-            
         }
-        
-        
     }
 
     /**
@@ -59,7 +53,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnAlterarProduto = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        txtNomeProduto = new javax.swing.JTextField();
+        txtDescricaoProduto = new javax.swing.JTextField();
         txtPrecoProduto = new javax.swing.JTextField();
         txtModeloProduto = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
@@ -81,8 +75,8 @@ public class AlterarProduto extends javax.swing.JFrame {
             }
         });
 
-        txtNomeProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
-        txtNomeProduto.setName("Nome");
+        txtDescricaoProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtDescricaoProduto.setName("Nome");
 
         txtPrecoProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtPrecoProduto.setName("Preço");
@@ -108,7 +102,7 @@ public class AlterarProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -125,7 +119,7 @@ public class AlterarProduto extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,19 +183,18 @@ public class AlterarProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-
         Validador validador = new Validador();
-
+        
         // Criando variáveis para salvar na Classe Produtos.
         int id = Integer.parseInt(txtId.getText());
-        String nome = txtNomeProduto.getText();
+        String descricao = txtDescricaoProduto.getText();
         String codigo = txtCodigo.getText();
         String modelo = txtModeloProduto.getText();
-        String qtd = txtQuantidade.getText();
-        String preco = txtPrecoProduto.getText();
+        int qtdEstoque = Integer.parseInt(txtQuantidade.getText());
+        float preco = Float.parseFloat(txtPrecoProduto.getText());
 
         // Verificando se os campos estão vazios ou com dados incorretos.
-        validador.ValidarTexto(txtNomeProduto);
+        validador.ValidarTexto(txtDescricaoProduto);
         validador.ValidarTexto(txtCodigo);
         validador.ValidarTexto(txtModeloProduto);
         validador.ValidarNumero(txtQuantidade);
@@ -214,7 +207,7 @@ public class AlterarProduto extends javax.swing.JFrame {
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
-            if (ProdutosController.alterar(id, nome, codigo, modelo, Integer.parseInt(qtd), Float.parseFloat(preco))) {
+            if (ProdutosController.alterar(id, descricao, codigo, modelo, qtdEstoque, preco)) {
                 JOptionPane.showMessageDialog(this, "Alteração Realizada");
                 this.dispose();
             } else {
@@ -276,9 +269,9 @@ public class AlterarProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDescricaoProduto;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtModeloProduto;
-    private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPrecoProduto;
     private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables

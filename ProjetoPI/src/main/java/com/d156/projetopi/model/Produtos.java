@@ -11,34 +11,15 @@ package com.d156.projetopi.model;
 public class Produtos {
 
     private int idProduto;
-    private String nome;
+    private String descricao;
     private String codigo;
     private String modelo;
-    private int qtd;
+    private int qtdEstoque;
     private float preco;
     private float valorProduto;
-    private String descricao ="";
-
 
     public Produtos() {
 
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    
-    public float getValorProduto() {
-        return valorProduto;
-    }
-
-    public void setValorProduto(float valorProduto) {
-        this.valorProduto = valorProduto;
     }
 
     public int getIdProduto() {
@@ -49,12 +30,12 @@ public class Produtos {
         this.idProduto = idProduto;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -73,12 +54,12 @@ public class Produtos {
         this.modelo = modelo;
     }
 
-    public int getQtd() {
-        return qtd;
+    public int getQtdEstoque() {
+        return qtdEstoque;
     }
 
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
+    public void setQtdEstoque(int qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
     }
 
     public float getPreco() {
@@ -87,6 +68,14 @@ public class Produtos {
 
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public float getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(float valorProduto) {
+        this.valorProduto = valorProduto;
     }
 
 }
