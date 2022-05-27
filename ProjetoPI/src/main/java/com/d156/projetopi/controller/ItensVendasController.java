@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ItensVendasController {
 
     public static boolean salvar(int idCliente, int idVenda, int idProduto, String nomeCliente, String descricao, String codigo,
-            int qtd, float troco, float valorProduto, float valorTotal, float valorRecebido) {
+            int qtd, float valorProduto, float valorTotal) {
         ItensVendas obj = new ItensVendas();
 
         obj.setIdCliente(idCliente);
@@ -25,8 +25,6 @@ public class ItensVendasController {
         obj.setDescricao(descricao);
         obj.setCodigo(codigo);
         obj.setQtdVenda(qtd);
-        obj.setTroco(troco);
-        obj.setValorRecebido(valorRecebido);
         obj.setValorProduto(valorProduto);
         obj.setValorTotal(valorTotal);
 
@@ -61,7 +59,7 @@ public class ItensVendasController {
 
         ItensVendas obj = new ItensVendas();
 
-        obj.setIdVenda(id);
+        obj.setIdItemVenda(id);
 
         return ItensVendasDAO.excluir(obj);
     }

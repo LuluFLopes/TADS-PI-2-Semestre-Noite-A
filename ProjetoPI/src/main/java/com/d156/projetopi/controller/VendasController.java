@@ -8,6 +8,7 @@ import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatorioAnalitico;
 import com.d156.projetopi.model.RelatórioSintetico;
+import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,6 +17,16 @@ import java.util.Date;
  * @author Compaq
  */
 public class VendasController {
+
+    public static boolean salvar(int idCliente, Date dataVenda) {
+        
+        Vendas obj = new Vendas();
+
+        obj.setIdCliente(idCliente);
+        obj.setDataVenda(dataVenda);
+
+        return VendasDAO.salvar(obj);
+    }
 
     public static ArrayList<ItensVendas> listaSinteticoController(Date DataInicio, Date DataFim) {
 

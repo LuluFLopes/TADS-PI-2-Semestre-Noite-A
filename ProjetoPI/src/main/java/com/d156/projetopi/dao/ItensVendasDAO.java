@@ -24,8 +24,8 @@ public class ItensVendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
             PreparedStatement sql = conexao.prepareStatement("insert into itensVendas"
-                    + "(fk_idCliente,fk_idVenda,fk_idProduto,nomeCliente,descricao,codigo,qtdVenda,troco,valorRecebido,valorProduto,valorTotal)"
-                    + "values (?,?,?,?,?,?,?,?,?,?,?)");
+                    + "(fk_idCliente,fk_idVenda,fk_idProduto,nomeCliente,descricao,codigo,qtdVenda,valorProduto,valorTotal)"
+                    + "values (?,?,?,?,?,?,?,?,?)");
 
             sql.setInt(1, obj.getIdCliente());
             sql.setInt(2, obj.getIdVenda());
@@ -34,10 +34,8 @@ public class ItensVendasDAO {
             sql.setString(5, obj.getDescricao());
             sql.setString(6, obj.getCodigo());
             sql.setInt(7, obj.getQtdVenda());
-            sql.setFloat(8, obj.getTroco());
-            sql.setFloat(9, obj.getValorRecebido());
-            sql.setFloat(10, obj.getValorProduto());
-            sql.setFloat(11, obj.getValorTotal());
+            sql.setFloat(8, obj.getValorProduto());
+            sql.setFloat(9, obj.getValorTotal());
 
             int linhasafetadas = sql.executeUpdate();
 
@@ -99,8 +97,8 @@ public class ItensVendasDAO {
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-            PreparedStatement sql = conexao.prepareStatement("Select * from itensVendas where idItemVenda=?");
-            sql.setInt(1, obj.getIdVenda());
+            PreparedStatement sql = conexao.prepareStatement("Select * from itensvendas where idItemVenda=?");
+            sql.setInt(1, obj.getIdItemVenda());
             rs = sql.executeQuery();
 
             while (rs.next()) {
@@ -139,8 +137,8 @@ public class ItensVendasDAO {
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-            PreparedStatement sql = conexao.prepareStatement("Select * from itensVendas where codigo=?");
-            sql.setInt(1, obj.getIdVenda());
+            PreparedStatement sql = conexao.prepareStatement("Select * from itensvendas where codigo=?");
+            sql.setString(1, obj.getCodigo());
             rs = sql.executeQuery();
 
             while (rs.next()) {
@@ -148,13 +146,11 @@ public class ItensVendasDAO {
                 obj.setIdItemVenda(rs.getInt("idItemVenda"));
                 obj.setIdCliente(rs.getInt("fk_idCliente"));
                 obj.setIdVenda(rs.getInt("fk_idVenda"));
-                obj.setIdProduto(rs.getInt("fk_idProdutos"));
+                obj.setIdProduto(rs.getInt("fk_idProduto"));
                 obj.setNomeCliente(rs.getString("nomeCliente"));
                 obj.setDescricao(rs.getString("descricao"));
                 obj.setCodigo(rs.getString("codigo"));
                 obj.setQtdVenda(rs.getInt("qtdVenda"));
-                obj.setTroco(rs.getFloat("troco"));
-                obj.setValorRecebido(rs.getFloat("valorRecebido"));
                 obj.setValorProduto(rs.getFloat("valorProduto"));
                 obj.setValorTotal(rs.getFloat("valorTotal"));
 
@@ -181,7 +177,7 @@ public class ItensVendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
             PreparedStatement sql = conexao.prepareStatement("Delete from itensVendas where idItemVenda=?");
-            sql.setInt(1, obj.getIdVenda());
+            sql.setInt(1, obj.getIdItemVenda());
 
             int linhasAfetadas = sql.executeUpdate();
 

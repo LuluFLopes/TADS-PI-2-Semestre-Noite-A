@@ -7,6 +7,7 @@ package com.d156.projetopi.dao;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatorioAnalitico;
 import com.d156.projetopi.model.RelatórioSintetico;
+import com.d156.projetopi.model.Vendas;
 import com.d156.projetopi.utils.ConexaoFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,13 +20,37 @@ import java.util.ArrayList;
  */
 public class VendasDAO {
 
+    public static boolean salvar(Vendas obj) {
+        boolean retorno = false;
+        Connection conexao = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("insert into vendas"
+                    + "(fk_idCliente,dataVenda)"
+                    + "values (?,?)");
+
+            sql.setInt(1, obj.getIdCliente());
+            sql.setDate(2, new java.sql.Date(obj.getDataVenda().getTime()));
+
+            int linhasafetadas = sql.executeUpdate();
+
+            if (linhasafetadas > 0) {
+                retorno = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            retorno = false;
+        }
+        return retorno;
+    }
+
     public static ArrayList<ItensVendas> listaSintetico(RelatórioSintetico objSintetico, ItensVendas obj) {
         Connection conexao = null;
         ArrayList<ItensVendas> listaRetorno = new ArrayList<ItensVendas>();
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-            
+
             PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda,b.nome,d.dataVenda,a.valorTotal  "
                     + "from ItensVendas a join clientes b on b.idCliente = a.fk_idCliente"
                     + "inner join produtos c on c.idProduto = fk_idProduto"
@@ -74,7 +99,7 @@ public class VendasDAO {
                     + "inner join produtos p on p.idProduto = c.fk_idProduto"
                     + "inner join vendas v on v.idVenda = it.fk_idVenda"
                     + "where dataVenda between ? and ?");
-            
+
             sql.setDate(1, new java.sql.Date(objAnalitico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objAnalitico.getDataFim().getTime()));
             rs = sql.executeQuery();
