@@ -30,6 +30,17 @@ public class ItensVendasController {
 
         return ItensVendasDAO.salvar(obj);
     }
+    
+    public static boolean finalizaCompra(int id ,float recebido, float total, float troco) {
+        ItensVendas obj = new ItensVendas();
+
+        obj.setIdVenda(id);
+        obj.setValorRecebido(recebido);
+        obj.setValorTotal(total);
+        obj.setTroco(troco);
+
+        return ItensVendasDAO.finalizaCompra(obj);
+    }
 
     /*  **Essa função é usada ?**
     public static boolean atualizar(int idVenda, int idProduto, int qtd, float valorProduto, int valorTotal, float valorRecebido, float troco) {

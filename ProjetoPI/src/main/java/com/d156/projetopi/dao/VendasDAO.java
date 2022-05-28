@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,6 +132,36 @@ public class VendasDAO {
             }
         }
         return listaRetorno;
+    }
+    
+    public static Vendas consultaId(Vendas obj) {
+        Connection conexao = null;
+        ResultSet rs = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where fk_idCliente=?");
+            sql.setInt(1, obj.getIdCliente());
+            rs = sql.executeQuery();
+
+            while (rs.next()) {
+                
+                obj.setIdVenda(rs.getInt("idVenda"));
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar a Venda!");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+        return obj;
     }
 
 }

@@ -27,6 +27,15 @@ public class VendasController {
 
         return VendasDAO.salvar(obj);
     }
+    
+    public static Vendas consultaId(int idCliente) {
+        
+        Vendas obj = new Vendas();
+
+        obj.setIdCliente(idCliente);
+
+        return VendasDAO.consultaId(obj);
+    }
 
     public static ArrayList<ItensVendas> listaSinteticoController(Date DataInicio, Date DataFim) {
 

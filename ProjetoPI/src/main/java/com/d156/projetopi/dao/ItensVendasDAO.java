@@ -49,6 +49,34 @@ public class ItensVendasDAO {
         return retorno;
     }
 
+    public static boolean finalizaCompra(ItensVendas obj) {
+        boolean retorno = false;
+        Connection conexao = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("update itensvendas "
+                    + "set valorTotal=?,troco=?,valorRecebido=?"
+                    + " where fk_idVenda=?"
+            );
+
+            
+            sql.setFloat(1, obj.getValorTotal());
+            sql.setFloat(2, obj.getTroco());
+            sql.setFloat(3, obj.getValorRecebido());
+            sql.setInt(4, obj.getIdVenda());
+
+            int linhasafetadas = sql.executeUpdate();
+
+            if (linhasafetadas > 0) {
+                retorno = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            retorno = false;
+        }
+        return retorno;
+    }
+
     /* **Essa função é usada ?**
     
     public static boolean atualizar(ItensVendas obj) {
@@ -142,7 +170,7 @@ public class ItensVendasDAO {
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                
+
                 obj.setIdItemVenda(rs.getInt("idItemVenda"));
                 obj.setIdCliente(rs.getInt("fk_idCliente"));
                 obj.setIdVenda(rs.getInt("fk_idVenda"));
