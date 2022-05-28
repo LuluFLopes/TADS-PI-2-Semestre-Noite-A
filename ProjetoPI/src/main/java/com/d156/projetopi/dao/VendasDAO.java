@@ -4,9 +4,9 @@
  */
 package com.d156.projetopi.dao;
 
+import com.d156.projetopi.controller.RelatorioSintetico;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatorioAnalitico;
-import com.d156.projetopi.model.RelatórioSintetico;
 import com.d156.projetopi.model.Vendas;
 import com.d156.projetopi.utils.ConexaoFactory;
 import java.sql.Connection;
@@ -45,28 +45,28 @@ public class VendasDAO {
         return retorno;
     }
 
-    public static ArrayList<ItensVendas> listaSintetico(RelatórioSintetico objSintetico, ItensVendas obj) {
+    public static ArrayList<ItensVendas> listaSintetico(RelatorioSintetico objSintetico, ItensVendas obj) {
         Connection conexao = null;
         ArrayList<ItensVendas> listaRetorno = new ArrayList<ItensVendas>();
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda,b.nome,d.dataVenda,a.valorTotal  \n" +
-"                     from ItensVendas a join clientes b on b.idCliente = a.fk_idCliente\n" +
-"                     inner join produtos c on c.idProduto = fk_idProduto\n" +
-"                     inner join vendas d on d.idVenda = fk_idVenda\n" +
-"                     where d.dataVenda between ? and ? ");
-           sql.setDate(1, new java.sql.Date(objSintetico.getDataInicio().getTime()));
+            PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda,b.nome,d.dataVenda,a.valorTotal  "
+                    + " from itensvendas a "
+                    + " inner join clientes b on b.idCliente = a.fk_idCliente"
+                    + " inner join produtos c on c.idProduto = a.fk_idProduto"
+                    + " inner join vendas d on d.idVenda = a.fk_idVenda"
+                    + " where d.dataVenda between ? and ?");
+            sql.setDate(1, new java.sql.Date(objSintetico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objSintetico.getDataFim().getTime()));
-            
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                obj.setIdVenda(rs.getInt(1));
-                obj.setNomeCliente(rs.getString(2));
-                obj.setDataVenda(rs.getDate(3));
-                obj.setValorTotal(rs.getFloat(4));
+                obj.setIdVenda(rs.getInt("a.fk_idVenda"));
+                obj.setNomeCliente(rs.getString("b.nome"));
+                obj.setDataVenda(rs.getDate("d.dataVenda"));
+                obj.setValorTotal(rs.getFloat("a.valorTotal"));
                 listaRetorno.add(obj);
             }
 
@@ -95,26 +95,25 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("          \n" +
-"            select a.fk_idVenda, c.nome, p.descricao, a.qtdVenda, p.codigo, a.valorTotal, v.dataVenda\n" +
-"                    from itensvendas a\n" +
-"                     inner join clientes c on c.idCliente = a.fk_idCliente\n" +
-"                     inner join produtos p on p.idProduto = a.fk_idProduto\n" +
-"                     inner join vendas v on v.idVenda = a.fk_idVenda\n" +
-"                     where dataVenda  between ? and ?  ");
+            PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda, b.nome, c.descricao, a.qtdVenda, c.codigo, a.valorTotal, d.dataVenda"
+                    + " from itensvendas a"
+                    + " inner join clientes b on b.idCliente = a.fk_idCliente"
+                    + " inner join produtos c on c.idProduto = a.fk_idProduto"
+                    + " inner join vendas d on d.idVenda = a.fk_idVenda"
+                    + " where d.dataVenda between ? and ?");
 
             sql.setDate(1, new java.sql.Date(objAnalitico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objAnalitico.getDataFim().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                obj.setNomeCliente(rs.getString(2));
-                obj.setIdVenda(rs.getInt(1));
-                obj.setDataVenda(rs.getDate(7));
-                obj.setCodigo(rs.getString(5));
-                obj.setDescricao(rs.getString(3));
-                obj.setQtdVenda(rs.getInt(4));
-                obj.setValorTotal(rs.getFloat(6));
+                obj.setNomeCliente(rs.getString("b.nome"));
+                obj.setIdVenda(rs.getInt("a.fk_idVenda"));
+                obj.setDataVenda(rs.getDate("d.dataVenda"));
+                obj.setCodigo(rs.getString("c.codigo"));
+                obj.setDescricao(rs.getString("c.descricao"));
+                obj.setQtdVenda(rs.getInt("a.qtdVenda"));
+                obj.setValorTotal(rs.getFloat("a.valorTotal"));
                 listaRetorno.add(obj);
             }
 
@@ -135,7 +134,7 @@ public class VendasDAO {
         }
         return listaRetorno;
     }
-    
+
     public static Vendas consultaId(Vendas obj) {
         Connection conexao = null;
         ResultSet rs = null;
@@ -146,7 +145,7 @@ public class VendasDAO {
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                
+
                 obj.setIdVenda(rs.getInt("idVenda"));
 
             }

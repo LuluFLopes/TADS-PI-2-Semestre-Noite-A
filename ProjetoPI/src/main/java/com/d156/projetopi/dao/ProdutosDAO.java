@@ -157,7 +157,7 @@ public class ProdutosDAO {
         Connection conexao = null;
         try {
             conexao = ConexaoFactory.getConexao();
-            PreparedStatement sql = conexao.prepareStatement("update produtos set descricao=?,codigo=?,modelo=?,qtdEstoque=?,preco=? where idProduto = ?");
+            PreparedStatement sql = conexao.prepareStatement("update produtos set descricao=?,codigo=?,modelo=?,qtdEstoque=?,preco=? where idProduto=?");
             sql.setString(1, obj.getDescricao());
             sql.setString(2, obj.getCodigo());
             sql.setString(3, obj.getModelo());

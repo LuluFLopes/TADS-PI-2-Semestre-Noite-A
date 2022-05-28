@@ -19,7 +19,7 @@ import java.util.Date;
 public class VendasController {
 
     public static boolean salvar(int idCliente, Date dataVenda) {
-        
+
         Vendas obj = new Vendas();
 
         obj.setIdCliente(idCliente);
@@ -27,9 +27,9 @@ public class VendasController {
 
         return VendasDAO.salvar(obj);
     }
-    
+
     public static Vendas consultaId(int idCliente) {
-        
+
         Vendas obj = new Vendas();
 
         obj.setIdCliente(idCliente);
@@ -39,8 +39,8 @@ public class VendasController {
 
     public static ArrayList<ItensVendas> listaSinteticoController(Date DataInicio, Date DataFim) {
 
-        RelatórioSintetico objSintetico = new RelatórioSintetico();
         ItensVendas obj = new ItensVendas();
+        RelatorioSintetico objSintetico = new RelatorioSintetico();
 
         objSintetico.setDataInicio(DataInicio);
         objSintetico.setDataFim(DataFim);
@@ -50,8 +50,8 @@ public class VendasController {
 
     public static ArrayList<ItensVendas> listaAnaliticoController(Date dataInicio, Date DataFim) {
 
-        RelatorioAnalitico objAnalitico = new RelatorioAnalitico();
         ItensVendas obj = new ItensVendas();
+        RelatorioAnalitico objAnalitico = new RelatorioAnalitico();
 
         objAnalitico.setDataInicio(dataInicio);
         objAnalitico.setDataFim(DataFim);

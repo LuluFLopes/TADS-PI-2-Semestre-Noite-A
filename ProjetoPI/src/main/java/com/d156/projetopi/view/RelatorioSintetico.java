@@ -108,12 +108,7 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Date dataInicial = jdcDataInical.getDate();
         Date dataFim = jdcDataFim.getDate();
-
-        RelatórioSintetico ClasseRelatórioSintetico = new RelatórioSintetico();
-
-        ClasseRelatórioSintetico.setDataInicio(dataInicial);
-        ClasseRelatórioSintetico.setDataFim(dataFim);
-
+        
         ArrayList<ItensVendas> listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
         DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
 

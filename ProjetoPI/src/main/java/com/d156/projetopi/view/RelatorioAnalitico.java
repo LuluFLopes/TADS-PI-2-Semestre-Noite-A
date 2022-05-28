@@ -59,17 +59,19 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
                 "Código Venda", "Cliente", "Valor Total", "Data da Venda"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
 
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        tblRelatorioAnalitico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblRelatorioAnaliticoMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblRelatorioAnalitico);
@@ -130,6 +132,7 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tblRelatorioAnalitico.getModel();
         int indice = tblRelatorioAnalitico.getSelectedRow();
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
@@ -140,35 +143,30 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
             Detalhamento detalhamento = new Detalhamento(id);
             detalhamento.setVisible(true);
             this.dispose();
-          
         }
         
     }//GEN-LAST:event_btnDetalharActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Date dataIncial = jdcDataInical.getDate();
-        Date datafim = jdcDataFim.getDate();
-
-        ArrayList<ItensVendas> listaVendas = VendasController.listaAnaliticoController(dataIncial, datafim);
+        Date dataFim = jdcDataFim.getDate();
+        
+        ArrayList<ItensVendas> listaVendas = VendasController.listaAnaliticoController(dataIncial, dataFim);
         DefaultTableModel modelo = (DefaultTableModel) tblRelatorioAnalitico.getModel();
 
         if (!listaVendas.isEmpty()) {
             modelo.setRowCount(0);
             for (ItensVendas venda : listaVendas) {
-                modelo.addRow(new String[]{
-                    String.valueOf(venda.getIdVenda()),
+                modelo.addRow(new Object[]{
+                    venda.getIdVenda(),
                     venda.getNomeCliente(),
-                    String.valueOf(venda.getValorTotal()),
-                    String.valueOf(venda.getDataVenda())});
+                    venda.getValorTotal(),
+                    venda.getDataVenda()});
             }
         } else {
             JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    private void tblRelatorioAnaliticoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRelatorioAnaliticoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblRelatorioAnaliticoMouseClicked
 
     /**
      * @param args the command line arguments

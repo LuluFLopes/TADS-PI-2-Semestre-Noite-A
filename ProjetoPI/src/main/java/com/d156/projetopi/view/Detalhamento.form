@@ -31,11 +31,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="txtIdClienteDetalhamento" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="txtIdCliente" min="-2" pref="60" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtNomeClienteDetalhamento" min="-2" pref="500" max="-2" attributes="0"/>
+                      <Component id="txtNomeCliente" min="-2" pref="500" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtDataVendaDetalhamento" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="txtDataVenda" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnFechar" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
@@ -50,10 +50,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtNomeClienteDetalhamento" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="txtNomeCliente" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="btnFechar" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="txtDataVendaDetalhamento" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="txtIdClienteDetalhamento" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="txtDataVenda" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="txtIdCliente" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
@@ -85,7 +85,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtNomeClienteDetalhamento">
+    <Component class="javax.swing.JTextField" name="txtNomeCliente">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -97,7 +97,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtIdClienteDetalhamento">
+    <Component class="javax.swing.JTextField" name="txtIdCliente">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -125,7 +125,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFecharActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtDataVendaDetalhamento">
+    <Component class="javax.swing.JFormattedTextField" name="txtDataVenda">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
