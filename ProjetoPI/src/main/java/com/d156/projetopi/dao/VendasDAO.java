@@ -52,20 +52,21 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda,b.nome,d.dataVenda,a.valorTotal  "
-                    + "from ItensVendas a join clientes b on b.idCliente = a.fk_idCliente"
-                    + "inner join produtos c on c.idProduto = fk_idProduto"
-                    + "inner join vendas d on d.idVenda = fk_idVenda"
-                    + "where dataVenda between ? and ? ");
-            sql.setDate(1, new java.sql.Date(objSintetico.getDataInicio().getTime()));
+            PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda,b.nome,d.dataVenda,a.valorTotal  \n" +
+"                     from ItensVendas a join clientes b on b.idCliente = a.fk_idCliente\n" +
+"                     inner join produtos c on c.idProduto = fk_idProduto\n" +
+"                     inner join vendas d on d.idVenda = fk_idVenda\n" +
+"                     where d.dataVenda between ? and ? ");
+           sql.setDate(1, new java.sql.Date(objSintetico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objSintetico.getDataFim().getTime()));
+            
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                obj.setIdVenda(rs.getInt("a.idVenda"));
-                obj.setNomeCliente(rs.getString("b.nome"));
-                obj.setDataVenda(rs.getDate("d.dataVenda"));
-                obj.setValorTotal(rs.getFloat("a.valorTotal"));
+                obj.setIdVenda(rs.getInt(1));
+                obj.setNomeCliente(rs.getString(2));
+                obj.setDataVenda(rs.getDate(3));
+                obj.setValorTotal(rs.getFloat(4));
                 listaRetorno.add(obj);
             }
 
@@ -94,25 +95,26 @@ public class VendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement(" select it.fk_idVenda, c.nome, p.descricao, it.qtdVenda, p.codigo, it.valorTotal, v.dataVenda"
-                    + "from itensvendas it"
-                    + "inner join clientes c on c.idCliente = it.fk_idCliente"
-                    + "inner join produtos p on p.idProduto = c.fk_idProduto"
-                    + "inner join vendas v on v.idVenda = it.fk_idVenda"
-                    + "where dataVenda between ? and ?");
+            PreparedStatement sql = conexao.prepareStatement("          \n" +
+"            select a.fk_idVenda, c.nome, p.descricao, a.qtdVenda, p.codigo, a.valorTotal, v.dataVenda\n" +
+"                    from itensvendas a\n" +
+"                     inner join clientes c on c.idCliente = a.fk_idCliente\n" +
+"                     inner join produtos p on p.idProduto = a.fk_idProduto\n" +
+"                     inner join vendas v on v.idVenda = a.fk_idVenda\n" +
+"                     where dataVenda  between ? and ?  ");
 
             sql.setDate(1, new java.sql.Date(objAnalitico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objAnalitico.getDataFim().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
-                obj.setNomeCliente(rs.getString("c.nome"));
-                obj.setIdVenda(rs.getInt("it.fk_idVenda"));
-                obj.setDataVenda(rs.getDate("v.dataVenda"));
-                obj.setCodigo(rs.getString("p.codigo"));
-                obj.setDescricao(rs.getString("p.descricao"));
-                obj.setQtdVenda(rs.getInt("it.qtdVenda"));
-                obj.setValorTotal(rs.getFloat("it.valorTotal"));
+                obj.setNomeCliente(rs.getString(2));
+                obj.setIdVenda(rs.getInt(1));
+                obj.setDataVenda(rs.getDate(7));
+                obj.setCodigo(rs.getString(5));
+                obj.setDescricao(rs.getString(3));
+                obj.setQtdVenda(rs.getInt(4));
+                obj.setValorTotal(rs.getFloat(6));
                 listaRetorno.add(obj);
             }
 

@@ -37,9 +37,9 @@ public class Detalhamento extends javax.swing.JFrame {
 
             obj = listaDetalhamento.get(1);
 
-            txtIdCliente.setText(String.valueOf(obj.getIdItemVenda()));
-            txtNomeCliente.setText(obj.getNomeCliente());          
-            txtDataVenda.setText(String.valueOf(obj.getDataVenda()));
+            txtIdClienteDetalhamento.setText(String.valueOf(obj.getIdCliente()));
+            txtNomeClienteDetalhamento.setText(obj.getNomeCliente());          
+            txtDataVendaDetalhamento.setText(String.valueOf(obj.getDataVenda()));
 
             if (!listaDetalhamento.isEmpty()) {
                 modelo.setRowCount(0);
@@ -71,10 +71,10 @@ public class Detalhamento extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalhamento = new javax.swing.JTable();
-        txtNomeCliente = new javax.swing.JTextField();
-        txtIdCliente = new javax.swing.JTextField();
+        txtNomeClienteDetalhamento = new javax.swing.JTextField();
+        txtIdClienteDetalhamento = new javax.swing.JTextField();
         btnFechar = new javax.swing.JButton();
-        txtDataVenda = new javax.swing.JFormattedTextField();
+        txtDataVendaDetalhamento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,11 +96,11 @@ public class Detalhamento extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDetalhamento);
 
-        txtNomeCliente.setEditable(false);
-        txtNomeCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtNomeClienteDetalhamento.setEditable(false);
+        txtNomeClienteDetalhamento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        txtIdCliente.setEditable(false);
-        txtIdCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtIdClienteDetalhamento.setEditable(false);
+        txtIdClienteDetalhamento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         btnFechar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnFechar.setText("Fechar");
@@ -111,10 +111,10 @@ public class Detalhamento extends javax.swing.JFrame {
             }
         });
 
-        txtDataVenda.setEditable(false);
-        txtDataVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtDataVendaDetalhamento.setEditable(false);
+        txtDataVendaDetalhamento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         try {
-            txtDataVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataVendaDetalhamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -130,11 +130,11 @@ public class Detalhamento extends javax.swing.JFrame {
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdClienteDetalhamento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNomeClienteDetalhamento, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDataVendaDetalhamento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 3, Short.MAX_VALUE)))
@@ -145,10 +145,10 @@ public class Detalhamento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeClienteDetalhamento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataVendaDetalhamento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdClienteDetalhamento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -200,8 +200,8 @@ public class Detalhamento extends javax.swing.JFrame {
     private javax.swing.JButton btnFechar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDetalhamento;
-    private javax.swing.JFormattedTextField txtDataVenda;
-    private javax.swing.JTextField txtIdCliente;
-    private javax.swing.JTextField txtNomeCliente;
+    private javax.swing.JFormattedTextField txtDataVendaDetalhamento;
+    private javax.swing.JTextField txtIdClienteDetalhamento;
+    private javax.swing.JTextField txtNomeClienteDetalhamento;
     // End of variables declaration//GEN-END:variables
 }

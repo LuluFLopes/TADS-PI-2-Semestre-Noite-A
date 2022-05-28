@@ -59,19 +59,17 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
                 "Código Venda", "Cliente", "Valor Total", "Data da Venda"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblRelatorioAnalitico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRelatorioAnaliticoMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblRelatorioAnalitico);
@@ -142,6 +140,7 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
             Detalhamento detalhamento = new Detalhamento(id);
             detalhamento.setVisible(true);
             this.dispose();
+          
         }
         
     }//GEN-LAST:event_btnDetalharActionPerformed
@@ -166,6 +165,10 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void tblRelatorioAnaliticoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRelatorioAnaliticoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblRelatorioAnaliticoMouseClicked
 
     /**
      * @param args the command line arguments

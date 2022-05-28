@@ -236,23 +236,17 @@ public class ItensVendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from itensVendas where idItemVenda=?");
+            PreparedStatement sql = conexao.prepareStatement("Select descricao,codigo,qtdVenda,valorProduto,valorTotal from itensVendas where fk_idCliente = ? ");
             sql.setInt(1, obj.getIdItemVenda());
             rs = sql.executeQuery();
 
             while (rs.next()) {
 
                 obj = new ItensVendas();
-                obj.setIdItemVenda(rs.getInt("idItemVenda"));
-                obj.setIdCliente(rs.getInt("fk_idCliente"));
-                obj.setIdVenda(rs.getInt("fk_idVenda"));
-                obj.setIdProduto(rs.getInt("fk_idProdutos"));
-                obj.setNomeCliente(rs.getString("nomeCliente"));
+              
                 obj.setDescricao(rs.getString("descricao"));
                 obj.setCodigo(rs.getString("codigo"));
                 obj.setQtdVenda(rs.getInt("qtdVenda"));
-                obj.setTroco(rs.getFloat("troco"));
-                obj.setValorRecebido(rs.getFloat("valorRecebido"));
                 obj.setValorProduto(rs.getFloat("valorProduto"));
                 obj.setValorTotal(rs.getFloat("valorTotal"));
 
