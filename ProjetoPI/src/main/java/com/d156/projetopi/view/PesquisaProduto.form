@@ -32,7 +32,7 @@
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtPesquisarNome" pref="400" max="32767" attributes="0"/>
+                          <Component id="txtPesquisarDesc" pref="400" max="32767" attributes="0"/>
                           <Component id="txtPesquisarCod" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -53,7 +53,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtPesquisarNome" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPesquisarDesc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtPesquisarCod" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -71,18 +71,18 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtPesquisarNome">
+    <Component class="javax.swing.JTextField" name="txtPesquisarDesc">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Nome">
+            <TitledBorder title="Descri&#xe7;&#xe3;o">
               <Font PropertyName="font" name="Arial" size="14" style="1"/>
             </TitledBorder>
           </Border>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisarNomeKeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisarDescKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPesquisarCod">

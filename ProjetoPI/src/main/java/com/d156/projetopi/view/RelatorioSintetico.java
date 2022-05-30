@@ -6,9 +6,9 @@ package com.d156.projetopi.view;
 
 import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.model.ItensVendas;
-import com.d156.projetopi.model.RelatórioSintetico;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -106,19 +106,28 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // Pega a datas do campo jdc.
         Date dataInicial = jdcDataInical.getDate();
         Date dataFim = jdcDataFim.getDate();
-        
-        ArrayList<ItensVendas> listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
-        DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
 
-        modelo.setRowCount(0);
-        for (ItensVendas itensvenda : listaVendas) {
-            modelo.addRow(new String[]{String.valueOf(itensvenda.getIdVenda()), itensvenda.getNomeCliente(),
-                String.valueOf(itensvenda.getValorTotal()), String.valueOf(itensvenda.getDataVenda())
-            });
+        // Valida se a data inicial é menor ou igual a data final.
+        if (dataInicial.before(dataFim)) {
+            ArrayList<ItensVendas> listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
+            DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
+            // Valida se o retorno é vazio.F
+            if (!listaVendas.isEmpty()) {
+                modelo.setRowCount(0);
+                for (ItensVendas itensvenda : listaVendas) {
+                    modelo.addRow(new String[]{String.valueOf(itensvenda.getIdVenda()), itensvenda.getNomeCliente(),
+                        String.valueOf(itensvenda.getValorTotal()), String.valueOf(itensvenda.getDataVenda())
+                    });
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "A data inicial não pode ser maior que a data final");
         }
-
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**

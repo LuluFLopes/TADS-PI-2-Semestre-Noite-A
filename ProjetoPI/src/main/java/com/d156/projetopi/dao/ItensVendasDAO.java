@@ -236,13 +236,16 @@ public class ItensVendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
 
-            PreparedStatement sql = conexao.prepareStatement("Select * from itensvendas where idItemVenda=?");
-            sql.setInt(1, obj.getIdItemVenda());
+            PreparedStatement sql = conexao.prepareStatement("Select * from itensvendas a"
+                    + " inner join vendas b on a.fk_idVenda = b.idVenda"
+                    + " where a.fk_idVenda=?");
+            sql.setInt(1, obj.getIdVenda());
             rs = sql.executeQuery();
 
             while (rs.next()) {
-
+                
                 obj = new ItensVendas();
+
                 obj.setIdItemVenda(rs.getInt("idItemVenda"));
                 obj.setIdCliente(rs.getInt("fk_idCliente"));
                 obj.setIdVenda(rs.getInt("fk_idVenda"));

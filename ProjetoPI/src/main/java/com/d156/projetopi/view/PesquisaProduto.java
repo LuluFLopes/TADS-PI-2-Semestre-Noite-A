@@ -33,7 +33,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtPesquisarNome = new javax.swing.JTextField();
+        txtPesquisarDesc = new javax.swing.JTextField();
         txtPesquisarCod = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -43,10 +43,10 @@ public class PesquisaProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(602, 522));
 
-        txtPesquisarNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
-        txtPesquisarNome.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPesquisarDesc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtPesquisarDesc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPesquisarNomeKeyTyped(evt);
+                txtPesquisarDescKeyTyped(evt);
             }
         });
 
@@ -102,7 +102,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPesquisarNome, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(txtPesquisarDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                             .addComponent(txtPesquisarCod))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +120,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisarDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPesquisarCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -137,23 +137,27 @@ public class PesquisaProduto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPesquisarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarNomeKeyTyped
+    private void txtPesquisarDescKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarDescKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
-        String nome = txtPesquisarNome.getText();
+        String nome = txtPesquisarDesc.getText();
+        // Executa uma pesquisa por nome a cada tecla digitada.
         ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(nome);
         modelo.setRowCount(0);
+        // Grava dentro da Tabela.
         for (Produtos obj : listaProdutos) {
             modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
                 obj.getDescricao(),
                 String.valueOf(obj.getQtdEstoque())});
         }
-    }//GEN-LAST:event_txtPesquisarNomeKeyTyped
+    }//GEN-LAST:event_txtPesquisarDescKeyTyped
 
     private void txtPesquisarCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarCodKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
         String codigo = txtPesquisarCod.getText();
+        // Executa uma pesquisa por código a cada tecla digitada.
         ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(codigo);
         modelo.setRowCount(0);
+        // Grava dentro da Tabela.
         for (Produtos obj : listaProdutos) {
             modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
                 obj.getDescricao(),
@@ -162,53 +166,38 @@ public class PesquisaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisarCodKeyTyped
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // Pega a linha selecionada.
         int indice = tblListagem.getSelectedRow();
+        // Valida se a linha foi selecionada.
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
         } else {
+            // Pega o id dentro da coluna.
             Object obj = tblListagem.getValueAt(indice, 0);
             String dados = String.valueOf(obj);
             int id = Integer.parseInt(dados);
-            if (indice < 0) {
-                JOptionPane.showMessageDialog(this, "Selecione uma linha!");
-            } else {
-                AlterarProduto alterar = new AlterarProduto(id);
-                alterar.setVisible(true);
-                this.dispose();
-            }
+            // Manda o id como parâmetro para preencher a tela de alteração.
+            AlterarProduto alterar = new AlterarProduto(id);
+            alterar.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
+        // Pega a linha selecionada.
         int indice = tblListagem.getSelectedRow();
+        // Valida se a linha foi selecionada.
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
         } else {
+            // Pega o id dentro da coluna.
             Object obj1 = tblListagem.getValueAt(indice, 0);
             String dados = String.valueOf(obj1);
             int id = Integer.parseInt(dados);
+            // Chamada de exlusão que já valida se deu certo o processo.
             if (ProdutosController.excluir(id)) {
                 JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
-                if (txtPesquisarCod.equals("")) {
-                    String nome = txtPesquisarNome.getText();
-                    ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosNome(nome);
-                    modelo.setRowCount(0);
-                    for (Produtos obj : listaProdutos) {
-                        modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                            obj.getDescricao(),
-                            String.valueOf(obj.getQtdEstoque())});
-                    }
-                } else {
-                    String codigo = txtPesquisarCod.getText();
-                    ArrayList<Produtos> listaProdutos = ProdutosController.listaProdutosCod(codigo);
-                    modelo.setRowCount(0);
-                    for (Produtos obj : listaProdutos) {
-                        modelo.addRow(new String[]{String.valueOf(obj.getIdProduto()),
-                            obj.getDescricao(),
-                            String.valueOf(obj.getQtdEstoque())});
-                    }
-                }
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao Excluir");
             }
@@ -256,6 +245,6 @@ public class PesquisaProduto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblListagem;
     private javax.swing.JTextField txtPesquisarCod;
-    private javax.swing.JTextField txtPesquisarNome;
+    private javax.swing.JTextField txtPesquisarDesc;
     // End of variables declaration//GEN-END:variables
 }

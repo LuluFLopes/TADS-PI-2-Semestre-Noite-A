@@ -7,7 +7,7 @@ package com.d156.projetopi.controller;
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatorioAnalitico;
-import com.d156.projetopi.model.RelatórioSintetico;
+import com.d156.projetopi.model.RelatorioSintetico;
 import com.d156.projetopi.model.Vendas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,6 +36,16 @@ public class VendasController {
 
         return VendasDAO.consultaId(obj);
     }
+    
+    public static boolean gravaId(int idCliente, int idVenda) {
+
+        Vendas obj = new Vendas();
+
+        obj.setIdVenda(idVenda);
+        obj.setIdCliente(idCliente);
+
+        return VendasDAO.salvaId(obj);
+    }
 
     public static ArrayList<ItensVendas> listaSinteticoController(Date DataInicio, Date DataFim) {
 
@@ -57,6 +67,15 @@ public class VendasController {
         objAnalitico.setDataFim(DataFim);
 
         return VendasDAO.listaAnalitico(objAnalitico, obj);
+    }
+
+    public static Vendas salvaVenda(Date dataVenda) {
+
+        Vendas obj = new Vendas();
+
+        obj.setDataVenda(dataVenda);
+
+        return VendasDAO.salvarData(obj);
     }
 
 }

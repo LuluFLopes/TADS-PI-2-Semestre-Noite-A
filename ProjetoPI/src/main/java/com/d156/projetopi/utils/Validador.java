@@ -1,22 +1,29 @@
 package com.d156.projetopi.utils;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+/**
+ * Classe utilizada para validação dos dados nos campos.
+ *
+ * @author lucme
+ *
+ */
 public class Validador {
 
+    // Array grava os erros de maneira geral.
     public ArrayList<String> mensagensErro = new ArrayList<>();
-    public ArrayList<String> verificaNulo = new ArrayList<>();
-
-    //Validação de Número
+    /**
+     * Método utilizado para conversão de possíveis números inteiros dentro dos
+     * campos.
+     *
+     * @param txt - JTextField.
+     */
     public void ValidarNumero(JTextField txt) {
-
-        if (txt.getText().trim().equals("")) {
-            this.verificaNulo.add("Nulo");
-        }
 
         try {
 
@@ -39,17 +46,17 @@ public class Validador {
 
     }
 
-    // Validação de Texto.
+    /**
+     * Método utilizado para verificar se um campo de texto está nulo.
+     *
+     * @param txt - jTextFied
+     */
     public void ValidarTexto(JTextField txt) {
 
-        if (txt.getText().trim().equals("")) {
-            this.verificaNulo.add("Nulo");
-        }
-
         try {
 
             // Verifico se o campo está vazio.
-            if (txt.getText().trim().equals("")) {
+            if (txt.getText().trim().replace(" ", "").replace("-", "").replace("(", "").replace(")", "").replace(".", "").equals("")) {
                 throw new IllegalArgumentException();
             }
 
@@ -59,46 +66,40 @@ public class Validador {
             this.mensagensErro.add("Digite um valor para o campo " + txt.getName() + "!");
             txt.setBackground(Color.red);
         }
-
     }
 
-    // Validação de Texto.
-    public void ValidarCpf(JTextField txt) {
-
-        //String cpf = txt.getText().trim();
-        //cpf = cpf.replaceAll("-", "");
-
-        if (txt.getText().equals("   .   .   -  ")) {
-            this.verificaNulo.add("Nulo");
-        }
+    /**
+     * Método utilizado para verificar se o campo de data é nullo.
+     *
+     * @param data - JDateChooser
+     */
+    public void ValidarData(JDateChooser data) {
 
         try {
-
             // Verifico se o campo está vazio.
-            if (txt.getText().equals("   .   .   -  ")) {
+            if (data.getDate() == null) {
                 throw new IllegalArgumentException();
             }
 
-            txt.setBackground(Color.WHITE);
+            data.setBackground(Color.WHITE);
 
         } catch (IllegalArgumentException e) {
-            this.mensagensErro.add("Digite um valor para o campo " + txt.getName() + "!");
-            txt.setBackground(Color.red);
+            this.mensagensErro.add("Digite um valor para o campo " + data.getName() + "!");
+            data.setBackground(Color.red);
         }
-
     }
 
-    // Validação de ComboBox.
+    /**
+     * Método utilizado para verificar se a linhas a partir da linha 1 foram
+     * selecionadas.
+     *
+     * @param cbo - JComboBox
+     */
     public void ValidarCbo(JComboBox cbo) {
 
         int index = cbo.getSelectedIndex();
 
-        if (index == 0) {
-            this.verificaNulo.add("Nulo");
-        }
-
         try {
-
             // Verifico se o campo está vazio.
             if (index == 0) {
                 throw new IllegalArgumentException();
@@ -110,18 +111,17 @@ public class Validador {
             this.mensagensErro.add("Digite um valor para o campo " + cbo.getName() + "!");
             cbo.setBackground(Color.red);
         }
-
     }
 
-    //Validação de Float.
+    /**
+     * Método utilizado para verificar se um campo de texto está nulo ou no
+     * formato incorreto.
+     *
+     * @param txt - JTextFiled
+     */
     public void ValidarFloat(JTextField txt) {
 
-        if (txt.getText().trim().equals("")) {
-            this.verificaNulo.add("Nulo");
-        }
-
         try {
-
             // Verifico se o campo está vazio.
             if (txt.getText().trim().equals("")) {
                 throw new IllegalArgumentException();
@@ -131,79 +131,45 @@ public class Validador {
             txt.setBackground(Color.WHITE);
 
         } catch (NumberFormatException e) {
-
             this.mensagensErro.add("Falha ao converter o valor do campo " + txt.getName() + " em float");
             txt.setBackground(Color.red);
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("Digite um valor para o campo " + txt.getName() + "!");
             txt.setBackground(Color.red);
         }
-
     }
 
-    // Retorno Booleano em Caso de Preenchimento da Array.
-    public boolean hasErro() {
-
-        if (this.mensagensErro.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    // Retorna se existe algum nulo.
+    /**
+     *
+     * @return
+     */
     public boolean temErro() {
-
-        if (this.verificaNulo.isEmpty()) {
+        if (this.mensagensErro.isEmpty()) {
             return true;
         } else {
             return false;
         }
     }
 
-    // Limpador de Array.
-    public void limpaVeriicador() {
-
-        this.verificaNulo.clear();
-    }
-
-    // Limpador de Array.
+    /**
+     *
+     */
     public void limparMensagens() {
 
         this.mensagensErro.clear();
     }
 
-    // Modelo de Exibição 1.
+    /**
+     * 
+     */
     public void ExibirMensagensErro() {
-
         String errosFormulario = "";
         for (String msg : this.mensagensErro) {
             errosFormulario += msg + "\n";
         }
-
         if (!errosFormulario.equals("")) {
             JOptionPane.showMessageDialog(null, errosFormulario);
             this.limparMensagens();
         }
-
     }
-
-    // Modelo de Exibição 2.
-    public String getMensagensErro() {
-
-        String errosFormulario = "";
-
-        // Percorro o arrayList e concateno na variável errosFormulario.
-        for (String msg : this.mensagensErro) {
-            errosFormulario += msg + "\n";
-        }
-
-        if (!errosFormulario.equals("")) {
-            this.limparMensagens();
-        }
-
-        return errosFormulario;
-
-    }
-
 }

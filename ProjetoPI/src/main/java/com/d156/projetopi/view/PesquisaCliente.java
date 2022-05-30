@@ -136,8 +136,10 @@ public class PesquisaCliente extends javax.swing.JFrame {
     private void txtPesquisarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarNomeKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
         String nome = txtPesquisarNome.getText();
+        // Executa uma pesquisa por nome a cada tecla digitada.
         ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(nome);
         modelo.setRowCount(0);
+        // Grava dentro da Tabela.
         for (Clientes obj : listaClientes) {
             modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
                 obj.getNome(),
@@ -149,8 +151,10 @@ public class PesquisaCliente extends javax.swing.JFrame {
     private void txtPesquisarCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarCpfKeyTyped
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
         String cpf = txtPesquisarCpf.getText();
+        // Executa uma pesquisa por Cpf a cada tecla digitada.
         ArrayList<Clientes> listaClientes = ClientesController.listaClientesCpf(cpf);
         modelo.setRowCount(0);
+        // Grava dentro da Tabela.
         for (Clientes obj : listaClientes) {
             modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
                 obj.getNome(),
@@ -159,13 +163,17 @@ public class PesquisaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisarCpfKeyTyped
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // Pega a linha selecionada.
         int indice = tblListagem.getSelectedRow();
+        // Valida se a linha foi selecionada.
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
         } else {
+            // Pega o id dentro da coluna.
             Object obj1 = tblListagem.getValueAt(indice, 0);
             String dados = String.valueOf(obj1);
             int id = Integer.parseInt(dados);
+            // Manda o id como parâmetro para preencher a tela de alteração.
             AlterarCliente alterar = new AlterarCliente(id);
             alterar.setVisible(true);
             this.dispose();
@@ -174,34 +182,19 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tblListagem.getModel();
+        // Pega a linha selecionada.
         int indice = tblListagem.getSelectedRow();
+        // Valida se a linha foi selecionada.
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
         } else {
+            // Pega o id dentro da coluna.
             Object obj1 = tblListagem.getValueAt(indice, 0);
             String dados = String.valueOf(obj1);
             int id = Integer.parseInt(dados);
+            // Chamada de exlusão que já valida se deu certo o processo.
             if (ClientesController.excluir(id)) {
                 JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
-                if (txtPesquisarCpf.equals("")) {
-                    String nome = txtPesquisarNome.getText();
-                    ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(nome);
-                    modelo.setRowCount(0);
-                    for (Clientes obj : listaClientes) {
-                        modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
-                            obj.getNome(),
-                            String.valueOf(obj.getCpf())});
-                    }
-                } else {
-                    String cpf = txtPesquisarCpf.getText();
-                    ArrayList<Clientes> listaClientes = ClientesController.listaClientesNome(cpf);
-                    modelo.setRowCount(0);
-                    for (Clientes obj : listaClientes) {
-                        modelo.addRow(new String[]{String.valueOf(obj.getIdCliente()),
-                            obj.getNome(),
-                            String.valueOf(obj.getCpf())});
-                    }
-                }
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao Excluir");
             }

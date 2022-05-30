@@ -25,14 +25,15 @@ public class AlterarCliente extends javax.swing.JFrame {
 
     }
 
+    // Parâmetro criado para enviar o id do cliente a ser alterado.
     public AlterarCliente(int idCliente) {
         initComponents();
         this.setLocationRelativeTo(null);
         Clientes obj = new Clientes();
+        // Traz o objeto com o id do cliente para preencher os campos.
         obj = ClientesController.consultaId(idCliente);
-
+        // Valida se o obj não voltou nulo.
         if (obj.getCpf() != null) {
-
             txtId.setText(Integer.toString(obj.getIdCliente()));
             txtCpf.setText(obj.getCpf());
             txtNome.setText(obj.getNome());
@@ -48,13 +49,9 @@ public class AlterarCliente extends javax.swing.JFrame {
             txtCidade.setText(obj.getCidade());
             txtCep.setText(obj.getCep());
             cboEstado.setSelectedItem(obj.getEstado());
-            
         } else {
-
             JOptionPane.showMessageDialog(this, "Não foi possível retornar o cadastro!");
-
         }
-
     }
 
     /**
@@ -122,6 +119,7 @@ public class AlterarCliente extends javax.swing.JFrame {
 
         txtId.setEditable(false);
         txtId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtId.setName("Id Cliente");
 
         txtComplemento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Complemento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtComplemento.setName("Complemento");
@@ -297,7 +295,7 @@ public class AlterarCliente extends javax.swing.JFrame {
         // Classes instanciadas.
         Validador validador = new Validador();
 
-        // Criando variáveis para salvar na Classe Produtos.
+        // Criando variáveis para salvar na Classe Clientes.
         int id = Integer.parseInt(txtId.getText());
         String nome = txtNome.getText();
         String endereco = txtEndereco.getText();
@@ -321,27 +319,25 @@ public class AlterarCliente extends javax.swing.JFrame {
         validador.ValidarCbo(cboEstadoCivil);
         validador.ValidarTexto(txtTelefone);
         validador.ValidarCbo(cboSexo);
-        // ** Criar validador para data de nascimento. **
+        validador.ValidarData(jdcDataNascimento);
         validador.ValidarTexto(txtComplemento);
         validador.ValidarTexto(txtBairro);
         validador.ValidarTexto(txtCidade);
         validador.ValidarTexto(txtCep);
         validador.ValidarCbo(cboEstado);
-        validador.ExibirMensagensErro();
 
         // Verificando de existem erros antes de gravar na classe.
         boolean temErro = validador.temErro();
-        validador.limpaVeriicador();
+        validador.ExibirMensagensErro();
 
-        // Validação se existe menssagens de erro no array responsável.
+        // Validação se existe menssagens de erro no array de erros.
         if (temErro) {
-
+            // Envia as informações para gravação e valida se deu certo.
             if (ClientesController.alterar(id, nome, endereco, numero, email, estadoCivil, telefone, genero, dataNascimento, complemento, bairro, cidade, cep, estado)) {
                 JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao cadastrar!");
             }
-
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

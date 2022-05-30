@@ -78,8 +78,7 @@ public class ItensVendasController {
     public static ArrayList<ItensVendas> listaDetalhamentoController(int id) {
 
         ItensVendas obj = new ItensVendas();
-
-        obj.setIdItemVenda(id);
+        obj.setIdVenda(id);
 
         return ItensVendasDAO.listaDetalhamento(obj);
     }

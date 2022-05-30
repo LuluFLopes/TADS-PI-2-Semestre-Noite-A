@@ -4,9 +4,9 @@
  */
 package com.d156.projetopi.dao;
 
-import com.d156.projetopi.controller.RelatorioSintetico;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatorioAnalitico;
+import com.d156.projetopi.model.RelatorioSintetico;
 import com.d156.projetopi.model.Vendas;
 import com.d156.projetopi.utils.ConexaoFactory;
 import java.sql.Connection;
@@ -45,6 +45,61 @@ public class VendasDAO {
         return retorno;
     }
 
+    public static Vendas salvarData(Vendas obj) {
+        Connection conexao = null;
+        ResultSet rs = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("insert into vendas"
+                    + "(dataVenda)"
+                    + "values (?)");
+
+            sql.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
+
+            int linhasafetadas = sql.executeUpdate();
+
+            if (linhasafetadas > 0) {
+                PreparedStatement sql1 = conexao.prepareStatement("select * from vendas where dataVenda=?");
+                sql1.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
+
+                rs = sql1.executeQuery();
+
+                while (rs.next()) {
+                    obj = new Vendas();
+                    obj.setIdVenda(rs.getInt("idVenda"));
+                    obj.setDataVenda(rs.getDate("dataVenda"));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return obj;
+    }
+
+    public static boolean salvaId(Vendas obj) {
+        Connection conexao = null;
+        boolean retorno = false;
+        try {
+            conexao = ConexaoFactory.getConexao();
+
+            PreparedStatement sql = conexao.prepareStatement("update vendas set fk_idCliente=? where idVenda=?");
+            sql.setInt(1, obj.getIdCliente());
+            sql.setInt(2, obj.getIdVenda());
+
+            int linhasafetadas = sql.executeUpdate();
+            
+            if (linhasafetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            retorno = false;
+        }
+        return retorno;
+    }
+
     public static ArrayList<ItensVendas> listaSintetico(RelatorioSintetico objSintetico, ItensVendas obj) {
         Connection conexao = null;
         ArrayList<ItensVendas> listaRetorno = new ArrayList<ItensVendas>();
@@ -57,12 +112,17 @@ public class VendasDAO {
                     + " inner join clientes b on b.idCliente = a.fk_idCliente"
                     + " inner join produtos c on c.idProduto = a.fk_idProduto"
                     + " inner join vendas d on d.idVenda = a.fk_idVenda"
-                    + " where d.dataVenda between ? and ?");
+                    + " where d.dataVenda between ? and ?"
+                    + " group by a.fk_idVenda"
+                    + " order by a.fk_idVenda desc");
+
             sql.setDate(1, new java.sql.Date(objSintetico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objSintetico.getDataFim().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
+
+                obj = new ItensVendas();
                 obj.setIdVenda(rs.getInt("a.fk_idVenda"));
                 obj.setNomeCliente(rs.getString("b.nome"));
                 obj.setDataVenda(rs.getDate("d.dataVenda"));
@@ -100,13 +160,16 @@ public class VendasDAO {
                     + " inner join clientes b on b.idCliente = a.fk_idCliente"
                     + " inner join produtos c on c.idProduto = a.fk_idProduto"
                     + " inner join vendas d on d.idVenda = a.fk_idVenda"
-                    + " where d.dataVenda between ? and ?");
+                    + " where d.dataVenda between ? and ?"
+                    + " group by a.fk_idVenda"
+                    + " order by a.fk_idVenda desc");
 
             sql.setDate(1, new java.sql.Date(objAnalitico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objAnalitico.getDataFim().getTime()));
             rs = sql.executeQuery();
 
             while (rs.next()) {
+                obj = new ItensVendas();
                 obj.setNomeCliente(rs.getString("b.nome"));
                 obj.setIdVenda(rs.getInt("a.fk_idVenda"));
                 obj.setDataVenda(rs.getDate("d.dataVenda"));

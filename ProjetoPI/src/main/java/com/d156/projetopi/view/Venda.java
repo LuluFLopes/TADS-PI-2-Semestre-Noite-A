@@ -11,9 +11,7 @@ import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.model.Clientes;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.Produtos;
-import com.d156.projetopi.model.Vendas;
 import com.d156.projetopi.utils.Validador;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,6 +28,13 @@ public class Venda extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    public Venda(int idVenda) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        txtIdVenda.setText(String.valueOf(idVenda));
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -440,14 +445,17 @@ public class Venda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        
+        // Pega as informações que ainda estão vazias no BD para gravar na tablela.
         String formataVenda = txtIdVenda.getText();
         int idVenda = Integer.parseInt(formataVenda);
+        String formataCliente = txtIdClientes.getText();
+        int idCliente = Integer.parseInt(formataCliente);
         float recebido = Float.parseFloat(txtValorRecebido.getText());
         float total = Float.parseFloat(txtPrintTotal.getText());
         float troco = Float.parseFloat(txtPrintTroco.getText());
 
-        if (ItensVendasController.finalizaCompra(idVenda,recebido,total,troco)) {
+        // Grava os dados restantes nas tabelas itensvendas e vendas. 
+        if (ItensVendasController.finalizaCompra(idVenda,recebido,total,troco) && VendasController.gravaId(idCliente, idVenda)) {
             JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
         } else {
             JOptionPane.showMessageDialog(this, "Erro no fechamento da compra!");
@@ -498,10 +506,12 @@ public class Venda extends javax.swing.JFrame {
         validador.ValidarFloat(txtValor);
         validador.ExibirMensagensErro();
 
+        // Retorna o id do Produto.
         int idProduto = Integer.parseInt(txtIdProdutos.getText());
         Produtos objProd = new Produtos();
         objProd = ProdutosController.consultaId(idProduto);
 
+        // Retorna o id do Cliente.
         int idCliente = Integer.parseInt(txtIdClientes.getText());
         Clientes objCli = new Clientes();
         objCli = ClientesController.consultaId(idCliente);
@@ -514,25 +524,19 @@ public class Venda extends javax.swing.JFrame {
         String descricao = txtDescricao.getText();
         String modelCampo = txtModelo.getText();
         int qtdVenda = Integer.parseInt(txtQtd.getText());
-        //float valorRecebido = Float.parseFloat(txtValorRecebido.getText());
         float valorProduto = Float.parseFloat(txtValor.getText());
         float valorTotal = qtdVenda * valorProduto;
-        float troco;
 
-        /*if (valorRecebido > valorTotal) {
-            troco = valorRecebido - valorTotal;
-        } else {
-            troco = valorTotal - valorRecebido;
-        }*/
         // Estrutura de validação para verificar se há erros.
         boolean temErro = validador.temErro();
         if (temErro) {
 
             if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
                     qtdVenda, valorProduto, valorTotal)) {
-
                 // Adicionando linha ao JTable.            
                 modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
             }
         }
     }//GEN-LAST:event_btnAddCarrinhoActionPerformed
@@ -543,9 +547,9 @@ public class Venda extends javax.swing.JFrame {
         String cpf = txtCpf.getText().replace(".", "").replace("-", "");
         validador.ValidarTexto(txtCpf);
         boolean temErro = validador.temErro();
-        validador.limpaVeriicador();
 
         if (temErro) {
+            // Busca o cliente por cpf.
             obj = ClientesController.consultar(cpf);
             txtIdClientes.setText(String.valueOf(obj.getIdCliente()));
             txtNome.setText(obj.getNome());
@@ -562,7 +566,8 @@ public class Venda extends javax.swing.JFrame {
             int linhas = modelo.getRowCount();
             float valorTotal = 0;
             float valorTroco = 0;
-
+         
+            // Calcula o total na coluna de valor.
             for (int i = 0; i <= linhas - 1; i++) {
 
                 String conteudo = String.valueOf(modelo.getValueAt(i, 5));
@@ -577,6 +582,7 @@ public class Venda extends javax.swing.JFrame {
                 valorTroco = valorRecebido - valorTotal;
             }
 
+            // Imprime os valores no campo.
             txtPrintTotal.setText(String.valueOf(valorTotal));
             txtPrintTroco.setText(String.valueOf(valorTroco));
 
@@ -588,13 +594,13 @@ public class Venda extends javax.swing.JFrame {
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
         String cpf = txtCpf.getText().replace(".", "").replace("-", "").replace(" ", "");
 
+        // Lógica da busca dos prrodutos(Obs: Apenas se o campo de clientes estiver preenchido).
         if (!cpf.isEmpty()) {
             Validador validador = new Validador();
             Produtos obj = new Produtos();
             String codigo = txtCod.getText();
             validador.ValidarTexto(txtCod);
             boolean temErro = validador.temErro();
-            validador.limpaVeriicador();
             if (temErro) {
                 obj = ProdutosController.consultar(codigo);
                 txtIdProdutos.setText(String.valueOf(obj.getIdProduto()));
@@ -603,14 +609,6 @@ public class Venda extends javax.swing.JFrame {
                 txtModelo.setText(obj.getModelo());
                 txtQtd.setText(String.valueOf(obj.getQtdEstoque()));
                 txtValor.setText(String.valueOf(obj.getValorProduto()));
-
-                // Gravando a data da compra.
-                int id = Integer.parseInt(txtIdClientes.getText());
-                Date dataAtual = new Date();
-                VendasController.salvar(id, dataAtual);
-                Vendas obj1 = new Vendas();
-                obj1 = VendasController.consultaId(id);
-                txtIdVenda.setText(String.valueOf(obj1.getIdVenda()));
 
             }
         } else {

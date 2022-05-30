@@ -17,40 +17,32 @@ import javax.swing.JOptionPane;
 public class ConexaoFactory {
     
     /**
+     * Método carrega o driver e abre a conexão com o banco de dados.
      * 
-     * @return 
+     * @return conexao - Connextion.
      */
-
     public static Connection getConexao() {
 
         Connection conexao = null;
 
         try {
-
             // Carregando Driver.
             Class.forName("com.mysql.cj.jdbc.Driver");
-
             // Abrindo conexão.
                 conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/lojainstrumentos"
                     + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "root","");
-
         } catch (ClassNotFoundException ex) {
 
             String erro = ex.getMessage();
 
             JOptionPane.showMessageDialog(null, "Erro de Driver" + erro);
-
         } catch (SQLException ex) {
 
             String erro = ex.getMessage();
 
             JOptionPane.showMessageDialog(null, "Erro de Conexão" + erro);
-
         }
-
-        // OBS: Colocar validação de a conexão foi gerada com sucesso!
         return conexao;
-
     }
 
 }

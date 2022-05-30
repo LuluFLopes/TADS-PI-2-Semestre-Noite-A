@@ -132,39 +132,52 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharActionPerformed
+        // Pegando o modelo padrão.
         DefaultTableModel modelo = (DefaultTableModel) tblRelatorioAnalitico.getModel();
+
+        // Pega a linha selecionada.
         int indice = tblRelatorioAnalitico.getSelectedRow();
+        // Valida se alguma linha foi selecionada.
         if (indice < 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma linha!");
         } else {
+            // Pega o id em forma de objeto e converte para inteiro.
             Object obj1 = tblRelatorioAnalitico.getValueAt(indice, 0);
             String dados = String.valueOf(obj1);
             int id = Integer.parseInt(dados);
+
+            // Manda o id para a tela de detalhamento.
             Detalhamento detalhamento = new Detalhamento(id);
             detalhamento.setVisible(true);
-            this.dispose();
         }
-        
+
     }//GEN-LAST:event_btnDetalharActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        Date dataIncial = jdcDataInical.getDate();
+        // Pega as data do campo jdc. 
+        Date dataInicial = jdcDataInical.getDate();
         Date dataFim = jdcDataFim.getDate();
-        
-        ArrayList<ItensVendas> listaVendas = VendasController.listaAnaliticoController(dataIncial, dataFim);
-        DefaultTableModel modelo = (DefaultTableModel) tblRelatorioAnalitico.getModel();
 
-        if (!listaVendas.isEmpty()) {
-            modelo.setRowCount(0);
-            for (ItensVendas venda : listaVendas) {
-                modelo.addRow(new Object[]{
-                    venda.getIdVenda(),
-                    venda.getNomeCliente(),
-                    venda.getValorTotal(),
-                    venda.getDataVenda()});
+        // Valida se a data inicial é menor ou igual a final.
+        if (dataInicial.before(dataFim)) {
+            ArrayList<ItensVendas> listaVendas = VendasController.listaAnaliticoController(dataInicial, dataFim);
+            DefaultTableModel modelo = (DefaultTableModel) tblRelatorioAnalitico.getModel();
+
+            // Valida se a lista tem conteúdo.
+            if (!listaVendas.isEmpty()) {
+                modelo.setRowCount(0);
+                for (ItensVendas venda : listaVendas) {
+                    modelo.addRow(new Object[]{
+                        venda.getIdVenda(),
+                        venda.getNomeCliente(),
+                        venda.getValorTotal(),
+                        venda.getDataVenda()});
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
+            JOptionPane.showMessageDialog(this, "A data inicial não pode ser maior que a data final");
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 

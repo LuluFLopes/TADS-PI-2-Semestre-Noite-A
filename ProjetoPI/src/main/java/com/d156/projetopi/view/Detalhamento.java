@@ -28,16 +28,18 @@ public class Detalhamento extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
+        // Recebe o id da venda para conseguir listar conforme o selecionado na tela de "Relatório Analítico".
         DefaultTableModel modelo = (DefaultTableModel) tblDetalhamento.getModel();
         ArrayList<ItensVendas> listaDetalhamento = ItensVendasController.listaDetalhamentoController(id);
 
+        // Valida se o retorno está vazio e lista caso esteja com conteúdo.
         if (!listaDetalhamento.isEmpty()) {
 
             ItensVendas obj = new ItensVendas();
 
             obj = listaDetalhamento.get(0);
 
-            txtIdCliente.setText(String.valueOf(obj.getIdItemVenda()));
+            txtIdCliente.setText(String.valueOf(obj.getIdVenda()));
             txtNomeCliente.setText(obj.getNomeCliente());
             txtDataVenda.setText(String.valueOf(obj.getDataVenda()));
 

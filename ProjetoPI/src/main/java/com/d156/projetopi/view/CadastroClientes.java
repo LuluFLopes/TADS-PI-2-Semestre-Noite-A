@@ -250,15 +250,12 @@ public class CadastroClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
-        //JOptionPane.showConfirmDialog(null, "DESEJA SALVAR?", "CONFIRMAÇÃO DE CLIENTE", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
-        //   <--(Trecho de Código que confirma ação).
         // Classes instanciadas.
         Validador validador = new Validador();
 
-        // Criando variáveis para salvar na Classe Produtos.
+        // Criando variáveis para salvar na Classe Clientes.
         String nome = txtNome.getText();
-        String cpf = txtCpf.getText().replace(".", "").replace("-", "");
+        String cpf = txtCpf.getText().replace(".", "").replace("-", "").replace(" ", "");
         String endereco = txtEndereco.getText();
         String numero = txtNumero.getText();
         String email = txtEmail.getText();
@@ -269,7 +266,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         String complemento = txtComplemento.getText();
         String bairro = txtBairro.getText();
         String cidade = txtCidade.getText();
-        String cep = txtCep.getText().replace("-", "");
+        String cep = txtCep.getText().replace("-", "").replace(" ", "");
         String estado = cboEstado.getSelectedItem().toString();
 
         // Verificando se os campos estão vazios ou com dados incorretos.
@@ -281,26 +278,23 @@ public class CadastroClientes extends javax.swing.JFrame {
         validador.ValidarCbo(cboEstadoCivil);
         validador.ValidarTexto(txtTelefone);
         validador.ValidarCbo(cboSexo);
-        // ** Criar validador para data de nascimento. **
+        validador.ValidarData(jdcDataNascimento);
         validador.ValidarTexto(txtComplemento);
         validador.ValidarTexto(txtBairro);
         validador.ValidarTexto(txtCidade);
         validador.ValidarTexto(txtCep);
         validador.ValidarCbo(cboEstado);
-        validador.ExibirMensagensErro();
-        // ** OBS: Se for continuar utilizando o validador, criar uma chamada de data.
-
+        
         // Verificando de existem erros antes de gravar na classe.
         boolean temErro = validador.temErro();
-        validador.limpaVeriicador();
+        validador.ExibirMensagensErro();
 
-        // Validação se existe menssagens de erro no array responsável.
+
+        // Validação se existe menssagens de erro no array de erros.
         if (temErro) {
-            // Gravação dos dados na classe "Produtos".
+            // Envia as informações para gravação e valida se deu certo.
             if (ClientesController.salvar(nome, cpf, endereco, numero, email, estadoCivil, telefone, genero, dataNascimento, complemento, bairro, cidade, cep, estado)) {
                 JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar!");
             }
         }
 

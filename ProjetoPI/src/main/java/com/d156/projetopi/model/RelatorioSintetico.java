@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.d156.projetopi.controller;
+package com.d156.projetopi.model;
 
 import java.util.Date;
 
@@ -11,12 +11,12 @@ import java.util.Date;
  * @author lucme
  */
 public class RelatorioSintetico {
-
-    private Date dataInicio;
-    private Date dataFim;
-
-    public RelatorioSintetico() {
-
+    
+    public Date dataInicio;
+    public Date dataFim;
+    
+    public RelatorioSintetico(){
+        
     }
 
     public Date getDataInicio() {
@@ -35,4 +35,6 @@ public class RelatorioSintetico {
         this.dataFim = dataFim;
     }
 
+   
+    
 }

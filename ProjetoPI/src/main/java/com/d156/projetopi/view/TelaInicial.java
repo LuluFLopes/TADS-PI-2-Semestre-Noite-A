@@ -4,6 +4,10 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.VendasController;
+import com.d156.projetopi.model.Vendas;
+import java.util.Date;
+
 /**
  *
  * @author luciano.flopes
@@ -179,8 +183,15 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuCadastroProdActionPerformed
 
     private void mnuNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuNovaVendaActionPerformed
-        Venda vendas = new Venda();
-        vendas.setVisible(true);
+        // Trecho de código grava a data da compra e manda para o construtor com parâmetro.
+        Date dataAtual = new Date();
+        Vendas obj = new Vendas();
+        obj = VendasController.salvaVenda(dataAtual);
+        int idVenda = obj.getIdVenda();
+        
+        Venda venda = new Venda(idVenda);
+        venda.setVisible(true);
+        
     }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     private void mnuAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarProdActionPerformed

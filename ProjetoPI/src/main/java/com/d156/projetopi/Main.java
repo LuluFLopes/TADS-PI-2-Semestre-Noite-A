@@ -8,5 +8,5 @@ public class Main {
         TelaInicial telaPrincipal = new TelaInicial();
         telaPrincipal.setVisible(true);
     }
-
+    
 }

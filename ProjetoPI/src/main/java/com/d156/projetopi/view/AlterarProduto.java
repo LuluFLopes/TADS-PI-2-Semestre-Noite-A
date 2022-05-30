@@ -28,7 +28,9 @@ public class AlterarProduto extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         Produtos obj = new Produtos();
+        // Traz o objeto com o id do produto para preencher os campos.
         obj = ProdutosController.consultaId(idProduto);
+        // Valida se o obj não voltou nulo.
         if (obj != null) {
             txtId.setText(String.valueOf(obj.getIdProduto()));
             txtDescricaoProduto.setText(obj.getDescricao());
@@ -199,14 +201,16 @@ public class AlterarProduto extends javax.swing.JFrame {
         validador.ValidarTexto(txtModeloProduto);
         validador.ValidarNumero(txtQuantidade);
         validador.ValidarFloat(txtPrecoProduto);
-        validador.ExibirMensagensErro();
 
         // Verificando de existem erros antes de gravar na classe.
         boolean temErro = validador.temErro();
-        validador.limpaVeriicador();
+        validador.ExibirMensagensErro();
+
+        
 
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
+            // Envia as informações para gravação e valida se deu certo.
             if (ProdutosController.alterar(id, descricao, codigo, modelo, qtdEstoque, preco)) {
                 JOptionPane.showMessageDialog(this, "Alteração Realizada");
                 this.dispose();
