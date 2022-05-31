@@ -4,8 +4,11 @@
  */
 package com.d156.projetopi.view;
 
+import com.d156.projetopi.controller.ItensVendasController;
 import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.model.ItensVendas;
+import com.d156.projetopi.utils.Validador;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -35,7 +38,7 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     private void initComponents() {
 
         btnPesquisar = new javax.swing.JButton();
-        jdcDataInical = new com.toedter.calendar.JDateChooser();
+        jdcDataInicial = new com.toedter.calendar.JDateChooser();
         jdcDataFim = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRelatorioSintetico = new javax.swing.JTable();
@@ -49,6 +52,12 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
+
+        jdcDataInicial.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Inicial", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jdcDataInicial.setName("Data Inicial");
+
+        jdcDataFim.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Final", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jdcDataFim.setName("Data Final");
 
         tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,9 +85,9 @@ public class RelatorioSintetico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jdcDataInical, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdcDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -89,14 +98,17 @@ public class RelatorioSintetico extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jdcDataInical, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jdcDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jdcDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jdcDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -105,27 +117,43 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // Pega a datas do campo jdc.
-        Date dataInicial = jdcDataInical.getDate();
+        // Pega as data do campo jdc. 
+        Date dataInicial = jdcDataInicial.getDate();
         Date dataFim = jdcDataFim.getDate();
 
-        // Valida se a data inicial é menor ou igual a data final.
-        if (dataInicial.before(dataFim)) {
-            ArrayList<ItensVendas> listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
-            DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
-            // Valida se o retorno é vazio.F
-            if (!listaVendas.isEmpty()) {
-                modelo.setRowCount(0);
-                for (ItensVendas itensvenda : listaVendas) {
-                    modelo.addRow(new String[]{String.valueOf(itensvenda.getIdVenda()), itensvenda.getNomeCliente(),
-                        String.valueOf(itensvenda.getValorTotal()), String.valueOf(itensvenda.getDataVenda())
-                    });
+        Validador validador = new Validador();
+
+        validador.ValidarData(jdcDataInicial);
+        validador.ValidarData(jdcDataFim);
+        boolean temErro = validador.temErro();
+        validador.ExibirMensagensErro();
+
+        if (temErro) {
+            // Valida se a data inicial é menor ou igual a data final.
+            if (dataInicial.before(dataFim)) {
+                ArrayList<ItensVendas> listaVendas = VendasController.listaSinteticoController(dataInicial, dataFim);
+                DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
+                // Valida se o retorno é vazio.
+                if (!listaVendas.isEmpty()) {
+                    modelo.setRowCount(0);
+                    for (ItensVendas itensvenda : listaVendas) {
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                        int id = itensvenda.getIdVenda();
+                        ItensVendas total = new ItensVendas();
+                        total = ItensVendasController.listaTotal(id);
+                        modelo.addRow(new Object[]{
+                            String.valueOf(itensvenda.getIdVenda()), 
+                            itensvenda.getNomeCliente(),
+                            String.valueOf(total.getValorTotal()), 
+                            String.valueOf(formato.format(itensvenda.getDataVenda()))
+                        });
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
+                JOptionPane.showMessageDialog(this, "A data inicial não pode ser maior que a data final");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "A data inicial não pode ser maior que a data final");
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -168,7 +196,7 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdcDataFim;
-    private com.toedter.calendar.JDateChooser jdcDataInical;
+    private com.toedter.calendar.JDateChooser jdcDataInicial;
     private javax.swing.JTable tblRelatorioSintetico;
     // End of variables declaration//GEN-END:variables
 }

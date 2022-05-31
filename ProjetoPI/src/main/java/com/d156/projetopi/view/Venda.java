@@ -456,39 +456,51 @@ public class Venda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        // Pega as informações que ainda estão vazias no BD para gravar na tablela.
-        String formataVenda = txtIdVenda.getText();
-        int idVenda = Integer.parseInt(formataVenda);
-        String formataCliente = txtIdClientes.getText();
-        int idCliente = Integer.parseInt(formataCliente);
-        float recebido = Float.parseFloat(txtValorRecebido.getText());
-        float total = Float.parseFloat(txtPrintTotal.getText());
-        float troco = Float.parseFloat(txtPrintTroco.getText());
+        Validador validador = new Validador();
 
-        // Grava os dados restantes nas tabelas itensvendas e vendas. 
-        if (ItensVendasController.finalizaCompra(idVenda, recebido, total, troco) && VendasController.gravaId(idCliente, idVenda)) {
-            JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro no fechamento da compra!");
+        validador.ValidarFloat(txtPrintTotal);
+        boolean temErro = validador.temErro();
+        validador.ExibirMensagensErro();
+
+        if (temErro) {
+            // Pega as informações que ainda estão vazias no BD para gravar na tablela.
+            String formataVenda = txtIdVenda.getText();
+            int idVenda = Integer.parseInt(formataVenda);
+            String formataCliente = txtIdClientes.getText();
+            int idCliente = Integer.parseInt(formataCliente);
+            float recebido = Float.parseFloat(txtValorRecebido.getText());
+            float total = Float.parseFloat(txtPrintTotal.getText());
+            float troco = Float.parseFloat(txtPrintTroco.getText());
+
+            // Grava os dados restantes nas tabelas itensvendas e vendas. 
+            if (ItensVendasController.finalizaCompra(idVenda, recebido, total, troco) && VendasController.gravaId(idCliente, idVenda)) {
+                JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro no fechamento da compra!");
+            }
         }
+
+
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         //Variável que recebe o índice da linha.
         int linhaSelecionada = tblCarrinho.getSelectedRow();
 
-        ItensVendas obj = new ItensVendas();
-
-        Object obj1 = tblCarrinho.getValueAt(linhaSelecionada, 0);
-        String codigo = String.valueOf(obj1);
-        obj = ItensVendasController.consultaId(codigo);
-        int id = obj.getIdItemVenda();
-
-        // Recebendo modelo padrão.
-        DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
-
-        // Estrutura que garante que uma linha seja selecionada.
         if (linhaSelecionada >= 0) {
+
+            ItensVendas obj = new ItensVendas();
+
+            Object obj1 = tblCarrinho.getValueAt(linhaSelecionada, 0);
+            String codigo = String.valueOf(obj1);
+            obj = ItensVendasController.consultaId(codigo);
+            int id = obj.getIdItemVenda();
+
+            // Recebendo modelo padrão.
+            DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
+
+            // Estrutura que garante que uma linha seja selecionada.
             if (ItensVendasController.excluir(id)) {
                 modelo.removeRow(linhaSelecionada);
             } else {
@@ -499,6 +511,7 @@ public class Venda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "Selecione uma linha!");
         }
+
 
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -537,17 +550,23 @@ public class Venda extends javax.swing.JFrame {
         int qtdVenda = Integer.parseInt(txtQtd.getText());
         float valorProduto = Float.parseFloat(txtValor.getText());
         float valorTotal = qtdVenda * valorProduto;
+        int qtdEstoque = objProd.getQtdEstoque();
 
-        // Estrutura de validação para verificar se há erros.
-        boolean temErro = validador.temErro();
-        if (temErro) {
-            if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
-                    qtdVenda, valorProduto, valorTotal)) {
-                // Adicionando linha ao JTable.            
-                modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
-            } else {
-                JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
+        // Valida se há a quantidade digitada no estoque.
+        if (qtdVenda <= qtdEstoque) {
+            // Estrutura de validação para verificar se há erros.
+            boolean temErro = validador.temErro();
+            if (temErro) {
+                if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
+                        qtdVenda, valorProduto, valorTotal)) {
+                    // Adicionando linha ao JTable.            
+                    modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Quantidade indisponível no estoque. Quantidade disponível: " + qtdEstoque + "!");
         }
     }//GEN-LAST:event_btnAddCarrinhoActionPerformed
 
@@ -557,6 +576,7 @@ public class Venda extends javax.swing.JFrame {
         String cpf = txtCpf.getText().replace(".", "").replace("-", "");
         validador.ValidarTexto(txtCpf);
         boolean temErro = validador.temErro();
+        validador.ExibirMensagensErro();
 
         if (temErro) {
             // Busca o cliente por cpf.
@@ -569,36 +589,39 @@ public class Venda extends javax.swing.JFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // Recebendo modelo padrão.
         DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
+        Validador validador = new Validador();
+        validador.ValidarFloat(txtValorRecebido);
+        boolean temErro = validador.temErro();
+        validador.ExibirMensagensErro();
 
-        float valorRecebido = Float.parseFloat(txtValorRecebido.getText());
+        if (temErro) {
+            float valorRecebido = Float.parseFloat(txtValorRecebido.getText());
 
-        if (valorRecebido != 0) {
-            int linhas = modelo.getRowCount();
-            float valorTotal = 0;
-            float valorTroco = 0;
+            if (valorRecebido != 0) {
+                int linhas = modelo.getRowCount();
+                float valorTotal = 0;
+                float valorTroco = 0;
 
-            // Calcula o total na coluna de valor.
-            for (int i = 0; i <= linhas - 1; i++) {
-
-                String conteudo = String.valueOf(modelo.getValueAt(i, 5));
-                float valorColuna = Float.parseFloat(conteudo);
-
-                valorTotal += valorColuna;
-            }
-
-            if (valorTotal > valorRecebido) {
-                valorTroco = valorTotal - valorRecebido;
+                // Calcula o total na coluna de valor.
+                for (int i = 0; i <= linhas - 1; i++) {
+                    String conteudo = String.valueOf(modelo.getValueAt(i, 5));
+                    float valorColuna = Float.parseFloat(conteudo);
+                    valorTotal += valorColuna;
+                }
+                if (valorTotal > valorRecebido) {
+                    valorTroco = valorTotal - valorRecebido;
+                } else {
+                    valorTroco = valorRecebido - valorTotal;
+                }
+                // Imprime os valores no campo.
+                txtPrintTotal.setText(String.valueOf(valorTotal));
+                txtPrintTroco.setText(String.valueOf(valorTroco));
             } else {
-                valorTroco = valorRecebido - valorTotal;
+                JOptionPane.showMessageDialog(this, "Digite o valor recebido do cliente!");
             }
-
-            // Imprime os valores no campo.
-            txtPrintTotal.setText(String.valueOf(valorTotal));
-            txtPrintTroco.setText(String.valueOf(valorTroco));
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Digite o valor recebido do cliente!");
         }
+
+
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
@@ -613,7 +636,6 @@ public class Venda extends javax.swing.JFrame {
             boolean temErro = validador.temErro();
             if (temErro) {
                 obj = ProdutosController.consultar(codigo);
-                System.out.println(obj.getValorProduto());
                 txtIdProdutos.setText(String.valueOf(obj.getIdProduto()));
                 txtCod.setText(obj.getCodigo());
                 txtDescricao.setText(obj.getDescricao());
@@ -627,7 +649,16 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
-
+        int id = Integer.parseInt(txtIdVenda.getText());
+        int linhas = tblCarrinho.getRowCount();
+        // Valida se existe algum lançamento de produtos.
+        if (linhas > 0) {
+            // Exclui os itens lançados para voltarem ao estoque.
+            ItensVendasController.excluirVenda(id);
+            //Exclui a venda.
+            VendasController.excluirVenda(id);
+        }
+        this.dispose();
     }//GEN-LAST:event_btnCancelarCompraActionPerformed
 
     /**

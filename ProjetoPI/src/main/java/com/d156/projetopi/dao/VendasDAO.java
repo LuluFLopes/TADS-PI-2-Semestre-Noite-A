@@ -235,4 +235,31 @@ public class VendasDAO {
         }
         return obj;
     }
+    
+     // Exclusão de um item da venda.
+    public static boolean excluirVenda(Vendas obj) {
+        boolean retorno = false;
+        Connection conexao = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("delete from vendas where idVenda=?");
+            sql.setInt(1, obj.getIdVenda());
+            int linhasAfetadas = sql.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir a Venda!");
+        } finally {
+            try {
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+        return retorno;
+    }
 }

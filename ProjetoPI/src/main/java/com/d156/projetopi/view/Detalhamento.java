@@ -42,7 +42,7 @@ public class Detalhamento extends javax.swing.JFrame {
             ItensVendas obj = new ItensVendas();
             obj = listaDetalhamento.get(0);
             Vendas obj1 = new Vendas();
-            
+
             // Pega a data e a converte para o formato correto.
             obj1 = VendasController.pegaData(id);
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");

@@ -4,6 +4,7 @@
  */
 package com.d156.projetopi.controller;
 
+import com.d156.projetopi.dao.ItensVendasDAO;
 import com.d156.projetopi.dao.VendasDAO;
 import com.d156.projetopi.model.ItensVendas;
 import com.d156.projetopi.model.RelatorioAnalitico;
@@ -72,5 +73,12 @@ public class VendasController {
         Vendas obj = new Vendas();
         obj.setIdVenda(idVenda);
         return VendasDAO.pegaData(obj);
+    }
+    
+    // Exclui um item da venda.
+    public static void excluirVenda(int id) {
+        Vendas obj = new Vendas();
+        obj.setIdVenda(id);
+        VendasDAO.excluirVenda(obj);
     }
 }

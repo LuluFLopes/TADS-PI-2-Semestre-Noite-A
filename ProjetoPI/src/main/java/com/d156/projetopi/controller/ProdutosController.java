@@ -73,11 +73,4 @@ public class ProdutosController {
         obj.setCodigo(codigo);
         return ProdutosDAO.consultarProdutoPeloCodigo(obj);
     }
-    
-    // 
-    public static Produtos consultaEstoque(int id) {
-        Produtos obj = new Produtos();
-        obj.setIdProduto(id);
-        return ProdutosDAO.consultarProdutoId(obj);
-    }
 }

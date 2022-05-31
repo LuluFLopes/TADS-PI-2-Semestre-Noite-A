@@ -136,6 +136,33 @@ public class ItensVendasDAO {
         }
         return retorno;
     }
+    
+    // Exclusão de um item da venda.
+    public static boolean excluirVenda(ItensVendas obj) {
+        boolean retorno = false;
+        Connection conexao = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("delete from itensvendas where fk_idVenda=?");
+            sql.setInt(1, obj.getIdVenda());
+            int linhasAfetadas = sql.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir a Venda!");
+        } finally {
+            try {
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+        return retorno;
+    }
 
     // Listagem dos produtos de uma venda específica.
     public static ArrayList<ItensVendas> listaDetalhamento(ItensVendas obj) {
@@ -179,5 +206,38 @@ public class ItensVendasDAO {
             }
         }
         return listaRetorno;
+    }
+    
+    // Listagem de uma venda retornando o total.
+    public static ItensVendas listaTotal(ItensVendas obj) {
+        Connection conexao = null;
+        ArrayList<ItensVendas> listaRetorno = new ArrayList<ItensVendas>();
+        ResultSet rs = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("Select sum(valorTotal) from itensvendas a"
+                    + " inner join vendas b on a.fk_idVenda = b.idVenda"
+                    + " where a.fk_idVenda=?");
+            sql.setInt(1, obj.getIdVenda());
+            rs = sql.executeQuery();
+            while (rs.next()) {  
+                obj = new ItensVendas(); 
+                obj.setValorTotal(rs.getFloat("sum(valorTotal)"));
+                listaRetorno.add(obj);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return obj;
     }
 }

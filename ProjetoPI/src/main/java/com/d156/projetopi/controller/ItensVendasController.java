@@ -47,12 +47,26 @@ public class ItensVendasController {
         obj.setIdItemVenda(id);
         return ItensVendasDAO.excluir(obj);
     }
+    
+     // Exclui um item da venda.
+    public static void excluirVenda(int id) {
+        ItensVendas obj = new ItensVendas();
+        obj.setIdVenda(id);
+        ItensVendasDAO.excluirVenda(obj);
+    }
 
     // Lista todos os itens de uma venda específica.
     public static ArrayList<ItensVendas> listaDetalhamentoController(int id) {
         ItensVendas obj = new ItensVendas();
         obj.setIdVenda(id);
         return ItensVendasDAO.listaDetalhamento(obj);
+    }
+    
+    // Lista o total de uma venda específica.
+    public static ItensVendas listaTotal(int id) {
+        ItensVendas obj = new ItensVendas();
+        obj.setIdVenda(id);
+        return ItensVendasDAO.listaTotal(obj);
     }
 
     // Retorna um objeto a partir do código do produto.

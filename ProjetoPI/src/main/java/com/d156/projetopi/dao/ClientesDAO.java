@@ -279,7 +279,7 @@ public class ClientesDAO {
         boolean retorno = false;
         try {
             conexao = ConexaoFactory.getConexao();
-            PreparedStatement sql = conexao.prepareStatement("Delete from clientes where idCliente=?");
+            PreparedStatement sql = conexao.prepareStatement("delete from clientes where idCliente=?");
             sql.setInt(1, obj.getIdCliente());
             int linhasAfetadas = sql.executeUpdate();
             if (linhasAfetadas > 0) {

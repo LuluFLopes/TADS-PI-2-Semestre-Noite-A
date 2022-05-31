@@ -34,7 +34,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         if (obj != null) {
             txtId.setText(String.valueOf(obj.getIdProduto()));
             txtDescricaoProduto.setText(obj.getDescricao());
-            txtCodigo.setText(obj.getModelo());
+            txtCodigo.setText(obj.getCodigo());
             txtModeloProduto.setText(obj.getModelo());
             txtQuantidade.setText(String.valueOf(obj.getQtdEstoque()));
             txtPrecoProduto.setText(String.valueOf(obj.getPreco()));

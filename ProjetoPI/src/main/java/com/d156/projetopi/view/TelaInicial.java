@@ -34,7 +34,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        lblReference = new javax.swing.JLabel();
         mnuBarra = new javax.swing.JMenuBar();
         mnuCadastro = new javax.swing.JMenu();
         mnuClientes = new javax.swing.JMenu();
@@ -151,17 +150,11 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(888, Short.MAX_VALUE)
-                .addComponent(lblReference)
-                .addContainerGap())
+            .addGap(0, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(507, Short.MAX_VALUE)
-                .addComponent(lblReference)
-                .addContainerGap())
+            .addGap(0, 519, Short.MAX_VALUE)
         );
 
         pack();
@@ -188,10 +181,10 @@ public class TelaInicial extends javax.swing.JFrame {
         Vendas obj = new Vendas();
         obj = VendasController.salvaVenda(dataAtual);
         int idVenda = obj.getIdVenda();
-        
+
         Venda venda = new Venda(idVenda);
         venda.setVisible(true);
-        
+
     }//GEN-LAST:event_mnuNovaVendaActionPerformed
 
     private void mnuAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlterarProdActionPerformed
@@ -247,7 +240,6 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JLabel lblReference;
     private javax.swing.JMenuItem mnuAlterarCli;
     private javax.swing.JMenuItem mnuAlterarProd;
     private javax.swing.JMenuItem mnuAnalitico;

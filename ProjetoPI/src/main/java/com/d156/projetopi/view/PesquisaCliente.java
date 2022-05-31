@@ -194,9 +194,9 @@ public class PesquisaCliente extends javax.swing.JFrame {
             int id = Integer.parseInt(dados);
             // Chamada de exlusão que já valida se deu certo o processo.
             if (ClientesController.excluir(id)) {
-                JOptionPane.showMessageDialog(this, "Exclusão Realizada!");
+                JOptionPane.showMessageDialog(this, "Exclusão realizada!");
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao Excluir");
+                JOptionPane.showMessageDialog(this, "Erro ao excluir, caso haja vendas para o cliente em questão, não será possível excluir!");
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
