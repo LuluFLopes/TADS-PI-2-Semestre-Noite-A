@@ -54,13 +54,12 @@ public class ItensVendasDAO {
         try {
             conexao = ConexaoFactory.getConexao();
             PreparedStatement sql = conexao.prepareStatement("update itensvendas "
-                    + "set valorTotal=?,troco=?,valorRecebido=?"
+                    + "set troco=?,valorRecebido=?"
                     + " where fk_idVenda=?"
             );            
-            sql.setFloat(1, obj.getValorTotal());
-            sql.setFloat(2, obj.getTroco());
-            sql.setFloat(3, obj.getValorRecebido());
-            sql.setInt(4, obj.getIdVenda());
+            sql.setFloat(1, obj.getTroco());
+            sql.setFloat(2, obj.getValorRecebido());
+            sql.setInt(3, obj.getIdVenda());
             int linhasafetadas = sql.executeUpdate();
             if (linhasafetadas > 0) {
                 retorno = true;

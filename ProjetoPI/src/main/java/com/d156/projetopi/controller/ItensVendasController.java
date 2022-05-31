@@ -32,11 +32,10 @@ public class ItensVendasController {
     }
 
     // Grava o restante das informações ao finalizar a compra.
-    public static boolean finalizaCompra(int id ,float recebido, float total, float troco) {
+    public static boolean finalizaCompra(int id ,float recebido, float troco) {
         ItensVendas obj = new ItensVendas();
         obj.setIdVenda(id);
         obj.setValorRecebido(recebido);
-        obj.setValorTotal(total);
         obj.setTroco(troco);
         return ItensVendasDAO.finalizaCompra(obj);
     }

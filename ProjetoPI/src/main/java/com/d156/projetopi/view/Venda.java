@@ -473,7 +473,7 @@ public class Venda extends javax.swing.JFrame {
             float troco = Float.parseFloat(txtPrintTroco.getText());
 
             // Grava os dados restantes nas tabelas itensvendas e vendas. 
-            if (ItensVendasController.finalizaCompra(idVenda, recebido, total, troco) && VendasController.gravaId(idCliente, idVenda)) {
+            if (ItensVendasController.finalizaCompra(idVenda, recebido, troco) && VendasController.gravaId(idCliente, idVenda)) {
                 JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
                 this.dispose();
             } else {
@@ -485,88 +485,103 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        //Variável que recebe o índice da linha.
-        int linhaSelecionada = tblCarrinho.getSelectedRow();
+        // Validação para não ser possível remover após o preenchimento do valor no campo de valor recebido.
+        if (txtValorRecebido.getText().isEmpty()) {
+            //Variável que recebe o índice da linha.
+            int linhaSelecionada = tblCarrinho.getSelectedRow();
 
-        if (linhaSelecionada >= 0) {
+            if (linhaSelecionada >= 0) {
 
-            ItensVendas obj = new ItensVendas();
+                ItensVendas obj = new ItensVendas();
 
-            Object obj1 = tblCarrinho.getValueAt(linhaSelecionada, 0);
-            String codigo = String.valueOf(obj1);
-            obj = ItensVendasController.consultaId(codigo);
-            int id = obj.getIdItemVenda();
+                Object obj1 = tblCarrinho.getValueAt(linhaSelecionada, 0);
+                String codigo = String.valueOf(obj1);
+                obj = ItensVendasController.consultaId(codigo);
+                int id = obj.getIdItemVenda();
+
+                // Recebendo modelo padrão.
+                DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
+
+                // Estrutura que garante que uma linha seja selecionada.
+                if (ItensVendasController.excluir(id)) {
+                    modelo.removeRow(linhaSelecionada);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Não foi possível excluir a linha!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Selecione uma linha!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Não é possível remover itens após clicar em calcular!");
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void btnAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCarrinhoActionPerformed
+        // Validação para não ser possível remover após o preenchimento do valor no campo de valor recebido.
+        if (txtValorRecebido.getText().isEmpty()) {
 
             // Recebendo modelo padrão.
             DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
 
-            // Estrutura que garante que uma linha seja selecionada.
-            if (ItensVendasController.excluir(id)) {
-                modelo.removeRow(linhaSelecionada);
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Não foi possível excluir a linha!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Selecione uma linha!");
-        }
+            // Intanciando validador.
+            Validador validador = new Validador();
 
+            // Chamada do validador.
+            validador.ValidarTexto(txtCod);
+            validador.ValidarTexto(txtDescricao);
+            validador.ValidarTexto(txtModelo);
+            validador.ValidarNumero(txtQtd);
+            validador.ValidarFloat(txtValor);
 
-    }//GEN-LAST:event_btnRemoverActionPerformed
-
-    private void btnAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCarrinhoActionPerformed
-        // Recebendo modelo padrão.
-        DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
-
-        // Intanciando validador.
-        Validador validador = new Validador();
-
-        // Chamada do validador.
-        validador.ValidarTexto(txtCod);
-        validador.ValidarTexto(txtDescricao);
-        validador.ValidarTexto(txtModelo);
-        validador.ValidarNumero(txtQtd);
-        validador.ValidarFloat(txtValor);
-        validador.ExibirMensagensErro();
-
-        // Retorna o id do Produto.
-        int idProduto = Integer.parseInt(txtIdProdutos.getText());
-        Produtos objProd = new Produtos();
-        objProd = ProdutosController.consultaId(idProduto);
-
-        // Retorna o id do Cliente.
-        int idCliente = Integer.parseInt(txtIdClientes.getText());
-        Clientes objCli = new Clientes();
-        objCli = ClientesController.consultaId(idCliente);
-
-        // Armazenando valores dos campos.
-        String formataVenda = txtIdVenda.getText();
-        int idVenda = Integer.parseInt(formataVenda);
-        String nomeCliente = txtNome.getText();
-        String codigo = txtCod.getText();
-        String descricao = txtDescricao.getText();
-        String modelCampo = txtModelo.getText();
-        int qtdVenda = Integer.parseInt(txtQtd.getText());
-        float valorProduto = Float.parseFloat(txtValor.getText());
-        float valorTotal = qtdVenda * valorProduto;
-        int qtdEstoque = objProd.getQtdEstoque();
-
-        // Valida se há a quantidade digitada no estoque.
-        if (qtdVenda <= qtdEstoque) {
             // Estrutura de validação para verificar se há erros.
             boolean temErro = validador.temErro();
+            validador.ExibirMensagensErro();
+
             if (temErro) {
-                if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
-                        qtdVenda, valorProduto, valorTotal)) {
-                    // Adicionando linha ao JTable.            
-                    modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+
+                // Retorna o id do Produto.
+                int idProduto = Integer.parseInt(txtIdProdutos.getText());
+                Produtos objProd = new Produtos();
+                objProd = ProdutosController.consultaId(idProduto);
+
+                // Retorna o id do Cliente.
+                int idCliente = Integer.parseInt(txtIdClientes.getText());
+                Clientes objCli = new Clientes();
+                objCli = ClientesController.consultaId(idCliente);
+
+                // Armazenando valores dos campos.
+                String formataVenda = txtIdVenda.getText();
+                int idVenda = Integer.parseInt(formataVenda);
+                String nomeCliente = txtNome.getText();
+                String codigo = txtCod.getText();
+                String descricao = txtDescricao.getText();
+                String modelCampo = txtModelo.getText();
+                int qtdVenda = Integer.parseInt(txtQtd.getText());
+                float valorProduto = Float.parseFloat(txtValor.getText());
+                float valorTotal = qtdVenda * valorProduto;
+                int qtdEstoque = objProd.getQtdEstoque();
+
+                // Valida se há a quantidade digitada no estoque.
+                if (qtdVenda <= qtdEstoque) {
+
+                    if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
+                            qtdVenda, valorProduto, valorTotal)) {
+                        // Adicionando linha ao JTable.            
+                        modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
+                    JOptionPane.showMessageDialog(this, "Quantidade indisponível no estoque. Quantidade disponível: " + qtdEstoque + "!");
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Quantidade indisponível no estoque. Quantidade disponível: " + qtdEstoque + "!");
+            JOptionPane.showMessageDialog(this,
+                    "Não é possível adicionar itens após clicar em calcular!");
         }
     }//GEN-LAST:event_btnAddCarrinhoActionPerformed
 

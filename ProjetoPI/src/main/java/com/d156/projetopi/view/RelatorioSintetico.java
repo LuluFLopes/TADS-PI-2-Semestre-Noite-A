@@ -67,9 +67,16 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                 "Código Venda", "Cliente", "Valor Total", "Data Venda"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -142,10 +149,10 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                         ItensVendas total = new ItensVendas();
                         total = ItensVendasController.listaTotal(id);
                         modelo.addRow(new Object[]{
-                            String.valueOf(itensvenda.getIdVenda()), 
+                            itensvenda.getIdVenda(), 
                             itensvenda.getNomeCliente(),
-                            String.valueOf(total.getValorTotal()), 
-                            String.valueOf(formato.format(itensvenda.getDataVenda()))
+                            total.getValorTotal(),
+                            formato.format(itensvenda.getDataVenda())
                         });
                     }
                 } else {
