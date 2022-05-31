@@ -456,32 +456,37 @@ public class Venda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        Validador validador = new Validador();
+        // Validação de possível tentativa de finalizar a compra sem itens adicionados.
+        int contadorLinhas = tblCarrinho.getRowCount();
+        if (contadorLinhas > 0) {
 
-        validador.ValidarFloat(txtPrintTotal);
-        boolean temErro = validador.temErro();
-        validador.ExibirMensagensErro();
+            Validador validador = new Validador();
 
-        if (temErro) {
-            // Pega as informações que ainda estão vazias no BD para gravar na tablela.
-            String formataVenda = txtIdVenda.getText();
-            int idVenda = Integer.parseInt(formataVenda);
-            String formataCliente = txtIdClientes.getText();
-            int idCliente = Integer.parseInt(formataCliente);
-            float recebido = Float.parseFloat(txtValorRecebido.getText());
-            float total = Float.parseFloat(txtPrintTotal.getText());
-            float troco = Float.parseFloat(txtPrintTroco.getText());
+            validador.ValidarFloat(txtPrintTotal);
+            boolean temErro = validador.temErro();
+            validador.ExibirMensagensErro();
 
-            // Grava os dados restantes nas tabelas itensvendas e vendas. 
-            if (ItensVendasController.finalizaCompra(idVenda, recebido, troco) && VendasController.gravaId(idCliente, idVenda)) {
-                JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro no fechamento da compra!");
+            if (temErro) {
+                // Pega as informações que ainda estão vazias no BD para gravar na tablela.
+                String formataVenda = txtIdVenda.getText();
+                int idVenda = Integer.parseInt(formataVenda);
+                String formataCliente = txtIdClientes.getText();
+                int idCliente = Integer.parseInt(formataCliente);
+                float recebido = Float.parseFloat(txtValorRecebido.getText());
+                float total = Float.parseFloat(txtPrintTotal.getText());
+                float troco = Float.parseFloat(txtPrintTroco.getText());
+
+                // Grava os dados restantes nas tabelas itensvendas e vendas. 
+                if (ItensVendasController.finalizaCompra(idVenda, recebido, troco) && VendasController.gravaId(idCliente, idVenda)) {
+                    JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro no fechamento da compra!");
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível finalizar a compra sem itens selecionados!");
         }
-
-
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
@@ -567,13 +572,17 @@ public class Venda extends javax.swing.JFrame {
 
                 // Valida se há a quantidade digitada no estoque.
                 if (qtdVenda <= qtdEstoque) {
-
-                    if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
-                            qtdVenda, valorProduto, valorTotal)) {
-                        // Adicionando linha ao JTable.            
-                        modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+                    // Valida se tentar quantidades e valores incorretos.
+                    if (qtdVenda > 0 && valorProduto >= 0) {
+                        if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
+                                qtdVenda, valorProduto, valorTotal)) {
+                            // Adicionando linha ao JTable.            
+                            modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
+                        JOptionPane.showMessageDialog(this, "Quantidades ou valores inválidos!");
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Quantidade indisponível no estoque. Quantidade disponível: " + qtdEstoque + "!");
@@ -602,41 +611,44 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaCliActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // Recebendo modelo padrão.
-        DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
-        Validador validador = new Validador();
-        validador.ValidarFloat(txtValorRecebido);
-        boolean temErro = validador.temErro();
-        validador.ExibirMensagensErro();
+        // Validação de possível tentativa de calcular sem itens adicionados.
+        int contadorLinhas = tblCarrinho.getRowCount();
+        if (contadorLinhas > 0) {
+            // Recebendo modelo padrão.
+            DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
+            Validador validador = new Validador();
+            validador.ValidarFloat(txtValorRecebido);
+            boolean temErro = validador.temErro();
+            validador.ExibirMensagensErro();
 
-        if (temErro) {
-            float valorRecebido = Float.parseFloat(txtValorRecebido.getText());
+            if (temErro) {
+                float valorRecebido = Float.parseFloat(txtValorRecebido.getText());
+                if (valorRecebido != 0) {
+                    int linhas = modelo.getRowCount();
+                    float valorTotal = 0;
+                    float valorTroco = 0;
 
-            if (valorRecebido != 0) {
-                int linhas = modelo.getRowCount();
-                float valorTotal = 0;
-                float valorTroco = 0;
-
-                // Calcula o total na coluna de valor.
-                for (int i = 0; i <= linhas - 1; i++) {
-                    String conteudo = String.valueOf(modelo.getValueAt(i, 5));
-                    float valorColuna = Float.parseFloat(conteudo);
-                    valorTotal += valorColuna;
-                }
-                if (valorTotal > valorRecebido) {
-                    valorTroco = valorTotal - valorRecebido;
+                    // Calcula o total na coluna de valor.
+                    for (int i = 0; i <= linhas - 1; i++) {
+                        String conteudo = String.valueOf(modelo.getValueAt(i, 5));
+                        float valorColuna = Float.parseFloat(conteudo);
+                        valorTotal += valorColuna;
+                    }
+                    if (valorTotal <= valorRecebido) {
+                        valorTroco = valorRecebido - valorTotal;
+                        // Imprime os valores no campo.
+                        txtPrintTotal.setText(String.valueOf(valorTotal));
+                        txtPrintTroco.setText(String.valueOf(valorTroco));
+                    } else {
+                        JOptionPane.showMessageDialog(this, "O valor recebido não pode ser menor que o total!");
+                    }
                 } else {
-                    valorTroco = valorRecebido - valorTotal;
+                    JOptionPane.showMessageDialog(this, "Digite o valor recebido do cliente!");
                 }
-                // Imprime os valores no campo.
-                txtPrintTotal.setText(String.valueOf(valorTotal));
-                txtPrintTroco.setText(String.valueOf(valorTroco));
-            } else {
-                JOptionPane.showMessageDialog(this, "Digite o valor recebido do cliente!");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível calcular sem itens adicionados!");
         }
-
-
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed

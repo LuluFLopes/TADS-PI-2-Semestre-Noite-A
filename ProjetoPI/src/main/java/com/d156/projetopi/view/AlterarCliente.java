@@ -333,9 +333,9 @@ public class AlterarCliente extends javax.swing.JFrame {
         if (temErro) {
             // Envia as informações para gravação e valida se deu certo.
             if (ClientesController.alterar(id, nome, endereco, numero, email, estadoCivil, telefone, genero, dataNascimento, complemento, bairro, cidade, cep, estado)) {
-                JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Alteração realizada!");
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar!");
+                JOptionPane.showMessageDialog(this, "Erro ao alterar!");
             }
         }
     }//GEN-LAST:event_btnAlterarActionPerformed

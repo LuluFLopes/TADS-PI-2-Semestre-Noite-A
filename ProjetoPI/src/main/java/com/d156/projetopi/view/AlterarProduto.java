@@ -210,10 +210,10 @@ public class AlterarProduto extends javax.swing.JFrame {
         if (temErro) {
             // Envia as informações para gravação e valida se deu certo.
             if (ProdutosController.alterar(id, descricao, codigo, modelo, qtdEstoque, preco)) {
-                JOptionPane.showMessageDialog(this, "Alteração Realizada");
+                JOptionPane.showMessageDialog(this, "Alteração realizada!");
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Erro na Alteração");
+                JOptionPane.showMessageDialog(this, "Erro ao alterar!");
             }
         }
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
