@@ -195,7 +195,7 @@ public class PesquisaProduto extends javax.swing.JFrame {
             Object obj1 = tblListagem.getValueAt(indice, 0);
             String dados = String.valueOf(obj1);
             int id = Integer.parseInt(dados);
-            // Chamada de exlusão que já valida se deu certo o processo.
+            // Chamada de exclusão que já valida se deu certo o processo.
             if (ProdutosController.excluir(id)) {
                 JOptionPane.showMessageDialog(this, "Exclusão realizada!");
             } else {
