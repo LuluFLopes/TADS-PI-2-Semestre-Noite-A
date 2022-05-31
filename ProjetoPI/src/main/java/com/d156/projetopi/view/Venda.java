@@ -605,8 +605,13 @@ public class Venda extends javax.swing.JFrame {
         if (temErro) {
             // Busca o cliente por cpf.
             obj = ClientesController.consultar(cpf);
-            txtIdClientes.setText(String.valueOf(obj.getIdCliente()));
-            txtNome.setText(obj.getNome());
+            if (obj.getIdCliente() != 0) {
+                txtIdClientes.setText(String.valueOf(obj.getIdCliente()));
+                txtNome.setText(obj.getNome());
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Cadastro não encontrado!");
+            }
         }
     }//GEN-LAST:event_btnBuscaCliActionPerformed
 
@@ -663,11 +668,16 @@ public class Venda extends javax.swing.JFrame {
             boolean temErro = validador.temErro();
             if (temErro) {
                 obj = ProdutosController.consultar(codigo);
-                txtIdProdutos.setText(String.valueOf(obj.getIdProduto()));
-                txtCod.setText(obj.getCodigo());
-                txtDescricao.setText(obj.getDescricao());
-                txtModelo.setText(obj.getModelo());
-                txtValor.setText(String.valueOf(obj.getPreco()));
+                if (obj.getIdProduto() != 0) {
+                    txtIdProdutos.setText(String.valueOf(obj.getIdProduto()));
+                    txtCod.setText(obj.getCodigo());
+                    txtDescricao.setText(obj.getDescricao());
+                    txtModelo.setText(obj.getModelo());
+                    txtValor.setText(String.valueOf(obj.getPreco()));
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Cadastro não encontrado!");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Não adicione produtos se o campo de cliente estiver vazio!");
