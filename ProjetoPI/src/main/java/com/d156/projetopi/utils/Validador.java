@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- * Classe utilizada para validação dos dados nos campos.
+ * Classe utilizada para validação dos dados nos campos
  *
  * @author lucme
  *
@@ -17,26 +17,25 @@ public class Validador {
 
     // Array grava os erros de maneira geral.
     public ArrayList<String> mensagensErro = new ArrayList<>();
+
     /**
      * Método utilizado para conversão de possíveis números inteiros dentro dos
-     * campos.
+     * campos
      *
-     * @param txt - JTextField.
+     * @param txt - JTextField
+     * @throws NumberFormatException
+     * @throws IllegalArgumentException
      */
     public void ValidarNumero(JTextField txt) {
 
         try {
-
             //Verifico se o campo está vazio
             if (txt.getText().trim().equals("")) {
                 throw new IllegalArgumentException();
             }
-
             int valorConvertido = Integer.parseInt(txt.getText());
             txt.setBackground(Color.WHITE);
-
         } catch (NumberFormatException e) {
-
             this.mensagensErro.add("Falha ao converter o valor do campo " + txt.getName() + " em inteiro");
             txt.setBackground(Color.red);
         } catch (IllegalArgumentException e) {
@@ -47,21 +46,19 @@ public class Validador {
     }
 
     /**
-     * Método utilizado para verificar se um campo de texto está nulo.
+     * Método utilizado para verificar se um campo de texto está nulo
      *
      * @param txt - jTextFied
+     * @throws IllegalArgumentException
      */
     public void ValidarTexto(JTextField txt) {
 
         try {
-
             // Verifico se o campo está vazio.
             if (txt.getText().trim().replace(" ", "").replace("-", "").replace("(", "").replace(")", "").replace(".", "").equals("")) {
                 throw new IllegalArgumentException();
             }
-
             txt.setBackground(Color.WHITE);
-
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("Digite um valor para o campo " + txt.getName() + "!");
             txt.setBackground(Color.red);
@@ -69,9 +66,10 @@ public class Validador {
     }
 
     /**
-     * Método utilizado para verificar se o campo de data é nullo.
+     * Método utilizado para verificar se o campo de data é nullo
      *
      * @param data - JDateChooser
+     * @throws IllegalArgumentException
      */
     public void ValidarData(JDateChooser data) {
 
@@ -80,9 +78,7 @@ public class Validador {
             if (data.getDate() == null) {
                 throw new IllegalArgumentException();
             }
-
             data.setBackground(Color.WHITE);
-
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("Digite um valor para o campo " + data.getName() + "!");
             data.setBackground(Color.red);
@@ -91,9 +87,10 @@ public class Validador {
 
     /**
      * Método utilizado para verificar se a linhas a partir da linha 1 foram
-     * selecionadas.
+     * selecionadas
      *
      * @param cbo - JComboBox
+     * @throws IllegalArgumentException
      */
     public void ValidarCbo(JComboBox cbo) {
 
@@ -104,9 +101,7 @@ public class Validador {
             if (index == 0) {
                 throw new IllegalArgumentException();
             }
-
             cbo.setBackground(Color.WHITE);
-
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("Digite um valor para o campo " + cbo.getName() + "!");
             cbo.setBackground(Color.red);
@@ -115,9 +110,10 @@ public class Validador {
 
     /**
      * Método utilizado para verificar se um campo de texto está nulo ou no
-     * formato incorreto.
+     * formato incorreto
      *
      * @param txt - JTextFiled
+     * @throws IllegalArgumentException
      */
     public void ValidarFloat(JTextField txt) {
 
@@ -126,7 +122,7 @@ public class Validador {
             if (txt.getText().trim().equals("")) {
                 throw new IllegalArgumentException();
             }
-
+            // Tentativa de conversão.
             float valorConvertido = Float.parseFloat(txt.getText());
             txt.setBackground(Color.WHITE);
 
@@ -140,8 +136,10 @@ public class Validador {
     }
 
     /**
+     * Método responsável para validar se exite erros gravados na ArrayList
      *
-     * @return
+     * @return boolean - true Sem erros gravados; false Com erros gravados na
+     * lista
      */
     public boolean temErro() {
         if (this.mensagensErro.isEmpty()) {
@@ -152,15 +150,19 @@ public class Validador {
     }
 
     /**
+     * Método responsável por limpar a ArrayList. Utilizado no método
+     * {@link #ExibirMensagensErro()}
      *
      */
     public void limparMensagens() {
-
         this.mensagensErro.clear();
     }
 
     /**
-     * 
+     * Método de impressão das mensagens armazenadas na ArrayList e limpa a
+     * lista caso tenha conteúdo nela. Utilizando o método
+     * {@link #limparMensagens()} para limpar
+     *
      */
     public void ExibirMensagensErro() {
         String errosFormulario = "";

@@ -28,13 +28,12 @@ public class Venda extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     public Venda(int idVenda) {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIdVenda.setText(String.valueOf(idVenda));
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +76,7 @@ public class Venda extends javax.swing.JFrame {
         btnCalcular = new javax.swing.JButton();
         btnFinalizarCompra = new javax.swing.JButton();
         txtIdVenda = new javax.swing.JTextField();
+        btnCancelarCompra = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -399,6 +399,15 @@ public class Venda extends javax.swing.JFrame {
         txtIdVenda.setEditable(false);
         txtIdVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Número da Compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
+        btnCancelarCompra.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnCancelarCompra.setText("Cancelar");
+        btnCancelarCompra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCompraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -411,19 +420,19 @@ public class Venda extends javax.swing.JFrame {
                         .addGap(176, 176, 176))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(467, 467, 467))))
+                        .addGap(475, 475, 475))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(529, 529, 529))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(420, 420, 420))))
+                .addComponent(txtIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(420, 420, 420))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,7 +446,9 @@ public class Venda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(88, 88, 88))
         );
 
@@ -455,7 +466,7 @@ public class Venda extends javax.swing.JFrame {
         float troco = Float.parseFloat(txtPrintTroco.getText());
 
         // Grava os dados restantes nas tabelas itensvendas e vendas. 
-        if (ItensVendasController.finalizaCompra(idVenda,recebido,total,troco) && VendasController.gravaId(idCliente, idVenda)) {
+        if (ItensVendasController.finalizaCompra(idVenda, recebido, total, troco) && VendasController.gravaId(idCliente, idVenda)) {
             JOptionPane.showMessageDialog(this, "Compra finalizada com sucesso! Obrigado por comprar e volte sempre!");
         } else {
             JOptionPane.showMessageDialog(this, "Erro no fechamento da compra!");
@@ -468,7 +479,7 @@ public class Venda extends javax.swing.JFrame {
 
         ItensVendas obj = new ItensVendas();
 
-        Object obj1 = tblCarrinho.getValueAt(linhaSelecionada, 2);
+        Object obj1 = tblCarrinho.getValueAt(linhaSelecionada, 0);
         String codigo = String.valueOf(obj1);
         obj = ItensVendasController.consultaId(codigo);
         int id = obj.getIdItemVenda();
@@ -518,7 +529,7 @@ public class Venda extends javax.swing.JFrame {
 
         // Armazenando valores dos campos.
         String formataVenda = txtIdVenda.getText();
-        int idVenda = Integer.parseInt(formataVenda); 
+        int idVenda = Integer.parseInt(formataVenda);
         String nomeCliente = txtNome.getText();
         String codigo = txtCod.getText();
         String descricao = txtDescricao.getText();
@@ -530,7 +541,6 @@ public class Venda extends javax.swing.JFrame {
         // Estrutura de validação para verificar se há erros.
         boolean temErro = validador.temErro();
         if (temErro) {
-
             if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
                     qtdVenda, valorProduto, valorTotal)) {
                 // Adicionando linha ao JTable.            
@@ -566,7 +576,7 @@ public class Venda extends javax.swing.JFrame {
             int linhas = modelo.getRowCount();
             float valorTotal = 0;
             float valorTroco = 0;
-         
+
             // Calcula o total na coluna de valor.
             for (int i = 0; i <= linhas - 1; i++) {
 
@@ -603,19 +613,22 @@ public class Venda extends javax.swing.JFrame {
             boolean temErro = validador.temErro();
             if (temErro) {
                 obj = ProdutosController.consultar(codigo);
+                System.out.println(obj.getValorProduto());
                 txtIdProdutos.setText(String.valueOf(obj.getIdProduto()));
                 txtCod.setText(obj.getCodigo());
                 txtDescricao.setText(obj.getDescricao());
                 txtModelo.setText(obj.getModelo());
-                txtQtd.setText(String.valueOf(obj.getQtdEstoque()));
-                txtValor.setText(String.valueOf(obj.getValorProduto()));
-
+                txtValor.setText(String.valueOf(obj.getPreco()));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Não adicione produtos se o campo de cliente estiver vazio!");
         }
 
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
+
+    private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
+
+    }//GEN-LAST:event_btnCancelarCompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -661,6 +674,7 @@ public class Venda extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscaCli;
     private javax.swing.JButton btnBuscarProduto;
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnCancelarCompra;
     private javax.swing.JButton btnFinalizarCompra;
     private javax.swing.JButton btnRemover;
     private javax.swing.JLabel jLabel1;

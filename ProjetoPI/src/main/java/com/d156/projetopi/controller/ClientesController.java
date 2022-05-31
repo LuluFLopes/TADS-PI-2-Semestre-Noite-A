@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * Métodos são utilizados para enviar objetos preenchidos às DAO
  *
  * @author lucme
  */
 public class ClientesController {
-
-    public static boolean salvar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone, 
+    
+    // Inserção de clientes.
+    public static boolean salvar(String nome, String cpf, String endereco, String numero, String email, String estadoCivil, String telefone,
             String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
-
         Clientes obj = new Clientes();
-
         obj.setNome(nome);
         obj.setCpf(cpf);
         obj.setEndereco(endereco);
@@ -34,16 +34,13 @@ public class ClientesController {
         obj.setCidade(cidade);
         obj.setCep(cep);
         obj.setEstado(estado);
-
         return ClientesDAO.salvar(obj);
-
     }
 
-    public static boolean alterar(int id, String nome, String endereco, String numero, String email, String estadoCivil, String telefone, 
+    // Alteração de clientes.
+    public static boolean alterar(int id, String nome, String endereco, String numero, String email, String estadoCivil, String telefone,
             String genero, Date dataNascimento, String complemento, String bairro, String cidade, String cep, String estado) {
-
         Clientes obj = new Clientes();
-
         obj.setIdCliente(id);
         obj.setNome(nome);
         obj.setEndereco(endereco);
@@ -58,56 +55,41 @@ public class ClientesController {
         obj.setCidade(cidade);
         obj.setCep(cep);
         obj.setEstado(estado);
-
         return ClientesDAO.atualizar(obj);
-
     }
 
+    // Consulta clientes por id, retorna objeto preenchido.
     public static Clientes consultaId(int id) {
-
         Clientes obj = new Clientes();
         obj.setIdCliente(id);
-
         return ClientesDAO.consultarClienteId(obj);
-
     }
 
+    // Exclusão de clientes.
     public static boolean excluir(int id) {
-
         Clientes obj = new Clientes();
         obj.setIdCliente(id);
-
         return ClientesDAO.excluir(obj);
-
     }
 
-    // Função quando o usuário digitar o nome na pesquisa.
+    // Listagem de clientes pelo nome.
     public static ArrayList<Clientes> listaClientesNome(String nome) {
-
         Clientes obj = new Clientes();
         obj.setNome(nome);
-
         return ClientesDAO.listaClientesNome(obj);
-
     }
 
-    // Função quando o usuário digitar o código na pesquisa.
+    // Listagem de clientes pelo cpf.
     public static ArrayList<Clientes> listaClientesCpf(String cpf) {
-
         Clientes obj = new Clientes();
         obj.setCpf(cpf);
-
         return ClientesDAO.listaClientesCpf(obj);
-
     }
 
+    // Consulta clientes pelo cpf, retorna objeto preenchido.
     public static Clientes consultar(String cpf) {
-        
         Clientes obj = new Clientes();
         obj.setCpf(cpf);
-
         return ClientesDAO.consultarCliente(obj);
-
     }
-
 }

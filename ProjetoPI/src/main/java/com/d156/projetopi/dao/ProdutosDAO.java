@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class ProdutosDAO {
 
-    // Função utilizada para inserir novos produtos no sistema.
+    // Inserção de produtos.
     public static boolean salvar(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
@@ -46,6 +46,7 @@ public class ProdutosDAO {
         return retorno;
     }
 
+    // Listagem de produtos sem parâmetro.
     public static ArrayList<Produtos> listaProdutos(Produtos obj) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
@@ -79,7 +80,7 @@ public class ProdutosDAO {
         return listaRetorno;
     }
 
-    // Função utilizada para listar produtos quando a pesquisa for realizada por Nome.
+    // Listagem de produtos por nome.
     public static ArrayList<Produtos> listaProdutosDescricao(Produtos obj) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
@@ -115,7 +116,7 @@ public class ProdutosDAO {
         return listaRetorno;
     }
 
-    // Função utilizada para listar produtos quando a pesquisa for realizada por Cpf.
+    // Listagem produtos por cpf.
     public static ArrayList<Produtos> listaProdutosCod(Produtos obj) {
         Connection conexao = null;
         ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
@@ -151,7 +152,7 @@ public class ProdutosDAO {
         return listaRetorno;
     }
 
-    // Função utilizada para alterar cadastros no sistema.
+    // Alteração de produtos.
     public static boolean alterar(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
@@ -178,6 +179,7 @@ public class ProdutosDAO {
         return retorno;
     }
 
+    // Consulta produtos por id, retorna objeto preenchido.
     public static Produtos consultarProdutoId(Produtos obj) {
         Connection conexao = null;
         ResultSet rs = null;
@@ -210,7 +212,7 @@ public class ProdutosDAO {
         return obj;
     }
 
-    // Função utilizada para excluir cadastros do sistema.
+    // Exclusão de produtos.
     public static boolean excluir(Produtos obj) {
         boolean retorno = false;
         Connection conexao = null;
@@ -237,7 +239,7 @@ public class ProdutosDAO {
         return retorno;
     }
 
-    // Função utilizada para listar produtos quando a pesquisa for realizada por Id.
+    // Listagem produtos por id.
     public static Produtos consultarProdutoPeloCodigo(Produtos obj) {
         Connection conexao = null;
         ResultSet rs = null;
@@ -254,7 +256,7 @@ public class ProdutosDAO {
                 obj.setQtdEstoque(rs.getInt("qtdEstoque"));
                 obj.setPreco(rs.getFloat("preco"));
             }
-        } catch (Exception e) {
+       } catch (Exception e) {
             System.out.println("Erro ao consultar o produto!");
         } finally {
             try {
@@ -269,5 +271,4 @@ public class ProdutosDAO {
         }
         return obj;
     }
-
 }

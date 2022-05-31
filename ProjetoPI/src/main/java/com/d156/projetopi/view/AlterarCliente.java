@@ -44,7 +44,6 @@ public class AlterarCliente extends javax.swing.JFrame {
             cboEstadoCivil.setSelectedItem(obj.getEstadoCivil());
             cboSexo.setSelectedItem(obj.getGenero());
             jdcDataNascimento.setDate(obj.getData());
-            txtComplemento.setText(obj.getComplemento());
             txtBairro.setText(obj.getBairro());
             txtCidade.setText(obj.getCidade());
             txtCep.setText(obj.getCep());

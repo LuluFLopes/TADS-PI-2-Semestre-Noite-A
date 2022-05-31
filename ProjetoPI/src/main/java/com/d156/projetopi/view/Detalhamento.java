@@ -5,7 +5,10 @@
 package com.d156.projetopi.view;
 
 import com.d156.projetopi.controller.ItensVendasController;
+import com.d156.projetopi.controller.VendasController;
 import com.d156.projetopi.model.ItensVendas;
+import com.d156.projetopi.model.Vendas;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,14 +38,22 @@ public class Detalhamento extends javax.swing.JFrame {
         // Valida se o retorno está vazio e lista caso esteja com conteúdo.
         if (!listaDetalhamento.isEmpty()) {
 
+            // Pega o objeto da ArrayList.
             ItensVendas obj = new ItensVendas();
-
             obj = listaDetalhamento.get(0);
+            Vendas obj1 = new Vendas();
+            
+            // Pega a data e a converte para o formato correto.
+            obj1 = VendasController.pegaData(id);
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String dataAtual = formato.format(obj1.getDataVenda());
 
-            txtIdCliente.setText(String.valueOf(obj.getIdVenda()));
+            //Preenche os campos.
+            txtIdCliente.setText(String.valueOf(obj.getIdCliente()));
             txtNomeCliente.setText(obj.getNomeCliente());
-            txtDataVenda.setText(String.valueOf(obj.getDataVenda()));
+            txtDataVenda.setText(dataAtual.replace("-", ""));
 
+            // Insere as informações da lista.
             if (!listaDetalhamento.isEmpty()) {
                 modelo.setRowCount(0);
                 for (ItensVendas venda : listaDetalhamento) {
@@ -53,13 +64,10 @@ public class Detalhamento extends javax.swing.JFrame {
                         venda.getValorProduto(),
                         venda.getValorTotal()});
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Não há informações lançadas no período!");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Não foi possível retornar!");
         }
-
     }
 
     /**

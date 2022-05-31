@@ -35,7 +35,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         txtCpf = new javax.swing.JFormattedTextField();
-        txtNumCadastro = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         txtNumero = new javax.swing.JTextField();
         cboSexo = new javax.swing.JComboBox<>();
@@ -65,9 +65,9 @@ public class CadastroClientes extends javax.swing.JFrame {
         }
         txtCpf.setName("CPF");
 
-        txtNumCadastro.setEditable(false);
-        txtNumCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
-        txtNumCadastro.setName("Id do Cliente");
+        txtId.setEditable(false);
+        txtId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtId.setName("Id do Cliente");
 
         txtEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtEndereco.setName("Endereço");
@@ -140,7 +140,7 @@ public class CadastroClientes extends javax.swing.JFrame {
                             .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,7 +156,7 @@ public class CadastroClientes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,22 +279,40 @@ public class CadastroClientes extends javax.swing.JFrame {
         validador.ValidarTexto(txtTelefone);
         validador.ValidarCbo(cboSexo);
         validador.ValidarData(jdcDataNascimento);
-        validador.ValidarTexto(txtComplemento);
         validador.ValidarTexto(txtBairro);
         validador.ValidarTexto(txtCidade);
         validador.ValidarTexto(txtCep);
         validador.ValidarCbo(cboEstado);
-        
+
         // Verificando de existem erros antes de gravar na classe.
         boolean temErro = validador.temErro();
         validador.ExibirMensagensErro();
-
 
         // Validação se existe menssagens de erro no array de erros.
         if (temErro) {
             // Envia as informações para gravação e valida se deu certo.
             if (ClientesController.salvar(nome, cpf, endereco, numero, email, estadoCivil, telefone, genero, dataNascimento, complemento, bairro, cidade, cep, estado)) {
-                JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
+
+                JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
+
+                // Limpa os campos para o próximo cadastro.
+                txtId.setText("");
+                txtCpf.setText("");
+                txtNome.setText("");
+                txtEndereco.setText("");
+                txtEmail.setText("");
+                txtNumero.setText("");
+                txtTelefone.setText("");
+                cboEstadoCivil.setSelectedItem("");
+                cboSexo.setSelectedItem("");
+                txtComplemento.setText("");
+                txtBairro.setText("");
+                txtCidade.setText("");
+                txtCep.setText("");
+                cboEstado.setSelectedItem("");
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro!");
             }
         }
 
@@ -355,8 +373,8 @@ public class CadastroClientes extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNumCadastro;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables

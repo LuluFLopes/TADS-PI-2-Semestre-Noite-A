@@ -9,15 +9,16 @@ import com.d156.projetopi.model.ItensVendas;
 import java.util.ArrayList;
 
 /**
+ * Métodos são utilizados para enviar objetos preenchidos às DAO
  *
  * @author lucme
  */
 public class ItensVendasController {
-
+    
+    // Inserção de produtos na venda.
     public static boolean salvar(int idCliente, int idVenda, int idProduto, String nomeCliente, String descricao, String codigo,
             int qtd, float valorProduto, float valorTotal) {
         ItensVendas obj = new ItensVendas();
-
         obj.setIdCliente(idCliente);
         obj.setIdVenda(idVenda);
         obj.setIdProduto(idProduto);
@@ -27,69 +28,37 @@ public class ItensVendasController {
         obj.setQtdVenda(qtd);
         obj.setValorProduto(valorProduto);
         obj.setValorTotal(valorTotal);
-
         return ItensVendasDAO.salvar(obj);
     }
-    
+
+    // Grava o restante das informações ao finalizar a compra.
     public static boolean finalizaCompra(int id ,float recebido, float total, float troco) {
         ItensVendas obj = new ItensVendas();
-
         obj.setIdVenda(id);
         obj.setValorRecebido(recebido);
         obj.setValorTotal(total);
         obj.setTroco(troco);
-
         return ItensVendasDAO.finalizaCompra(obj);
     }
 
-    /*  **Essa função é usada ?**
-    public static boolean atualizar(int idVenda, int idProduto, int qtd, float valorProduto, int valorTotal, float valorRecebido, float troco) {
-        ItensVendas objItem = new ItensVendas();
-
-        objItem.setIdVenda(idVenda);
-        objItem.setIdProduto(idProduto);
-        objItem.setQtdVenda(qtd);
-        objItem.setValorTotal(valorTotal);
-        objItem.setValorRecebido(valorRecebido);
-        objItem.setTroco(troco);
-        objItem.setIdProduto(idProduto);
-        objItem.setValorProduto(valorProduto);
-
-        return ItemVendasDAO.atualizar(objItem);
-    }
-
-    public static ItensVendas consultar(int idItemVenda) {
-        ItensVendas objItem = new ItensVendas();
-
-        objItem.setIdItemVenda(idItemVenda);
-
-        return ItemVendasDAO.consultarItemVendas(objItem);
-    }
-     */
+    // Exclui um item da venda.
     public static boolean excluir(int id) {
-
         ItensVendas obj = new ItensVendas();
-
         obj.setIdItemVenda(id);
-
         return ItensVendasDAO.excluir(obj);
     }
 
+    // Lista todos os itens de uma venda específica.
     public static ArrayList<ItensVendas> listaDetalhamentoController(int id) {
-
         ItensVendas obj = new ItensVendas();
         obj.setIdVenda(id);
-
         return ItensVendasDAO.listaDetalhamento(obj);
     }
 
+    // Retorna um objeto a partir do código do produto.
     public static ItensVendas consultaId(String codigo) {
-
         ItensVendas obj = new ItensVendas();
-
         obj.setCodigo(codigo);
-
         return ItensVendasDAO.consultarId(obj);
     }
-
 }

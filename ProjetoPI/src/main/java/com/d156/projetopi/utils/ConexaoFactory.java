@@ -10,16 +10,16 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author luciano.flopes
+ * 
+ * @author lucme
  */
 
 public class ConexaoFactory {
     
     /**
-     * Método carrega o driver e abre a conexão com o banco de dados.
+     * Método carrega o driver e abre a conexão com o banco de dados
      * 
-     * @return conexao - Connextion.
+     * @return conexao - Connextion
      */
     public static Connection getConexao() {
 

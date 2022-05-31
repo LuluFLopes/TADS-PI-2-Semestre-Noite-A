@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class VendasDAO {
 
+    // Inserção de vendas.
     public static boolean salvar(Vendas obj) {
         boolean retorno = false;
         Connection conexao = null;
@@ -44,27 +45,22 @@ public class VendasDAO {
         }
         return retorno;
     }
-
+    
+    // Gera a data do sistema e retorna objeto preenchido com id.
     public static Vendas salvarData(Vendas obj) {
         Connection conexao = null;
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-
             PreparedStatement sql = conexao.prepareStatement("insert into vendas"
                     + "(dataVenda)"
                     + "values (?)");
-
             sql.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
-
             int linhasafetadas = sql.executeUpdate();
-
             if (linhasafetadas > 0) {
                 PreparedStatement sql1 = conexao.prepareStatement("select * from vendas where dataVenda=?");
                 sql1.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
-
                 rs = sql1.executeQuery();
-
                 while (rs.next()) {
                     obj = new Vendas();
                     obj.setIdVenda(rs.getInt("idVenda"));
@@ -77,22 +73,19 @@ public class VendasDAO {
         return obj;
     }
 
+    // Grava o idCliente após ele ser acessível na tela de vendas.
     public static boolean salvaId(Vendas obj) {
         Connection conexao = null;
         boolean retorno = false;
         try {
             conexao = ConexaoFactory.getConexao();
-
             PreparedStatement sql = conexao.prepareStatement("update vendas set fk_idCliente=? where idVenda=?");
             sql.setInt(1, obj.getIdCliente());
             sql.setInt(2, obj.getIdVenda());
-
             int linhasafetadas = sql.executeUpdate();
-            
             if (linhasafetadas > 0) {
                 retorno = true;
             }
-
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
             retorno = false;
@@ -100,13 +93,13 @@ public class VendasDAO {
         return retorno;
     }
 
+    // Listagem ordenada do relatório sintético.
     public static ArrayList<ItensVendas> listaSintetico(RelatorioSintetico objSintetico, ItensVendas obj) {
         Connection conexao = null;
         ArrayList<ItensVendas> listaRetorno = new ArrayList<ItensVendas>();
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-
             PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda,b.nome,d.dataVenda,a.valorTotal  "
                     + " from itensvendas a "
                     + " inner join clientes b on b.idCliente = a.fk_idCliente"
@@ -115,13 +108,10 @@ public class VendasDAO {
                     + " where d.dataVenda between ? and ?"
                     + " group by a.fk_idVenda"
                     + " order by a.fk_idVenda desc");
-
             sql.setDate(1, new java.sql.Date(objSintetico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objSintetico.getDataFim().getTime()));
             rs = sql.executeQuery();
-
             while (rs.next()) {
-
                 obj = new ItensVendas();
                 obj.setIdVenda(rs.getInt("a.fk_idVenda"));
                 obj.setNomeCliente(rs.getString("b.nome"));
@@ -129,13 +119,10 @@ public class VendasDAO {
                 obj.setValorTotal(rs.getFloat("a.valorTotal"));
                 listaRetorno.add(obj);
             }
-
         } catch (Exception e) {
             System.out.println("Erro:" + e.getMessage());
         } finally {
-
             try {
-
                 if (rs != null) {
                     rs.close();
                 }
@@ -148,13 +135,13 @@ public class VendasDAO {
         return listaRetorno;
     }
 
+    // Listagem ordenada do relatório analítico.
     public static ArrayList<ItensVendas> listaAnalitico(RelatorioAnalitico objAnalitico, ItensVendas obj) {
         Connection conexao = null;
         ArrayList<ItensVendas> listaRetorno = new ArrayList<ItensVendas>();
         ResultSet rs = null;
         try {
             conexao = ConexaoFactory.getConexao();
-
             PreparedStatement sql = conexao.prepareStatement("select a.fk_idVenda, b.nome, c.descricao, a.qtdVenda, c.codigo, a.valorTotal, d.dataVenda"
                     + " from itensvendas a"
                     + " inner join clientes b on b.idCliente = a.fk_idCliente"
@@ -163,11 +150,9 @@ public class VendasDAO {
                     + " where d.dataVenda between ? and ?"
                     + " group by a.fk_idVenda"
                     + " order by a.fk_idVenda desc");
-
             sql.setDate(1, new java.sql.Date(objAnalitico.getDataInicio().getTime()));
             sql.setDate(2, new java.sql.Date(objAnalitico.getDataFim().getTime()));
             rs = sql.executeQuery();
-
             while (rs.next()) {
                 obj = new ItensVendas();
                 obj.setNomeCliente(rs.getString("b.nome"));
@@ -179,13 +164,10 @@ public class VendasDAO {
                 obj.setValorTotal(rs.getFloat("a.valorTotal"));
                 listaRetorno.add(obj);
             }
-
         } catch (Exception e) {
             System.out.println("Erro:" + e.getMessage());
         } finally {
-
             try {
-
                 if (rs != null) {
                     rs.close();
                 }
@@ -198,6 +180,7 @@ public class VendasDAO {
         return listaRetorno;
     }
 
+    // Consulta por idCliente, retorna idVenda no objeto.
     public static Vendas consultaId(Vendas obj) {
         Connection conexao = null;
         ResultSet rs = null;
@@ -206,11 +189,8 @@ public class VendasDAO {
             PreparedStatement sql = conexao.prepareStatement("Select * from vendas where fk_idCliente=?");
             sql.setInt(1, obj.getIdCliente());
             rs = sql.executeQuery();
-
             while (rs.next()) {
-
                 obj.setIdVenda(rs.getInt("idVenda"));
-
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar a Venda!");
@@ -227,5 +207,32 @@ public class VendasDAO {
         }
         return obj;
     }
-
+    
+    // Consulta por idVenda, retorna objet prenchido.
+    public static Vendas pegaData(Vendas obj) {
+        Connection conexao = null;
+        ResultSet rs = null;
+        try {
+            conexao = ConexaoFactory.getConexao();
+            PreparedStatement sql = conexao.prepareStatement("Select * from vendas where idVenda=?");
+            sql.setInt(1, obj.getIdVenda());
+            rs = sql.executeQuery();
+            while (rs.next()) {
+                obj.setDataVenda(rs.getDate("dataVenda"));
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar a data!");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+        return obj;
+    }
 }

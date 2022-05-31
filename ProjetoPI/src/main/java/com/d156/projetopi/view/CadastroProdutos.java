@@ -39,7 +39,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         txtModeloProduto = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
-        txtIdProduto = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtDescricaoProduto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -77,8 +77,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
         txtQuantidade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtQuantidade.setName("Quantidade");
 
-        txtIdProduto.setEditable(false);
-        txtIdProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        txtId.setEditable(false);
+        txtId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Id", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         txtDescricaoProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtDescricaoProduto.setName("Nome");
@@ -93,7 +93,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                        .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -109,7 +109,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,8 +172,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
         validador.ValidarTexto(txtDescricaoProduto);
         validador.ValidarTexto(txtCodigo);
         validador.ValidarTexto(txtModeloProduto);
-        validador.ValidarTexto(txtQuantidade);
-        validador.ValidarTexto(txtPrecoProduto);
+        validador.ValidarNumero(txtQuantidade);
+        validador.ValidarFloat(txtPrecoProduto);
         boolean temErro = validador.temErro();
         validador.ExibirMensagensErro();
 
@@ -183,9 +183,19 @@ public class CadastroProdutos extends javax.swing.JFrame {
             float preco = Float.parseFloat(formataPreco);
             // Envia as informações para gravação e valida se deu certo.
             if (ProdutosController.salvar(descricao, codigo, modelo, qtdEstoque, preco)) {
-                JOptionPane.showMessageDialog(this, "Cadastro Realizado");
+                
+                JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
+                
+            // Limpa os campos para o próximo cadastro.
+            txtId.setText("");
+            txtDescricaoProduto.setText("");
+            txtCodigo.setText("");
+            txtModeloProduto.setText("");
+            txtQuantidade.setText("");
+            txtPrecoProduto.setText("");
+
             } else {
-                JOptionPane.showMessageDialog(this, "Erro no Cadastro");
+                JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro!");
             }
         }
     }//GEN-LAST:event_btnSalvarCadastroProdutoActionPerformed
@@ -236,7 +246,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricaoProduto;
-    private javax.swing.JTextField txtIdProduto;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtModeloProduto;
     private javax.swing.JTextField txtPrecoProduto;
     private javax.swing.JTextField txtQuantidade;

@@ -206,8 +206,6 @@ public class AlterarProduto extends javax.swing.JFrame {
         boolean temErro = validador.temErro();
         validador.ExibirMensagensErro();
 
-        
-
         // Validação se existe menssagens de erro no array responsável.
         if (temErro) {
             // Envia as informações para gravação e valida se deu certo.
