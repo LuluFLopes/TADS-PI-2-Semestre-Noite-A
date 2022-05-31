@@ -76,14 +76,14 @@ public class CadastroClientes extends javax.swing.JFrame {
         txtNumero.setName("Número");
 
         cboSexo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        cboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Feminino" }));
+        cboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Feminino", "Outro" }));
         cboSexo.setName("Sexo");
 
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
         txtEmail.setName("Email");
 
         cboEstadoCivil.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        cboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado Civil", "Solteiro ", "Divorciado", "Casado", " ", " " }));
+        cboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado Civil", "Solteiro(a)", "Divorciado(a)", "Casado(a)" }));
         cboEstadoCivil.setName("Estado Civil");
 
         jdcDataNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data de Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
@@ -99,7 +99,8 @@ public class CadastroClientes extends javax.swing.JFrame {
         txtCidade.setName("Cidade");
 
         cboEstado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF ", "ES ", "GO ", "MA ", "MT ", "MS ", "MG ", "PA ", "PB ", "PR ", "PE ", "PI", "RR ", "RO ", "RJ", "RN ", "RS ", "SC ", "SP ", "SE ", "TO" }));
+        cboEstado.setMaximumRowCount(28);
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RR", "RO", "RJ", "RN", "RS", "SC", "SP", "SE", "TO" }));
         cboEstado.setName("Estado");
 
         txtCep.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cep", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
