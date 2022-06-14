@@ -507,13 +507,18 @@ public class Venda extends javax.swing.JFrame {
                 // Recebendo modelo padrão.
                 DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
 
+                modelo.removeRow(linhaSelecionada);
+                
+                // Senão houver movimentação, não há necessidade de excluir.
+                /*
                 // Estrutura que garante que uma linha seja selecionada.
                 if (ItensVendasController.excluir(id)) {
-                    modelo.removeRow(linhaSelecionada);
+                    
                 } else {
                     JOptionPane.showMessageDialog(this,
                             "Não foi possível excluir a linha!");
-                }
+                }*/
+                
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Selecione uma linha!");
@@ -574,13 +579,18 @@ public class Venda extends javax.swing.JFrame {
                 if (qtdVenda <= qtdEstoque) {
                     // Valida se tentar quantidades e valores incorretos.
                     if (qtdVenda > 0 && valorProduto >= 0) {
-                        if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
+
+                        modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
+
+                        // Correção do erro de projeto, o banco não pode ser movimentado para gravar antes de finalizar a compra.
+                        /*if (ItensVendasController.salvar(idCliente, idVenda, idProduto, nomeCliente, descricao, codigo,
                                 qtdVenda, valorProduto, valorTotal)) {
                             // Adicionando linha ao JTable.            
                             modelo.addRow(new Object[]{codigo, descricao, modelCampo, qtdVenda, valorProduto, valorTotal});
                         } else {
                             JOptionPane.showMessageDialog(this, "Não foi possível inserir a linha com os parâmetros indicados!");
-                        }
+                        }*/
+                        
                     } else {
                         JOptionPane.showMessageDialog(this, "Quantidades ou valores inválidos!");
                     }
